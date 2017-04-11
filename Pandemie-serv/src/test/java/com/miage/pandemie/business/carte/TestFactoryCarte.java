@@ -73,7 +73,9 @@ public class TestFactoryCarte {
         int nbTmp =  listeReference.size();
         assertEquals(nbTmp,4);
     }
-    
+    /*/*
+    test dans le master
+    */
      @Test
     public void testDoublonCarteInfection() {
         for (int i = 0; i < listeInfections.size(); i++) {
