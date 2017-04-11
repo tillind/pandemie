@@ -7,7 +7,7 @@ import com.miage.pandemie.business.Enum.EEvent;
  * @author alex
  */
 public class Event extends Joueur{
-    public Event(String path, EEvent event) {
-        super("/Event"+path,event.name());
+    public Event(EEvent event) {
+        super("/Event",event.name());
     } 
 }

@@ -5,6 +5,7 @@ package com.miage.pandemie.business.Enum;
  * @author alex
  */
 public enum EVille {
+    /*Ville Bleu */
     Atlanta,
     Chicago,
     Essen,
@@ -17,6 +18,7 @@ public enum EVille {
     Saint_Petersbourg,
     San_Francisco,
     Washington,
+    /*Ville Jaune*/
     Bogota,
     Bueno_Aires,
     Johannesburgs,
@@ -29,6 +31,7 @@ public enum EVille {
     Miami,
     Santiago,
     Sao_Paulo,
+    /*Ville Noir*/
     Alger,
     Bagdad,
     Calcutta,
@@ -41,6 +44,7 @@ public enum EVille {
     Delhi,
     Riyad,
     Teheran,
+    /*Ville Rouge */
     Bangkok,
     Ho_Chi_Minh_Ville,
     Hong_Kong,

@@ -13,7 +13,7 @@ public abstract class Carte {
        this.name=name;
     }
     public String linkImg(){
-        return link.concat(getName()).concat(".jpg");
+        return link.concat("/".concat(getName())).concat(".jpg");
     }
     public String linkImgVerso(){
         return link.concat("/Verso").concat(".jpg");
@@ -23,5 +23,11 @@ public abstract class Carte {
      */
     public String getName() {
         return name;
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+        Carte tmp = (Carte) obj;
+        return name.equals(tmp.getName());
     }
 }

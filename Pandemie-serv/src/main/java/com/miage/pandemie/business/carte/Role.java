@@ -7,7 +7,7 @@ import com.miage.pandemie.business.Enum.ERole;
  * @author alex
  */
 public class Role extends Carte{   
-    public Role(String path,ERole role) {
-        super("/Roles"+path,role.name());
+    public Role(ERole role) {
+        super("/Roles",role.name());
     } 
 }
