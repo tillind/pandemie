@@ -9,10 +9,11 @@ package com.miage.pandemie.business.element;
  *
  * @author Remi
  */
-public class FoyersInfection extends MarqueurInfection {
+public abstract class MarqueurInfection extends Element {
+    private int valeur;
 
-    public FoyersInfection(int valeur) {
-        super(valeur,"Marqueur de Foyer d'infection");
+    public MarqueurInfection(int valeur, String name) {
+        super(name);
+        this.valeur = valeur;
     }
-  
 }
