@@ -13,3 +13,5 @@ hs_err_pid*
 /.nb-gradle/
 /Pandemie-cli/build/
 /Pandemie-serv/build/
+/.gradle/2.13/taskArtifacts/
+/.gradle/
