@@ -18,9 +18,9 @@ public class Launch extends Application {
     public void start(Stage stage) throws Exception {
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
-            public void handle(WindowEvent e) {
-                Platform.exit();
-               System.exit(0);
+            public void handle(WindowEvent e) 
+            {
+               Platform.exit();
             }
          });
 

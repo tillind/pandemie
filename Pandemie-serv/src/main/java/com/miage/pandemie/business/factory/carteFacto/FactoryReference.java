@@ -1,6 +1,6 @@
 package com.miage.pandemie.business.factory.carteFacto;
 
-import com.miage.pandemie.business.Enum.EDifficulter;
+import com.miage.pandemie.business.enumparam.EDifficulter;
 import com.miage.pandemie.business.carte.Carte;
 import com.miage.pandemie.business.carte.Reference;
 import java.util.ArrayList;

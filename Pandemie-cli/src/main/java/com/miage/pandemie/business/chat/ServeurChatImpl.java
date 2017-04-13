@@ -12,6 +12,7 @@ package com.miage.pandemie.business.chat;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -67,9 +68,11 @@ public class ServeurChatImpl extends UnicastRemoteObject implements ServeurChat{
     //Informer les clients quand un nouveau message arrive
     void notifyClient(String s,String Usr) throws RemoteException{
         for(ClientDistant x: Clients){
-        try {
-        x.Message(s,Usr);
-        } catch (RemoteException e) { e.printStackTrace();}
+            try {
+            x.Message(s,Usr);
+            } catch (RemoteException e) { 
+                Logger.getLogger(ServeurChatImpl.class.getName()).log(Level.SEVERE, null, e);
+            }
         }
     }
 
@@ -90,5 +93,24 @@ public class ServeurChatImpl extends UnicastRemoteObject implements ServeurChat{
             clt.AddUser(Usr);
         }
     }
+    
+    @Override
+    public boolean equals(Object obj){      
+        if (obj == null)
+            return false;
+        if (this.getClass() != obj.getClass())
+            return false; 
+        ServeurChatImpl tmp = (ServeurChatImpl) obj;
+        
+        return this == tmp;            
+    }
 
-    }   
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 43 * hash + Objects.hashCode(this.Clients);
+        hash = 43 * hash + Objects.hashCode(this.Users);
+        return hash;
+    }
+
+}   

@@ -13,6 +13,7 @@ import com.miage.pandemie.controller.IndexController;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,7 +25,7 @@ public class ServeurChatImpl extends UnicastRemoteObject implements ServeurChat{
     ArrayList<ClientDistant> Clients = new ArrayList<>();
     ArrayList<String> Users=new ArrayList<>();
     
-    IndexController program;
+    transient IndexController program;
     
     public ServeurChatImpl()throws RemoteException{
     }
@@ -75,7 +76,9 @@ public class ServeurChatImpl extends UnicastRemoteObject implements ServeurChat{
         Clients.forEach((x) -> {
             try {
                 x.Message(s,Usr);
-            } catch (RemoteException e) { e.printStackTrace();}
+            } catch (RemoteException e) {
+                Logger.getLogger(ServeurChatImpl.class.getName()).log(Level.SEVERE, null, e);
+            }
         });
     }
 
@@ -96,5 +99,25 @@ public class ServeurChatImpl extends UnicastRemoteObject implements ServeurChat{
             clt.AddUser(Usr);
         }
     }
+    
+    @Override
+    public boolean equals(Object obj){      
+        if (obj == null)
+            return false;
+        if (this.getClass() != obj.getClass())
+            return false; 
+        ServeurChatImpl tmp = (ServeurChatImpl) obj;
+        
+        return this == tmp;            
+    }
 
-    }   
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 43 * hash + Objects.hashCode(this.Clients);
+        hash = 43 * hash + Objects.hashCode(this.Users);
+        hash = 43 * hash + Objects.hashCode(this.program);
+        return hash;
+    }
+
+}   

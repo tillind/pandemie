@@ -5,8 +5,8 @@
  */
 package com.miage.pandemie.business.carte;
 
-import com.miage.pandemie.business.Enum.ECouleur;
-import com.miage.pandemie.business.Enum.EVille;
+import com.miage.pandemie.business.enumparam.ECouleur;
+import com.miage.pandemie.business.enumparam.EVille;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;

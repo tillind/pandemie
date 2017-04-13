@@ -1,5 +1,7 @@
 package com.miage.pandemie.business.carte;
 
+import java.util.Objects;
+
 /**
  *
  * @author alex
@@ -27,7 +29,18 @@ public abstract class Carte {
     
     @Override
     public boolean equals(Object obj){
+        if (obj == null)
+            return false;
+        if (this.getClass() != obj.getClass())
+            return false; 
         Carte tmp = (Carte) obj;
+        if(tmp.getName()==null)
+            return false;
         return name.equals(tmp.getName());
+    }
+    
+    @Override
+    public int hashCode() {
+      return Objects.hash(name);
     }
 }

@@ -8,6 +8,8 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.application.Platform;
@@ -27,7 +29,6 @@ public class Launch extends Application {
             @Override
             public void handle(WindowEvent e) {
                 Platform.exit();
-               System.exit(0);
             }
          });
           
@@ -53,18 +54,19 @@ public class Launch extends Application {
                 cdi = new ClientDistantImpl();
                 cd.Connect(cdi,str);
             } catch (NotBoundException ex) {
-                //Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Launch.class.getName()).log(Level.SEVERE, null, ex);
             } catch (MalformedURLException ex) {
-                //Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-            }
-         
-            
+                Logger.getLogger(Launch.class.getName()).log(Level.SEVERE, null, ex);
+            }         
         } catch (RemoteException ex) {
-            //Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Launch.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String msg = sc.nextLine();
-        cd.Getmessage(msg, str);
+        if(cd !=null){
+            String msg = sc.nextLine();
+            cd.Getmessage(msg, str);
+        }
+        
         
     }
 

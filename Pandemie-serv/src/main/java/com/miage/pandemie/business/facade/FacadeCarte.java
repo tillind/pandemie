@@ -1,7 +1,7 @@
 
 package com.miage.pandemie.business.facade;
 
-import com.miage.pandemie.business.Enum.ETypeCarte;
+import com.miage.pandemie.business.enumparam.ETypeCarte;
 import com.miage.pandemie.business.carte.Carte;
 import com.miage.pandemie.business.factory.carteFacto.FactoryInfection;
 import com.miage.pandemie.business.factory.carteFacto.FactoryJoueur;

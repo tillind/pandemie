@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.miage.pandemie.business.carte.TestFactoryCarte" tests="8" skipped="0" failures="0" errors="0" timestamp="2017-04-13T18:18:00" hostname="DESKTOP-J5MSOIE" time="0.003">
+  <properties/>
+  <testcase name="testDoublonCarteInfection" classname="com.miage.pandemie.business.carte.TestFactoryCarte" time="0.001"/>
+  <testcase name="testNbCarteInfection" classname="com.miage.pandemie.business.carte.TestFactoryCarte" time="0.0"/>
+  <testcase name="testNbCarteRef" classname="com.miage.pandemie.business.carte.TestFactoryCarte" time="0.0"/>
+  <testcase name="testDoublonCarteJoueurLoc" classname="com.miage.pandemie.business.carte.TestFactoryCarte" time="0.0"/>
+  <testcase name="testDoublonCarteRole" classname="com.miage.pandemie.business.carte.TestFactoryCarte" time="0.0"/>
+  <testcase name="testDoublonCarteJoueurEvent" classname="com.miage.pandemie.business.carte.TestFactoryCarte" time="0.0"/>
+  <testcase name="testNbCarteRole" classname="com.miage.pandemie.business.carte.TestFactoryCarte" time="0.0"/>
+  <testcase name="testNbCarteJoueur" classname="com.miage.pandemie.business.carte.TestFactoryCarte" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

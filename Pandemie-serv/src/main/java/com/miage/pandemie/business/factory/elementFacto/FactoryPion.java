@@ -5,8 +5,8 @@
  */
 package com.miage.pandemie.business.factory.elementFacto;
 
-import com.miage.pandemie.business.Enum.ECouleurPion;
-import com.miage.pandemie.business.Enum.EVille;
+import com.miage.pandemie.business.enumparam.ECouleurPion;
+import com.miage.pandemie.business.enumparam.EVille;
 import com.miage.pandemie.business.element.Element;
 import com.miage.pandemie.business.element.Pion;
 import java.util.ArrayList;

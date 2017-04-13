@@ -5,7 +5,7 @@
  */
 package com.miage.pandemie.business.carte;
 
-import com.miage.pandemie.business.Enum.ERole;
+import com.miage.pandemie.business.enumparam.ERole;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

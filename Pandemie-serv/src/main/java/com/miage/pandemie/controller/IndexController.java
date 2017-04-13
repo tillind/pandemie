@@ -6,9 +6,14 @@
 package com.miage.pandemie.controller;
 
 import com.miage.pandemie.business.chat.ServerChat;
+import com.miage.pandemie.business.chat.ServeurChatImpl;
+import java.net.Inet4Address;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,6 +33,9 @@ import javafx.scene.paint.Color;
  * @author alex
  */
 public class IndexController implements Initializable {
+    private String IP_BASE;
+    private final static String PORT_BASE="1099";
+    
     @FXML
     private Label statusGameLbl;
     @FXML
@@ -59,14 +67,14 @@ public class IndexController implements Initializable {
     @FXML
     private void handleCheckAction(ActionEvent event) {
         if(this.typeChk.isSelected()){
-            this.ipServerField.setText("127.0.0.1");
+            this.ipServerField.setText(IP_BASE);
             this.ipServerField.setEditable(false);
-            this.portField.setText("1099");
+            this.portField.setText(PORT_BASE);
             this.portField.setEditable(false);
         }else{
-            this.ipServerField.setText("127.0.0.1");
+            this.ipServerField.setText(IP_BASE);
             this.ipServerField.setEditable(true);
-            this.portField.setText("1099");
+            this.portField.setText(PORT_BASE);
             this.portField.setEditable(true);
         }    
     }
@@ -75,12 +83,6 @@ public class IndexController implements Initializable {
     private void handleButtonStartAction(ActionEvent event) {
         boolean chatUp=true;
         this.launchServerProgess.setVisible(true);
-        boolean serverUp = false;
-        while(serverUp){
-            startBtn.setDisable(true);
-            restartBtn.setDisable(true);
-            stopBtn.setDisable(true); 
-        }
         this.launchServerProgess.setVisible(false);
         monServeur = new ServerChat(ipServerField.getText(),Integer.parseInt(portField.getText()));
         
@@ -88,6 +90,7 @@ public class IndexController implements Initializable {
             monServeur.startServer(this);
             System.out.println("chat up");
         } catch (RemoteException ex) {
+            Logger.getLogger(IndexController.class.getName()).log(Level.SEVERE, null, ex);
             statusChatLbl.setText("error");
             statusChatLbl.setTextFill(Color.RED);
             chatList.getItems().add(ex.getMessage());
@@ -126,10 +129,15 @@ public class IndexController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try {
+            this.IP_BASE = Inet4Address.getLocalHost().getHostAddress();
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(IndexController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("com.miage.pandemie.controller.IndexController.initialize()");
-        this.ipServerField.setText("127.0.0.1");
+        this.ipServerField.setText(IP_BASE);
         this.ipServerField.setEditable(false);
-        this.portField.setText("1099");
+        this.portField.setText(PORT_BASE);
         this.portField.setEditable(false);
         this.typeChk.setSelected(true);
         logServerArea.setEditable(false);

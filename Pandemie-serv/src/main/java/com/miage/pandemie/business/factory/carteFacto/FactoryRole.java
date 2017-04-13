@@ -1,7 +1,7 @@
 package com.miage.pandemie.business.factory.carteFacto;
 
-import com.miage.pandemie.business.Enum.EDifficulter;
-import com.miage.pandemie.business.Enum.ERole;
+import com.miage.pandemie.business.enumparam.EDifficulter;
+import com.miage.pandemie.business.enumparam.ERole;
 import com.miage.pandemie.business.carte.Carte;
 import com.miage.pandemie.business.carte.Role;
 import java.util.ArrayList;
