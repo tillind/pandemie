@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Launch extends Application {
-    
+    /*exemple du master*/
     @Override
     public void start(Stage stage) throws Exception {
         System.out.println("com.miage.pandemie.launch.Launch.start()::serveur");
