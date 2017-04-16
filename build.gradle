@@ -21,9 +21,6 @@ allprojects {
   version = "$baseVersion" + (snapshotVersion ? "-SNAPSHOT" : "")
 }
 
-test {
-  ignoreFailures = true
-}
 
 subprojects {
     apply from: rootProject.file('common.gradle')

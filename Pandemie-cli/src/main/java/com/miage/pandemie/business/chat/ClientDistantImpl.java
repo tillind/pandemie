@@ -5,6 +5,7 @@
 
 package com.miage.pandemie.business.chat;
 
+import com.miage.pandemie.controller.BoardController;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -14,20 +15,24 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class ClientDistantImpl extends UnicastRemoteObject implements ClientDistant{
 
-    public ClientDistantImpl()throws RemoteException{
+    transient BoardController control;
+    
+    public ClientDistantImpl(BoardController ctrl)throws RemoteException{
+        super();
+        this.control=ctrl;
     }
 
     @Override
     public void Message(String s,String Usr) throws RemoteException
     {
-        System.out.println(Usr+" Say: "+s);
+        this.control.addMessageChat("["+Usr+"] :"+s);
     }
 
     public void RemoveUser(String s){
-        System.out.println(s);
+        this.control.addMessageChat("["+s+"] : est déconnectée ");
     }
 
     public void AddUser(String s){
-       System.out.println(s);
+       this.control.addMessageChat("["+s+"] : est connectée ");
     }
 }
