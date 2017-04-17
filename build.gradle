@@ -1,6 +1,26 @@
 import org.gradle.api.artifacts.*
 
-apply plugin: 'base' // To add "clean" task to the root project.
+plugins {
+  id "java"
+  id "jacoco"
+  id "org.sonarqube" version "2.3"
+}
+sonarqube {
+    properties {
+        property "sonar.projectName", "Java :: Simple Project :: SonarQube Scanner for Gradle"
+        property "sonar.projectKey", "org.sonarqube:java-gradle-simple"
+        property "sonar.jacoco.reportPath", "${project.buildDir}/jacoco/test.exec"
+    }
+}
+
+allprojects {
+  ext.baseVersion = "0.1"
+  ext.snapshotVersion = true
+
+  group = "org.sonarqube"
+  version = "$baseVersion" + (snapshotVersion ? "-SNAPSHOT" : "")
+}
+
 
 subprojects {
     apply from: rootProject.file('common.gradle')
@@ -18,3 +38,4 @@ task mergedJavadoc(type: Javadoc, description: 'Creates Javadoc from all the pro
         subprojects*.configurations*.compile*.copyRecursive({ !(it instanceof ProjectDependency); })*.resolve()
     }
 }
+
