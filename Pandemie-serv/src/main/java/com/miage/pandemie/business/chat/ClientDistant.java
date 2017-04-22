@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
 
 /**
  *
- * @author bach
+ * @author alex
  */
 public interface ClientDistant extends Remote{
     void Message(String s,String User) throws RemoteException;

@@ -8,6 +8,7 @@ package com.miage.pandemie.business.element;
 
 import com.miage.pandemie.business.factory.elementFacto.FactoryPion;
 import com.miage.pandemie.business.factory.elementFacto.IFactoryElement;
+import java.rmi.RemoteException;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -20,7 +21,7 @@ public class TestFactoryElement {
     
     private List<Element> ListeDesPions;
     
-    public TestFactoryElement(){
+    public TestFactoryElement() throws RemoteException{
         LesPions = new FactoryPion();
         
         ListeDesPions = LesPions.newGame();

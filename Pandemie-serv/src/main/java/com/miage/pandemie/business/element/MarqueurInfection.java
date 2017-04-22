@@ -16,4 +16,10 @@ public abstract class MarqueurInfection extends Element {
         super(name);
         this.valeur = valeur;
     }
+
+    public int getValeur() {
+        return valeur;
+    }
+    
+
 }

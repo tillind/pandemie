@@ -10,7 +10,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 /**
  *
- * @author bach
+ * @author alex
  */
 public class ClientDistantImpl extends UnicastRemoteObject implements ClientDistant{
 

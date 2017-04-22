@@ -19,4 +19,6 @@ public class Remede extends Element{
         super("Marqueur remède"+couleur.name());
         this.decouvert = decouvert;
     }
+    
+    
 }

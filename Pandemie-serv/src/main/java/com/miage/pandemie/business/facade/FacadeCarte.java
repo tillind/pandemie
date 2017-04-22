@@ -8,6 +8,7 @@ import com.miage.pandemie.business.factory.carteFacto.FactoryJoueur;
 import com.miage.pandemie.business.factory.carteFacto.FactoryReference;
 import com.miage.pandemie.business.factory.carteFacto.FactoryRole;
 import com.miage.pandemie.business.factory.carteFacto.IFactoryCarte;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class FacadeCarte {
        this.newGame();
     }
     
-    private void newGame(){
+    public void newGame(){
         IFactoryCarte fabricInfection = new FactoryInfection();
         IFactoryCarte fabricJoueur = new FactoryJoueur();
         IFactoryCarte fabricReference = new FactoryReference();
@@ -32,6 +33,11 @@ public class FacadeCarte {
         lesCartes.put(ETypeCarte.Infection, fabricInfection.newGame());
         lesCartes.put(ETypeCarte.Joueur, fabricJoueur.newGame());
         lesCartes.put(ETypeCarte.Reference, fabricReference.newGame());   
+    }
+    
+    
+    public HashMap<ETypeCarte,List<Carte>> getLesCartes(){
+        return this.lesCartes;
     }
     
 }

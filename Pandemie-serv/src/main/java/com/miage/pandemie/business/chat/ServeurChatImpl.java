@@ -7,7 +7,7 @@ package com.miage.pandemie.business.chat;
 
 /**
  *
- * @author bach
+ * @author alex
  */
 import com.miage.pandemie.controller.IndexController;
 import java.rmi.RemoteException;
@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author bach
+ * @author alex
  */
 public class ServeurChatImpl extends UnicastRemoteObject implements ServeurChat{
     ArrayList<ClientDistant> Clients = new ArrayList<>();

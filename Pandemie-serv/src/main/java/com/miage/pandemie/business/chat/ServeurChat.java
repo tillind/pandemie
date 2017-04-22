@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
 
 /**
  *
- * @author bach
+ * @author alex
  */
 public interface ServeurChat extends Remote{
     void Connect(ClientDistant s,String User) throws RemoteException;

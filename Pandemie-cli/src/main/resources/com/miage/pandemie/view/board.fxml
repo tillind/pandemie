@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1075.0" prefWidth="1926.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miage.pandemie.controller.BoardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1075.0" prefWidth="1926.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miage.pandemie.controller.BoardController">
    <top>
       <GridPane prefHeight="96.0" prefWidth="1327.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -162,6 +162,7 @@
                         <Image url="@../image/Joueur/Event/Event_Prevision.jpg" />
                      </image>
                   </ImageView>
+                  <Button layoutX="779.0" layoutY="70.0" mnemonicParsing="false" onAction="#finTourJoueur" prefHeight="38.0" prefWidth="170.0" text="Fin du tour" />
                </children>
             </AnchorPane>
          </children>
