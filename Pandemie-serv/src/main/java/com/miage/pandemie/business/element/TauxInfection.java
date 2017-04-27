@@ -24,5 +24,16 @@ public class TauxInfection extends MarqueurInfection{
         this.positionPiste = positionPiste;
     }
     
+    public void augementerPositionPiste() {
+        this.positionPiste ++;
+        if(positionPiste == 4){
+            this.setValeur(3);
+        }
+        
+        else if(positionPiste == 6){
+         this.setValeur(4);
+        }
+    }
+    
       private int positionPiste;
 }

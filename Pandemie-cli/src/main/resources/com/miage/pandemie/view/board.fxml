@@ -138,6 +138,7 @@
       <GridPane prefHeight="179.0" prefWidth="1527.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
@@ -149,7 +150,7 @@
                   <Label layoutX="14.0" layoutY="14.0" text="Remède découverts" />
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                <children>
                   <Label layoutX="37.0" layoutY="14.0" text="Carte joueur" />
                   <ImageView fitHeight="104.0" fitWidth="151.0" layoutX="281.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
@@ -163,6 +164,11 @@
                      </image>
                   </ImageView>
                   <Button layoutX="779.0" layoutY="70.0" mnemonicParsing="false" onAction="#finTourJoueur" prefHeight="38.0" prefWidth="170.0" text="Fin du tour" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <ListView layoutX="-28.0" layoutY="-21.0" prefHeight="179.0" prefWidth="642.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
          </children>

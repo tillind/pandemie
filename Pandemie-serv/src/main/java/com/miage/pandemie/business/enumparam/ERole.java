@@ -8,8 +8,7 @@ public enum ERole {
     Chercheuse,
     Expert,
     Medecin,
-    Planificateur,
     Repartiteur,
     Scientifique,
-    Specialiste;
+
 }

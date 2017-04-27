@@ -14,6 +14,15 @@ import java.util.Objects;
  * @author alex
  */
 public class Infection extends Carte{
+    
+    
+    
+    /**
+     * @return the ville
+     */
+    public String getVille() {
+        return ville;
+    }
 
     /**
      * @return the couleur
@@ -21,19 +30,27 @@ public class Infection extends Carte{
     public ECouleur getCouleur() {
         return couleur;
     }
+    
+    
     private ECouleur couleur;
+    private String ville;
     
     public Infection(String path,ECouleur couleur,EVille ville) {
         super("/Infection"+path+"/"+couleur.name(),ville.name());  
         this.couleur = couleur;
+        this.ville = ville.name();
     }
     public Infection(String path,ECouleur couleur,EVilleBleu ville) {
         super("/Infection"+path+"/"+couleur.name(),ville.name());  
         this.couleur = couleur;
+        this.ville = ville.name();
+
     }
     public Infection(String path,ECouleur couleur,EVilleRouge ville) {
         super("/Infection"+path+"/"+couleur.name(),ville.name());  
         this.couleur = couleur;
+        this.ville = ville.name();
+
     }
     public Infection(String path,ECouleur couleur,EVilleJaune ville) {
         super("/Infection"+path+"/"+couleur.name(),ville.name());  
@@ -42,6 +59,8 @@ public class Infection extends Carte{
     public Infection(String path,ECouleur couleur,EVilleNoir ville) {
         super("/Infection"+path+"/"+couleur.name(),ville.name());  
         this.couleur = couleur;
+        this.ville = ville.name();
+
     }
     
     @Override

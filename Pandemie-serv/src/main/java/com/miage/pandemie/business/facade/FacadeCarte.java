@@ -20,7 +20,8 @@ public class FacadeCarte {
     private HashMap<ETypeCarte,List<Carte>> lesCartes;
     
     public FacadeCarte(){
-       this.newGame();
+        
+        this.lesCartes = new HashMap<>();
     }
     
     public void newGame(){

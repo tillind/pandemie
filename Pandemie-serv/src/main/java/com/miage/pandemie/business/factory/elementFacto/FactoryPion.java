@@ -9,6 +9,8 @@ import com.miage.pandemie.business.enumparam.ECouleurPion;
 import com.miage.pandemie.business.enumparam.EVille;
 import com.miage.pandemie.business.element.Element;
 import com.miage.pandemie.business.element.Pion;
+import com.miage.pandemie.business.element.Ville;
+import com.miage.pandemie.business.enumparam.EVilleBleu;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,15 +18,14 @@ import java.util.List;
  *
  * @author Remi
  */
-public class FactoryPion implements IFactoryElement {
+public class FactoryPion  implements IFactoryElement {
     
     @Override
     public List<Element> newGame(){
         List<Element> lesPions = new ArrayList<>();
         for (ECouleurPion value : ECouleurPion.values()){
-            lesPions.add(new Pion(value,EVille.Atlanta));
+            lesPions.add(new Pion(value));
         }
-        
         return lesPions;
     }
     

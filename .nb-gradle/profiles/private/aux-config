@@ -4,21 +4,16 @@
   <auxiliary>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-      <group>
-        <file>file:/C:/Users/Remi/Documents/NetBeansProjects/pandemie/Pandemie-serv/src/main/java/com/miage/pandemie/business/facade/FacadeCarte.java</file>
-        <file>file:/C:/Users/Remi/Documents/NetBeansProjects/pandemie/Pandemie-serv/src/main/java/com/miage/pandemie/business/factory/elementFacto/FactoryPion.java</file>
-        <file>file:/C:/Users/Remi/Documents/NetBeansProjects/pandemie/Pandemie-serv/src/main/java/com/miage/pandemie/business/facade/FacadeElement.java</file>
-        <file>file:/C:/Users/Remi/Documents/NetBeansProjects/pandemie/Pandemie-serv/src/main/java/com/miage/pandemie/business/factory/carteFacto/FactoryReference.java</file>
-        <file>file:/C:/Users/Remi/Documents/NetBeansProjects/pandemie/Pandemie-serv/src/main/java/com/miage/pandemie/business/factory/carteFacto/IFactoryCarte.java</file>
-        <file>file:/C:/Users/Remi/Documents/NetBeansProjects/pandemie/Pandemie-serv/src/main/java/com/miage/pandemie/business/element/Pion.java</file>
-        <file>file:/C:/Users/Remi/Documents/NetBeansProjects/pandemie/Pandemie-serv/src/main/java/com/miage/pandemie/business/carte/Joueur.java</file>
-        <file>file:/C:/Users/Remi/Documents/NetBeansProjects/pandemie/Pandemie-serv/src/main/java/com/miage/pandemie/business/factory/carteFacto/FactoryRole.java</file>
-        <file>file:/C:/Users/Remi/Documents/NetBeansProjects/pandemie/Pandemie-serv/src/main/java/com/miage/pandemie/business/element/Station.java</file>
-      </group>
+      <group/>
     </open-files>
     <editor-bookmarks lastBookmarkId="0" xmlns="http://www.netbeans.org/ns/editor-bookmarks/2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-      <group/>
+      <group>
+        <file>file:/C:/Users/Remi/Documents/NetBeansProjects/pandemie/Pandemie-serv/src/test/java/com/miage/pandemie/business/jeu/TestJeu.java</file>
+        <file>file:/C:/Users/Remi/Documents/NetBeansProjects/pandemie/Pandemie-serv/src/main/java/com/miage/pandemie/business/jeu/Jeu.java</file>
+        <file>file:/C:/Users/Remi/Documents/NetBeansProjects/pandemie/Pandemie-serv/src/test/java/com/miage/pandemie/business/element/TestFacadeElement.java</file>
+        <file>file:/C:/Users/Remi/Documents/NetBeansProjects/pandemie/Pandemie-serv/src/main/java/com/miage/pandemie/business/element/Ville.java</file>
+      </group>
     </open-files>
   </auxiliary>
 </gradle-project-properties>

@@ -15,4 +15,9 @@ public class FoyerInfection extends MarqueurInfection {
     {
         super(valeur,"Marqueur Foyer d'infection");
     }
+    
+    public void augmenterInfection(){
+        
+        this.setValeur(this.getValeur()+1);
+    }
 }

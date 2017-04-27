@@ -11,15 +11,18 @@ import com.miage.pandemie.business.enumparam.ECouleur;
  *
  * @author Remi
  */
-public class Remede extends Element{
-    private boolean decouvert;
-    private String couleur; 
-
-    public Remede(boolean decouvert,ECouleur couleur) {
-        super("Marqueur remède"+couleur.name());
-        this.decouvert = decouvert;
-        this.couleur = couleur.name();
+public class CubeMaladie extends Element {
+    
+    ECouleur couleur; 
+    public CubeMaladie( ECouleur c) {
+        super("Cube maladie "+c.name());
+        this.couleur = c;
     }
+
+    public ECouleur getCouleur() {
+        return couleur;
+    }
+    
     
     
 }

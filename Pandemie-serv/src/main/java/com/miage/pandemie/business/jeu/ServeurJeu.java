@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.miage.business.jeu;
+package com.miage.pandemie.business.jeu;
 
 import com.miage.pandemie.business.chat.ClientDistant;
 import java.rmi.Remote;
@@ -17,7 +17,5 @@ public interface ServeurJeu extends Remote {
 
     void Connect(ClientDistant s,String User) throws RemoteException;
     void Desconnect(ClientDistant s,String User) throws RemoteException;
-    void finDePartie(ClientDistant s)throws RemoteException;
-    void finDeTour(ClientDistant s, String User) throws RemoteException;
-    void InitialiseNouvellePartie(ClientDistant s, String User) throws  RemoteException;
+
 }

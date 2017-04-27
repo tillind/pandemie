@@ -19,7 +19,7 @@ public class FactoryTauxInfection implements IFactoryElement{
     @Override
      public List<Element> newGame(){
               List<Element> LeTauxInfection = new ArrayList<>();
-              LeTauxInfection.add(new TauxInfection(0,2));
+              LeTauxInfection.add(new TauxInfection(1,2));
               return LeTauxInfection;
      }
     

@@ -7,17 +7,26 @@ import com.miage.pandemie.business.enumparam.EVille;
  *
  * @author alex
  */
-public class Pion extends Element{
-    private ECouleurPion couleur;
-    private EVille position;
+public class Pion extends Element {
 
-    public Pion(ECouleurPion couleur, EVille position) {
-        super("Pion de couleur"+couleur.name());
-        this.couleur = couleur;
-        this.position = position;
+    private String couleur;
+    private Ville position;
+
+    public Pion(ECouleurPion couleur) {
+        super("Pion de couleur" + couleur.name());
+        this.couleur = couleur.name();
     }
-    
-    
-    
+
+    public String getCouleur() {
+        return couleur;
+    }
+
+    public Ville getPosition() {
+        return position;
+    }
+
+    public void setVille(Ville v){
+        this.position = v;
+    }
     
 }
