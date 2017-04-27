@@ -7,6 +7,7 @@ package com.miage.pandemie.business.jeu;
 
 import com.miage.pandemie.business.carte.Carte;
 import com.miage.pandemie.business.carte.Infection;
+import com.miage.pandemie.business.carte.Role;
 import com.miage.pandemie.business.chat.ClientDistant;
 import com.miage.pandemie.business.element.CubeMaladie;
 import com.miage.pandemie.business.element.Element;
@@ -23,6 +24,7 @@ import com.miage.pandemie.business.facade.FacadeElement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -37,8 +39,8 @@ public class Jeu {
     private HashMap<ETypeElement, List<Element>> LesElements;
     private HashMap<ETypeCarte, List<Carte>> LesCartes;
     private HashMap<ETypeCarte, List<Carte>> LesDefausses;
-    private HashMap<List<String>, List<Carte>> LesMains;
-    private HashMap<String, Carte> LesRoles;
+    private HashMap<String, List<Carte>> LesMains;
+    private HashMap<String, Role> LesRoles;
     private HashMap<String, Pion> LesPions;
     private ArrayList<Infection> TirageInfection;
     private TauxInfection tauxInfection;
@@ -52,6 +54,7 @@ public class Jeu {
         this.LesDefausses = new HashMap<>();
         this.LesMains = new HashMap<>();
         this.LesRoles = new HashMap<>();
+        this.LesPions = new HashMap<>();
         this.Users = joueurs;
     }
 
@@ -111,29 +114,41 @@ public class Jeu {
         LesDefausses.put(ETypeCarte.Infection, new ArrayList<Carte>());
         
         //On distribue les roles aux joueurs et on leur donne le pion correspondant
-                 /**
-
-        for (String user : Users) {
-
-            int indexAleatoire = (int)(Math.random()* (LesCartes.get(ETypeCarte.Role).size() - 1));
-            LesRoles.put(user, LesCartes.get(ETypeCarte.Role).get(indexAleatoire));
+        
+        int indexAleatoire;
+        Random randomGenerator = new Random();
+        for(int cptUser=0; cptUser<Users.size();cptUser ++){
+            indexAleatoire = randomGenerator.nextInt( LesCartes.get(ETypeCarte.Role).size());
+            LesRoles.put(Users.get(cptUser), (Role)LesCartes.get(ETypeCarte.Role).get(indexAleatoire));
             
-            switch(LesCartes.get(ETypeCarte.Role).get(indexAleatoire).getName()){
-                case "Chercheuse": LesPions.put(user, (Pion)LesElements.get(ETypeElement.Pion).get(2));break;
-                case "Expert": LesPions.put(user, (Pion)LesElements.get(ETypeElement.Pion).get(4)); ;break;
-                case "Medecin": LesPions.put(user, (Pion)LesElements.get(ETypeElement.Pion).get(0)); ;break;
-                case "Repartiteur": LesPions.put(user, (Pion)LesElements.get(ETypeElement.Pion).get(3)); ;break;
-                case "Scientifique": LesPions.put(user, (Pion)LesElements.get(ETypeElement.Pion).get(1)); ;break; 
-                default : 
-                    throw ( new Exception ("Erreur dans l'attribution des rôles")); 
+                switch(LesCartes.get(ETypeCarte.Role).get(indexAleatoire).getName()){
+                case "Chercheuse": LesPions.put(Users.get(cptUser), (Pion)LesElements.get(ETypeElement.Pion).get(2));break;
+                case "Expert": LesPions.put(Users.get(cptUser), (Pion)LesElements.get(ETypeElement.Pion).get(4)); ;break;
+                case "Medecin": LesPions.put(Users.get(cptUser), (Pion)LesElements.get(ETypeElement.Pion).get(0)); ;break;
+                case "Repartiteur": LesPions.put(Users.get(cptUser), (Pion)LesElements.get(ETypeElement.Pion).get(3)); ;break;
+                case "Scientifique": LesPions.put(Users.get(cptUser), (Pion)LesElements.get(ETypeElement.Pion).get(1)); ;break; 
+                default :  ;
                     
 
             }
+            
             LesCartes.get(ETypeCarte.Role).remove(indexAleatoire);
             
-
-
+            //On fait ensuite piocher au joueur 6 carte 
+            
+            for(int cptPioche = 0; cptPioche<6; cptPioche++)
+            {
+                piocherCarte(Users.get(cptUser));
+            }
+                
+            
         }
+    }
+        
+        
+        /**
+        
+        
         
         //On distribue les cartes Joueurs aux joueurs 
         for (String user : Users) {
@@ -148,24 +163,10 @@ public class Jeu {
 
             LesMains.put(Users, Main);
         }
-
-
-
-        //On distribue les roles aux joueurs et on leur donne le pion correspondant
-        for (String user : Users) {
-            int indexAleatoire = (int) Math.random() * LesCartes.get(ETypeCarte.Role).size() - 1;
-            LesRoles.put(user, LesCartes.get(ETypeCarte.Role).get(indexAleatoire));
-            LesCartes.get(ETypeCarte.Role).remove(indexAleatoire);
-
-        }
-        * 
         * */
 
-    }
 
-    public HashMap<ETypeCarte, List<Carte>> getLesCartes() {
-        return LesCartes;
-    }
+    
 
     public void infecterVille(Ville v, ECouleur couleur) {
 
@@ -205,25 +206,31 @@ public class Jeu {
         //Si il n'y a plus de carte à piocher la partie est perdue
         if (LesCartes.get(ETypeCarte.Joueur).size() < 1) {
             defaite();
-        } else {
-
-            int indexAleatoire = (int) Math.random() * LesCartes.get(ETypeCarte.Joueur).size() - 1;
+        } 
+        else {
+            
+            int indexAleatoire;
+            Random randomGenerator = new Random();
+            indexAleatoire =randomGenerator.nextInt(LesCartes.get(ETypeCarte.Joueur).size());
             Carte tmpCarte = LesCartes.get(ETypeCarte.Joueur).get(indexAleatoire);
             LesCartes.get(ETypeCarte.Joueur).remove(indexAleatoire);
             
             
             //On regarde si la carte piocher est une épidémie
-            if (tmpCarte.getName() == "Epidemie_1") {
+            if (tmpCarte.getName().equals("Epidemie_1")){
                 //On déplace le taux d'infection
                 tauxInfection.augementerPositionPiste();
                 
                 //On tire une carte infection ( si il en reste )
-                indexAleatoire = (int) Math.random() * LesCartes.get(ETypeCarte.Infection).size() - 1;
-                if (indexAleatoire >= 0) {
-                    Infection carteInfection = (Infection) LesCartes.get(ETypeCarte.Infection).get(indexAleatoire);
+                if (LesCartes.get(ETypeCarte.Infection).size() > 0) 
+                {
+                    indexAleatoire = randomGenerator.nextInt(LesCartes.get(ETypeCarte.Infection).size());
+                
+                    Infection carteInfection = (Infection)LesCartes.get(ETypeCarte.Infection).get(indexAleatoire);
+                    
                     
                     for (Element ville : LesElements.get(ETypeElement.Ville)) {
-                        if (ville.getName() == carteInfection.getVille()) {
+                        if (ville.getName().equals(carteInfection.getVille())) {
                             Ville tmpVille = (Ville) ville;
                             
                             //On déclenche l'infection 3 fois
@@ -244,14 +251,17 @@ public class Jeu {
                     }
 
                 }
-             //On défausse la carte Epidemie apres sa resolution
-             LesDefausses.get(ETypeCarte.Joueur).add(tmpCarte);
+                //On défausse la carte Epidemie apres sa resolution
+                LesDefausses.get(ETypeCarte.Joueur).add(tmpCarte);
             }
+            
+            /**
             else {
                 
-                LesMains.get(user).add(tmpCarte);
+               LesMains.get(user).add(tmpCarte);
 
             }
+            * */
             
         }
     }
@@ -263,6 +273,11 @@ public class Jeu {
         if(tmpVillesVoisines.contains(destination)){
             LesPions.get(user).setVille(destination);
         }
+    }
+    
+    public int compterPion(){
+        
+        return LesElements.get(ETypeElement.Pion).size();
     }
 
 }
