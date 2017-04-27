@@ -66,7 +66,9 @@ public class TestJeu {
     }
     
     @Test
-    public void TestGetRole(){
-       assertNotNull(jeu.getLesCartes().get(ETypeCarte.Role));
+    public void TestNbPion(){
+        assertEquals(jeu.compterPion(),5);
     }
+
+    
 }
