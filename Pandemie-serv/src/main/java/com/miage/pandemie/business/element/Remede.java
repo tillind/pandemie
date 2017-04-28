@@ -13,13 +13,20 @@ import com.miage.pandemie.business.enumparam.ECouleur;
  */
 public class Remede extends Element{
     private boolean decouvert;
-    private String couleur; 
+    private ECouleur couleur; 
 
     public Remede(boolean decouvert,ECouleur couleur) {
-        super("Marqueur remède"+couleur.name());
+        super("Marqueur remède "+couleur.name());
         this.decouvert = decouvert;
-        this.couleur = couleur.name();
+        this.couleur = couleur;
     }
     
+    public boolean getDecouvert(){
+        return this.decouvert;
+    }
+    
+   public ECouleur getCouleur(){
+        return this.couleur;
+    }
     
 }

@@ -51,24 +51,23 @@ public class TestJeu {
     @Test
     public void TestInfectionPropagation(){
         
-        Ville villeTest = new Ville("TestVille","rouge");
-        Ville villeTest2 = new Ville("TestVille","rouge");
+        Ville villeTest2 = new Ville("TestVille2","rouge");
+        Ville villeTest3 = new Ville("TestVille3","rouge");
         
-        villeTest.ajouterVoisinage(villeTest2);
+        villeTest2.ajouterVoisinage(villeTest3);
         
-        for (int i = 0; i<4 ; i++)
+        for (int i = 0; i<8 ; i++)
         {
-            jeu.infecterVille(villeTest, ECouleur.Bleu);
+            villeTest2.setPropagation(true);
+            jeu.infecterVille(villeTest2, ECouleur.Bleu);
+            jeu.enleverMarqueurPropagation(villeTest2);
         }
 
-        assertEquals(villeTest2.getInfection().get(ECouleur.Bleu).size(),1);
+        assertEquals(3,villeTest3.getInfection().get(ECouleur.Bleu).size());
 
     }
     
-    @Test
-    public void TestNbPion(){
-        assertEquals(jeu.compterPion(),5);
-    }
-
+ 
+    
     
 }
