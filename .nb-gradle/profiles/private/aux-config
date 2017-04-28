@@ -4,15 +4,19 @@
   <auxiliary>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-      <group/>
-    </open-files>
-    <editor-bookmarks lastBookmarkId="0" xmlns="http://www.netbeans.org/ns/editor-bookmarks/2"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
       <group>
         <file>file:/C:/Users/Remi/Documents/NetBeansProjects/pandemie/Pandemie-serv/src/test/java/com/miage/pandemie/business/jeu/TestJeu.java</file>
         <file>file:/C:/Users/Remi/Documents/NetBeansProjects/pandemie/Pandemie-serv/src/main/java/com/miage/pandemie/business/jeu/Jeu.java</file>
         <file>file:/C:/Users/Remi/Documents/NetBeansProjects/pandemie/Pandemie-serv/src/test/java/com/miage/pandemie/business/element/TestFacadeElement.java</file>
         <file>file:/C:/Users/Remi/Documents/NetBeansProjects/pandemie/Pandemie-serv/src/main/java/com/miage/pandemie/business/element/Ville.java</file>
+      </group>
+    </open-files>
+    <editor-bookmarks lastBookmarkId="0" xmlns="http://www.netbeans.org/ns/editor-bookmarks/2"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+      <group>
+        <file>file:/Users/Source/NetBeansProjects/pandemie/Pandemie-serv/src/main/java/com/miage/pandemie/business/factory/carteFacto/IFactoryCarte.java</file>
+        <file>file:/Users/Source/NetBeansProjects/pandemie/Pandemie-serv/src/main/java/com/miage/pandemie/business/jeu/Jeu.java</file>
+        <file>file:/Users/Source/NetBeansProjects/pandemie/Pandemie-serv/src/test/java/com/miage/pandemie/business/jeu/TestJeu.java</file>
       </group>
     </open-files>
   </auxiliary>
