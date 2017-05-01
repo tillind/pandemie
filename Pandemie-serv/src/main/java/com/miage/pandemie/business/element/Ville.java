@@ -5,6 +5,7 @@ import com.miage.pandemie.business.enumparam.ECouleur;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -15,6 +16,7 @@ public class Ville extends Element{
     private String couleur;
     private HashSet<Ville> villesVoisines;
     private HashMap<ECouleur,List<CubeMaladie>> Infection;
+    private boolean propagation;
 
 
 
@@ -24,10 +26,10 @@ public class Ville extends Element{
         this.couleur = couleur;
         this.villesVoisines = new HashSet();
         this.Infection = new HashMap<>();
+        this.propagation = false;
         
-        ArrayList<CubeMaladie> tmp = new ArrayList<>();
         for(ECouleur EnumCouleur : ECouleur.values()){
-            Infection.put(EnumCouleur,tmp);
+            Infection.put(EnumCouleur,new ArrayList<>());
         }
 
     }
@@ -36,8 +38,12 @@ public class Ville extends Element{
         return Infection;
     }
 
-    public HashSet<Ville> getVillesVoisines() {
-        return villesVoisines;
+    public List<Ville> getVillesVoisines() {
+        List<Ville> villeVoisine = new ArrayList<>(); 
+        Iterator it = villesVoisines.iterator();
+        while(it.hasNext())
+            villeVoisine.add((Ville)it.next());
+        return villeVoisine;
     }
 
     @Override
@@ -87,9 +93,24 @@ public class Ville extends Element{
         return lesVoisines;
     }
     
-    public void ajouterInfection(ECouleur couleur,CubeMaladie cube)
+    public void ajouterInfection(CubeMaladie cube)
     {
-        this.Infection.get(couleur).add(cube);
+        this.Infection.get(cube.couleur).add(cube);
+        
+    }
+    
+    public void enleverInfection(ECouleur couleur){
+        if(!this.Infection.get(couleur).isEmpty()){
+             this.Infection.get(couleur).remove(0);
+        }
+    }
+    
+    public void setPropagation(boolean b){
+        this.propagation = b;
+    }
+    
+    public boolean getPropagation(){
+         return this.propagation;
     }
     
     
