@@ -11,15 +11,8 @@ import com.miage.pandemie.business.factory.carteFacto.FactoryReference;
 import com.miage.pandemie.business.factory.carteFacto.FactoryRole;
 import com.miage.pandemie.business.factory.carteFacto.IFactoryCarte;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
 
 /**
  *
@@ -65,7 +58,7 @@ public class TestFactoryCarte {
     @Test
     public void testNbCarteRole() {
         int nbTmp =  listeRole.size();
-        assertEquals(nbTmp,7);
+        assertEquals(nbTmp,5);
     }
     
     @Test

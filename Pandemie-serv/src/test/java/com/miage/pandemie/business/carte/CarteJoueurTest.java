@@ -1,8 +1,8 @@
 package com.miage.pandemie.business.carte;
 
-import com.miage.pandemie.business.Enum.ECouleur;
-import com.miage.pandemie.business.Enum.EEvent;
-import com.miage.pandemie.business.Enum.EVille;
+import com.miage.pandemie.business.enumparam.ECouleur;
+import com.miage.pandemie.business.enumparam.EEvent;
+import com.miage.pandemie.business.enumparam.EVille;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

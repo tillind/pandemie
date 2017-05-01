@@ -1,21 +1,16 @@
-//
-// This file is to be applied to every subproject.
-//
-
 apply plugin: 'java'
 apply plugin: 'maven'
 
-String mavenGroupId = 'miage'
-String mavenVersion = '1.0-SNAPSHOT'
-
-sourceCompatibility = '1.8'
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 repositories {
-    mavenCentral();
-    // You may define additional repositories, or even remove "mavenCentral()".
-    // Read more about repositories here:
-    //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:repositories
+  repositories {
+    maven {
+      url "http://repo1.maven.org/maven2/"
+    }
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
 }
 
 dependencies {
@@ -23,36 +18,8 @@ dependencies {
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.0.0-M3'
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.0.0-M3'
     testCompile group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.0.0-M3'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.0.pr2'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.0.pr2'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0.pr2'
 }
 
-String mavenArtifactId = name
-
-group = mavenGroupId
-version = mavenVersion
-
-task sourcesJar(type: Jar, dependsOn: classes, description: 'Creates a jar from the source files.') {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives jar
-    archives sourcesJar
-}
-
-configure(install.repositories.mavenInstaller) {
-    pom.project {
-        groupId = mavenGroupId
-        artifactId = mavenArtifactId
-        version = mavenVersion
-    }
-}
-
-task createFolders(description: 'Creates the source folders if they do not exist.') doLast {
-    sourceSets*.allSource*.srcDirs*.each { File srcDir ->
-        if (!srcDir.isDirectory()) {
-            println "Creating source folder: ${srcDir}"
-            srcDir.mkdirs()
-        }
-    }
-}

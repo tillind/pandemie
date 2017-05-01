@@ -1,12 +1,12 @@
 package com.miage.pandemie.business.factory.carteFacto;
 
-import com.miage.pandemie.business.Enum.ECouleur;
-import com.miage.pandemie.business.Enum.EDifficulter;
-import com.miage.pandemie.business.Enum.EEvent;
-import com.miage.pandemie.business.Enum.EVilleBleu;
-import com.miage.pandemie.business.Enum.EVilleJaune;
-import com.miage.pandemie.business.Enum.EVilleNoir;
-import com.miage.pandemie.business.Enum.EVilleRouge;
+import com.miage.pandemie.business.enumparam.ECouleur;
+import com.miage.pandemie.business.enumparam.EDifficulter;
+import com.miage.pandemie.business.enumparam.EEvent;
+import com.miage.pandemie.business.enumparam.EVilleBleu;
+import com.miage.pandemie.business.enumparam.EVilleJaune;
+import com.miage.pandemie.business.enumparam.EVilleNoir;
+import com.miage.pandemie.business.enumparam.EVilleRouge;
 import com.miage.pandemie.business.carte.Carte;
 import com.miage.pandemie.business.carte.Epidemie;
 import com.miage.pandemie.business.carte.Event;
@@ -38,19 +38,19 @@ public class FactoryJoueur implements IFactoryCarte {
               case Rouge:
                       for (EVilleRouge ville : EVilleRouge.values()) {
                           lesCartes.add(new Localisation("/Ville", couleur, ville));
-                      }; break;
+                      } break;
               case Bleu:
                       for (EVilleBleu ville : EVilleBleu.values()) {
                           lesCartes.add(new Localisation("/Ville", couleur, ville));
-                      };break;
+                      }break;
               case Noir:  
                       for (EVilleNoir ville : EVilleNoir.values()) {
                           lesCartes.add(new Localisation("/Ville", couleur, ville));
-                      };break;
+                      }break;
               case Jaune:
                        for (EVilleJaune ville : EVilleJaune.values()) {
                           lesCartes.add(new Localisation("/Ville", couleur, ville));
-                      };break;
+                      }break;
               default:throw new UnsupportedOperationException("Color not supported yet.");
           }
         } 

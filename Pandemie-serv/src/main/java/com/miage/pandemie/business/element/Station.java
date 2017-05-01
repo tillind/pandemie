@@ -1,6 +1,6 @@
 package com.miage.pandemie.business.element;
 
-import com.miage.pandemie.business.Enum.EVille;
+import com.miage.pandemie.business.enumparam.EVille;
 
 /**
  *
@@ -8,8 +8,8 @@ import com.miage.pandemie.business.Enum.EVille;
  */
 public class Station extends Element{
 
-    public Station(EVille position, String name) {
-        super(name);
+    public Station(EVille position) {
+        super("Station");
         this.position = position;
     }
     private EVille position;

@@ -1,6 +1,6 @@
 package com.miage.pandemie.business.carte;
 
-import com.miage.pandemie.business.Enum.EEvent;
+import com.miage.pandemie.business.enumparam.EEvent;
 
 /**
  *
