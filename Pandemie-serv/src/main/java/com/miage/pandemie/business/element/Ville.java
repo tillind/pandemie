@@ -13,11 +13,12 @@ import java.util.List;
  */
 public class Ville extends Element{
 
+  
     private String couleur;
     private HashSet<Ville> villesVoisines;
     private HashMap<ECouleur,List<CubeMaladie>> Infection;
-    private boolean propagation;
-
+    private boolean haveStation;
+private boolean propagation;
 
 
 
@@ -26,12 +27,36 @@ public class Ville extends Element{
         this.couleur = couleur;
         this.villesVoisines = new HashSet();
         this.Infection = new HashMap<>();
-        this.propagation = false;
+        haveStation = false;
         
         for(ECouleur EnumCouleur : ECouleur.values()){
             Infection.put(EnumCouleur,new ArrayList<>());
         }
 
+    }
+
+    public String getCouleur() {
+        return couleur;
+    }
+
+    public void setCouleur(String couleur) {
+        this.couleur = couleur;
+    }
+
+    public void setVillesVoisines(HashSet<Ville> villesVoisines) {
+        this.villesVoisines = villesVoisines;
+    }
+
+    public void setInfection(HashMap<ECouleur, List<CubeMaladie>> infection) {
+        Infection = infection;
+    }
+
+    public boolean isHaveStation() {
+        return haveStation;
+    }
+
+    public void setHaveStation(boolean haveStation) {
+        this.haveStation = haveStation;
     }
 
     public HashMap<ECouleur, List<CubeMaladie>> getInfection() {
@@ -58,7 +83,7 @@ public class Ville extends Element{
      * @param nomVille
      * @return la ville correpsondante au nom donnée si elle est dans les voisins.
      */
-    public Ville getVille(String nomVille){
+    public Ville getVilleVoisine(String nomVille){
 
         Ville result = null;
 
@@ -98,6 +123,14 @@ public class Ville extends Element{
         this.Infection.get(cube.couleur).add(cube);
         
     }
+     public void setPropagation(boolean b){
+        this.propagation = b;
+    }
+    
+    public boolean getPropagation(){
+         return this.propagation;
+    }
+     
     
     public void enleverInfection(ECouleur couleur){
         if(!this.Infection.get(couleur).isEmpty()){
@@ -105,14 +138,5 @@ public class Ville extends Element{
         }
     }
     
-    public void setPropagation(boolean b){
-        this.propagation = b;
-    }
-    
-    public boolean getPropagation(){
-         return this.propagation;
-    }
-    
-    
-    
+
 }

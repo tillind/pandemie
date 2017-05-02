@@ -22,7 +22,7 @@ public class TestJeu {
     
 
     
-    Jeu jeu = new Jeu(initJoueur());
+    Jeu jeu = Jeu.getInstance();
     
     
     public  ArrayList<String> initJoueur(){
