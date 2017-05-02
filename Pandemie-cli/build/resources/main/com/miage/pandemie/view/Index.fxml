@@ -68,7 +68,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="143.0" styleClass="btnIndex" text="Quitter">
+            <Button fx:id="quitBtn" mnemonicParsing="false" onAction="#handleClickQuit" prefHeight="65.0" prefWidth="143.0" styleClass="btnIndex" text="Quitter">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

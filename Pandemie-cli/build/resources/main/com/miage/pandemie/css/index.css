@@ -1,0 +1,13 @@
+.btnIndex {
+	-fx-background-color:  #3498db;
+	-fx-border-radius:  5px;
+	-fx-padding: 10px 20px 10px 20px;
+	-fx-border-style: solid;
+	-fx-border-width: 5px;
+	-fx-border-color:  #1f628d;
+}
+
+.backGround{
+        -fx-background-image: url(../asset/Plague-Inc.jpg);
+}
+

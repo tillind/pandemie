@@ -1,0 +1,5 @@
+projectKey=org.sonarqube:java-gradle-simple
+serverUrl=http://localhost:9000
+dashboardUrl=http://localhost:9000/dashboard/index/org.sonarqube:java-gradle-simple
+ceTaskId=AVuv-_HcJJeBxIXOiyn8
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVuv-_HcJJeBxIXOiyn8
