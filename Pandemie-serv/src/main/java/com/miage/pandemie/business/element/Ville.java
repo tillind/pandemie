@@ -5,6 +5,7 @@ import com.miage.pandemie.business.enumparam.ECouleur;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -12,10 +13,12 @@ import java.util.List;
  */
 public class Ville extends Element{
 
+  
     private String couleur;
     private HashSet<Ville> villesVoisines;
     private HashMap<ECouleur,List<CubeMaladie>> Infection;
-
+    private boolean haveStation;
+private boolean propagation;
 
 
 
@@ -24,20 +27,48 @@ public class Ville extends Element{
         this.couleur = couleur;
         this.villesVoisines = new HashSet();
         this.Infection = new HashMap<>();
+        haveStation = false;
         
-        ArrayList<CubeMaladie> tmp = new ArrayList<>();
         for(ECouleur EnumCouleur : ECouleur.values()){
-            Infection.put(EnumCouleur,tmp);
+            Infection.put(EnumCouleur,new ArrayList<>());
         }
 
+    }
+
+    public String getCouleur() {
+        return couleur;
+    }
+
+    public void setCouleur(String couleur) {
+        this.couleur = couleur;
+    }
+
+    public void setVillesVoisines(HashSet<Ville> villesVoisines) {
+        this.villesVoisines = villesVoisines;
+    }
+
+    public void setInfection(HashMap<ECouleur, List<CubeMaladie>> infection) {
+        Infection = infection;
+    }
+
+    public boolean isHaveStation() {
+        return haveStation;
+    }
+
+    public void setHaveStation(boolean haveStation) {
+        this.haveStation = haveStation;
     }
 
     public HashMap<ECouleur, List<CubeMaladie>> getInfection() {
         return Infection;
     }
 
-    public HashSet<Ville> getVillesVoisines() {
-        return villesVoisines;
+    public List<Ville> getVillesVoisines() {
+        List<Ville> villeVoisine = new ArrayList<>(); 
+        Iterator it = villesVoisines.iterator();
+        while(it.hasNext())
+            villeVoisine.add((Ville)it.next());
+        return villeVoisine;
     }
 
     @Override
@@ -52,7 +83,7 @@ public class Ville extends Element{
      * @param nomVille
      * @return la ville correpsondante au nom donnée si elle est dans les voisins.
      */
-    public Ville getVille(String nomVille){
+    public Ville getVilleVoisine(String nomVille){
 
         Ville result = null;
 
@@ -87,11 +118,25 @@ public class Ville extends Element{
         return lesVoisines;
     }
     
-    public void ajouterInfection(ECouleur couleur,CubeMaladie cube)
+    public void ajouterInfection(CubeMaladie cube)
     {
-        this.Infection.get(couleur).add(cube);
+        this.Infection.get(cube.couleur).add(cube);
+        
+    }
+     public void setPropagation(boolean b){
+        this.propagation = b;
     }
     
+    public boolean getPropagation(){
+         return this.propagation;
+    }
+     
     
+    public void enleverInfection(ECouleur couleur){
+        if(!this.Infection.get(couleur).isEmpty()){
+             this.Infection.get(couleur).remove(0);
+        }
+    }
     
+
 }

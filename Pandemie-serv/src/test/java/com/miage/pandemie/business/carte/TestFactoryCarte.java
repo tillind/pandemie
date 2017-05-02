@@ -58,7 +58,7 @@ public class TestFactoryCarte {
     @Test
     public void testNbCarteRole() {
         int nbTmp =  listeRole.size();
-        assertEquals(nbTmp,5);
+        assertEquals(nbTmp,7);
     }
     
     @Test
@@ -103,3 +103,5 @@ public class TestFactoryCarte {
         }
     }
 }
+
+

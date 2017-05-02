@@ -36,12 +36,7 @@ public class ServerChat {
     }
     
     public void startServer(IndexController ctrl) throws RemoteException{ 
-        //if(LocateRegistry.getRegistry()==null){
-            rmiRegistry = LocateRegistry.createRegistry(port);
-        //}else{
-          //  rmiRegistry = LocateRegistry.getRegistry();
-        //}
-        
+        rmiRegistry = LocateRegistry.createRegistry(port);
         ServeurChatImpl sc = new ServeurChatImpl();
         sc.setController(ctrl);
         try {
@@ -53,8 +48,6 @@ public class ServerChat {
             Logger.getLogger(ServerChat.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
     public void stopServer()
     {
         System.out.println("Stopping server");
@@ -71,3 +64,4 @@ public class ServerChat {
         }
     }
 }
+
