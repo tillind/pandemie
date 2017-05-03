@@ -45,10 +45,12 @@ public class Jeu {
     private HashMap<String, List<Carte>> LesMains;
     private HashMap<String, Role> LesRoles;
     private HashMap<String, Pion> LesPions;
+    private HashMap<String, Integer> LeNombreAction;
     private ArrayList<Infection> TirageInfection;
     private TauxInfection tauxInfection;
     private FoyerInfection foyerInfection;
     private List<ECouleur> maladiesEradiquees;
+   
 
   
     public static Jeu getInstance(){
@@ -117,12 +119,34 @@ public class Jeu {
     public void defaite() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+     /**
+     *
+     * @param user
+     * @return la position du joueur suivant
+     */
+    public int getNextPlayer(String user){
+        int position = users.indexOf(user);
+        if (position == users.size() - 1){
+            return 0;
+        } else {
+            return position + 1;
+        }
+    }
+    
     public void finDeTour(String user) {
 
         //A la fin de son tour le joueur pioche 2 cartes
         piocherCarte(user);
         piocherCarte(user);
+        
+       //On met le nombre d'actions de joueur à 0
+        LeNombreAction.put(user, 0);
+
+        //On met le nombre d'actions du joueur suivant à 4
+        int posNextUser = getNextPlayer(user);
+        String nextUser = users.get(posNextUser);
+        LeNombreAction.put(nextUser,4);
 
         //Tour infecteur
         //L infecteur tire un nombre de cartes Infection egal au Taux actuel d Infection 
@@ -159,6 +183,14 @@ public class Jeu {
     }
 
     public void InitialiseNouvellePartie() throws Exception {
+        //On initialise le nombre d'actions des joueurs à 0, sauf le premier à 4
+        for(String user : users) {
+            LeNombreAction.put(user, 0);
+        }
+        String firstUser = users.get(0);
+        LeNombreAction.put(firstUser,4);
+        
+        
         //On initialise une nouvelle partie
         this.FacadeDesCartes.newGame();
         this.FacadeDesElements.newGame();
@@ -398,7 +430,7 @@ public class Jeu {
     }
     
     public void traiterMaladie(String user, ECouleur couleur){
-           
+           if(LeNombreAction.get(user)>0){
             //On recupere la valeur decouvert du remede de la bonne couleur
             boolean estDecouvert = false;
             for (Element remede : LesElements.get(ETypeElement.Remede))
@@ -427,6 +459,7 @@ public class Jeu {
 
    
                         }
+                        depenserAction(user);
                     }
                     
                     else{
@@ -435,14 +468,17 @@ public class Jeu {
                         LesElements.get(ETypeElement.CubeMaladie).add(cube);
                         // On retire un cube Maladie
                         tmpVille.enleverInfection(couleur);
+                        depenserAction(user);
+
                     }
                     
-                    //On remplace la ville modifie dans la ville
+                    //On remplace la ville modifie dans la liste
                     LesElements.get(ETypeElement.Ville).remove(ville);
                     LesElements.get(ETypeElement.Ville).add(tmpVille);
 
                     
                 }
+            }
             
             }
     }
@@ -456,13 +492,15 @@ public class Jeu {
         }
     }
     
-        /**
+    /**
      *
      * @param user
      * @param localisation
      */
     public void volDirect(String user, Localisation localisation) {
 
+        if(LeNombreAction.get(user)>0){ 
+            
         //On retire la carte de la main du joueur et on la met dans la défausse
         LesMains.get(user).remove(localisation);
         LesDefausses.get(ETypeCarte.Joueur).add(localisation);
@@ -470,6 +508,9 @@ public class Jeu {
         //On déplace le joueur sur la nouvelle ville
         Ville ville = getVille(localisation.getName());
         LesPions.get(user).setVille(ville);
+        
+        depenserAction(user);
+        }
     }
 
     /**
@@ -502,11 +543,14 @@ public class Jeu {
      * @param arrivee
      */
     public void volNavette(String user, Ville depart, Ville arrivee) {
-
+         if(LeNombreAction.get(user)>0){
+        
         //Si les deux villes possèdent une station de recherche, le déplacement est possible
         if(depart.isHaveStation() && arrivee.isHaveStation()) {
             LesPions.get(user).setVille(arrivee);
+            depenserAction(user);
         }
+       }
     }
 
     /**
@@ -529,9 +573,13 @@ public class Jeu {
      *
      * @param user
      * @param localisation
+     * @param villeDeRepli
      */
     public void construireStation(String user, Localisation localisation, Ville villeDeRepli) {
 
+        if(LeNombreAction.get(user)>0)
+        {
+            
         //On récupère la liste des stations non utilisées
         ArrayList<Station> availableStation = getAvailableStation();
         Ville userVille = LesPions.get(user).getPosition();
@@ -560,7 +608,9 @@ public class Jeu {
                     villeDeRepli.setHaveStation(false);
                 }
                 userVille.setHaveStation(true);
+       
             }
+         }
         }
     }
 
@@ -605,7 +655,7 @@ public class Jeu {
     }
 
     public void decouvrirRemede(String user, ArrayList<Localisation> localisations) {
-
+        if(LeNombreAction.get(user) > 0){
         //On vérifie que la ville actuelle du joueur possède une station de recherche
         if(LesPions.get(user).getPosition().isHaveStation()) {
             //On regarde si le joueur est du rôle "Scientifique"
@@ -629,6 +679,7 @@ public class Jeu {
                        //Découverte du remède
                        if(remede.getCouleur().equals(coulCarte)){
                            remede.setDecouvert(true);
+                           depenserAction(user);
                        }
                    }
 
@@ -644,6 +695,8 @@ public class Jeu {
                         //Découverte du remède
                         if(remede.getCouleur().equals(coulCarte)){
                             remede.setDecouvert(true);
+                            depenserAction(user);
+
                         }
                     }
 
@@ -654,6 +707,16 @@ public class Jeu {
                 }
 
         }
+        }
 
     }
+    
+    /**
+     *
+     * @param user
+     */
+    private void depenserAction(String user){
+       LeNombreAction.put(user,LeNombreAction.get(user)-1);
+    }
+    
 }
