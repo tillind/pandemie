@@ -7,7 +7,6 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -19,7 +18,6 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <TextArea fx:id="logServerArea" layoutX="49.0" layoutY="133.0" prefHeight="200.0" prefWidth="417.0" />
       <ButtonBar layoutX="333.0" layoutY="347.0" prefHeight="40.0" prefWidth="294.0">
         <buttons>
           <Button fx:id="startBtn" mnemonicParsing="false" onAction="#handleButtonStartAction" text="Démarrer" />
@@ -53,5 +51,6 @@
         </items>
       </SplitPane>
       <ListView fx:id="chatList" layoutX="527.0" layoutY="133.0" prefHeight="200.0" prefWidth="417.0" />
+      <ListView fx:id="gameList" layoutX="45.0" layoutY="133.0" prefHeight="200.0" prefWidth="417.0" />
    </children>
 </AnchorPane>

@@ -24,14 +24,14 @@ public class FactoryVille implements IFactoryElement {
     public List<Element> newGame() {
     ArrayList<Element> villes = new ArrayList<>();
         //Création des villes bleues
-        Ville saintpetersbourg = new Ville("Saint-Petersburg", "bleu");
+        Ville saintpetersbourg = new Ville("Saint_Petersburg", "bleu");
         Ville milan = new Ville("Milan", "bleu");
         Ville essen = new Ville("Essen", "bleu");
         Ville paris = new Ville("Paris", "bleu");
         Ville londres = new Ville("Londres", "bleu");
         Ville madrid = new Ville("Madrid", "bleu");
         Ville newyork = new Ville("New York", "bleu");
-        Ville washington = new Ville("Washington D.C", "bleu");
+        Ville washington = new Ville("Washington", "bleu");
         Ville toronto = new Ville("Toronto", "bleu");
         Ville chicago = new Ville("Chicago", "bleu");
         Ville atlanta = new Ville("Atlanta", "bleu");
@@ -40,7 +40,7 @@ public class FactoryVille implements IFactoryElement {
         //Création des villes noires
         Ville algers = new Ville("Algers", "noir");
         Ville istanbul = new Ville("Istanbul", "noir");
-        Ville caire = new Ville("Caire", "noir");
+        Ville caire = new Ville("Le_Caire", "noir");
         Ville riyadh = new Ville("Riyadh", "noir");
         Ville baghdad = new Ville("Baghdad", "noir");
         Ville karachi = new Ville("Karachi", "noir");

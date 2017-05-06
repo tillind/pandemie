@@ -13,26 +13,42 @@ import java.util.List;
  */
 public class Ville extends Element{
 
+  
     private String couleur;
-    private HashSet<Ville> villesVoisines;
+    private ArrayList<Ville> villesVoisines;
     private HashMap<ECouleur,List<CubeMaladie>> Infection;
     private boolean propagation;
-
 
 
 
     public Ville(String nom,String couleur) {
         super(nom);
         this.couleur = couleur;
-        this.villesVoisines = new HashSet();
+        this.villesVoisines = new ArrayList();
         this.Infection = new HashMap<>();
-        this.propagation = false;
         
         for(ECouleur EnumCouleur : ECouleur.values()){
             Infection.put(EnumCouleur,new ArrayList<>());
         }
 
     }
+
+    public String getCouleur() {
+        return couleur;
+    }
+
+    public void setCouleur(String couleur) {
+        this.couleur = couleur;
+    }
+
+    public void setVillesVoisines(ArrayList<Ville> villesVoisines) {
+        this.villesVoisines = villesVoisines;
+    }
+
+    public void setInfection(HashMap<ECouleur, List<CubeMaladie>> infection) {
+        Infection = infection;
+    }
+
 
     public HashMap<ECouleur, List<CubeMaladie>> getInfection() {
         return Infection;
@@ -58,12 +74,12 @@ public class Ville extends Element{
      * @param nomVille
      * @return la ville correpsondante au nom donnée si elle est dans les voisins.
      */
-    public Ville getVille(String nomVille){
+    public Ville getVilleVoisine(String nomVille){
 
         Ville result = null;
 
         for(Ville ville : villesVoisines) {
-            if(ville.getName() == nomVille) {
+            if(ville.getName().equals(nomVille)) {
                 result = ville;
             }
         }
@@ -82,7 +98,7 @@ public class Ville extends Element{
      */
     public void ajouterVoisinage(Ville ville) {
         villesVoisines.add(ville);
-        ville.getVillesVoisines().add(this);
+        ville.addVilleVoisine(this);
     }
 
     public ArrayList<Ville> getAllVoisins() {
@@ -98,6 +114,14 @@ public class Ville extends Element{
         this.Infection.get(cube.couleur).add(cube);
         
     }
+     public void setPropagation(boolean b){
+        this.propagation = b;
+    }
+    
+    public boolean getPropagation(){
+         return this.propagation;
+    }
+     
     
     public void enleverInfection(ECouleur couleur){
         if(!this.Infection.get(couleur).isEmpty()){
@@ -105,14 +129,9 @@ public class Ville extends Element{
         }
     }
     
-    public void setPropagation(boolean b){
-        this.propagation = b;
+    public void addVilleVoisine(Ville ville){
+        this.villesVoisines.add(ville);
     }
     
-    public boolean getPropagation(){
-         return this.propagation;
-    }
-    
-    
-    
+
 }

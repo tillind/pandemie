@@ -1,6 +1,5 @@
 package com.miage.pandemie.business.element;
 
-import com.miage.pandemie.business.enumparam.EVille;
 
 /**
  *
@@ -8,12 +7,20 @@ import com.miage.pandemie.business.enumparam.EVille;
  */
 public class Station extends Element{
 
-    public Station(EVille position) {
+    public Station(Ville position) {
         super("Station");
         this.position = position;
     }
-    private EVille position;
+
+    private Ville position;
     
+     public Ville getPosition() {
+        return position;
+    }
+
+    public void setPosition(Ville position) {
+        this.position = position;
+    }
     
     
 }

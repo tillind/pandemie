@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.miage.pandemie.business.chat;
 
 /**
@@ -10,7 +5,6 @@ package com.miage.pandemie.business.chat;
  * @author bach
  */
 import com.miage.pandemie.controller.BoardController;
-import com.miage.pandemie.controller.IndexController;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -23,7 +17,7 @@ import java.util.logging.Logger;
  * @author bach
  */
 public class ServeurChatImpl extends UnicastRemoteObject implements ServeurChat{
-    ArrayList<ClientDistant> Clients = new ArrayList<>();
+    ArrayList<ClientChat> Clients = new ArrayList<>();
     ArrayList<String> Users=new ArrayList<>();
     
     transient BoardController program;
@@ -32,7 +26,7 @@ public class ServeurChatImpl extends UnicastRemoteObject implements ServeurChat{
     }
     
     @Override
-    public void Connect(ClientDistant s,String User)throws RemoteException{
+    public void Connect(ClientChat s,String User)throws RemoteException{
         notifyClt(User);
         Clients.add(s);
         Users.add(User);
@@ -44,7 +38,7 @@ public class ServeurChatImpl extends UnicastRemoteObject implements ServeurChat{
         this.program = control;
     }
     //On doit passer tous les clients quand un nouvau client ce connect
-    public void Notify(ClientDistant s){
+    public void Notify(ClientChat s){
         Users.forEach((Usr) -> {
             try {
                 s.AddUser(Usr);
@@ -56,7 +50,7 @@ public class ServeurChatImpl extends UnicastRemoteObject implements ServeurChat{
 
     //Quand un client ce Deconnect
     @Override
-    public void Desconnect(ClientDistant s,String User)throws RemoteException{
+    public void Desconnect(ClientChat s,String User)throws RemoteException{
         Clients.remove(s);
         Users.remove(User);
         this.program.addMessageChat(User+" est déconnecté");
@@ -95,7 +89,7 @@ public class ServeurChatImpl extends UnicastRemoteObject implements ServeurChat{
 
     //Ajouter le client connecter dans les clients deja connecter
     void notifyClt(String Usr) throws RemoteException{
-        for(ClientDistant clt:Clients){
+        for(ClientChat clt:Clients){
             clt.AddUser(Usr);
         }
     }

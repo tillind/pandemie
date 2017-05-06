@@ -25,7 +25,7 @@ public class FactoryJoueur implements IFactoryCarte {
     @Override
     public List<Carte> newGame() {
        List<Carte> lesCartes = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             lesCartes.add(new Epidemie());
         }
         
