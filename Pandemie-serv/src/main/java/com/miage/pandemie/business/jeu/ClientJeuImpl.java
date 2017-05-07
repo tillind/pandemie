@@ -7,6 +7,7 @@ package com.miage.pandemie.business.jeu;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
 /**
  *
@@ -14,16 +15,16 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class ClientJeuImpl extends UnicastRemoteObject implements ClientJeu {
 
+    private Jeu leJeu;
     
     public ClientJeuImpl()throws RemoteException{
+        this.leJeu = Jeu.getInstance();
     }
 
-    
     @Override
-    public void AffichageMain(String s) throws RemoteException {
+    public void changerTauInfection() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-    
+       
 }

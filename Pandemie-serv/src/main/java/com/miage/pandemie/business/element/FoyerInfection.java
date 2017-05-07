@@ -17,7 +17,10 @@ public class FoyerInfection extends MarqueurInfection {
     }
     
     public void augmenterInfection(){
-        
         this.setValeur(this.getValeur()+1);
+    }
+    @Override
+    public String toString(){
+        return this.getName()+" [valeur:"+this.getValeur()+"]";
     }
 }

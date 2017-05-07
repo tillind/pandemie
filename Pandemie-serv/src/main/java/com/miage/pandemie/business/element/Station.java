@@ -22,5 +22,9 @@ public class Station extends Element{
         this.position = position;
     }
     
+    @Override
+    public String toString(){
+        return "Station [ name :  "+this.getName()+", position : "+this.position+"]";
+    }
     
 }

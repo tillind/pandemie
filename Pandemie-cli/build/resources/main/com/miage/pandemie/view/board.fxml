@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,15 +13,16 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1075.0" prefWidth="1926.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miage.pandemie.controller.BoardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1010.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miage.pandemie.controller.BoardController">
    <top>
-      <GridPane prefHeight="96.0" prefWidth="1327.0" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="157.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints maxWidth="275.0" minWidth="10.0" prefWidth="269.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="907.0" minWidth="10.0" prefWidth="559.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1103.0" minWidth="10.0" prefWidth="1098.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -28,29 +31,52 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
                   <Label layoutX="14.0" layoutY="14.0" text="Carte infection" />
-                  <ImageView fx:id="clickInfection" fitHeight="81.0" fitWidth="118.0" layoutX="207.0" layoutY="8.0" onMouseClicked="#afficherCarte" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="clickInfection" fitHeight="123.0" fitWidth="177.0" layoutX="141.0" layoutY="19.0" onMouseClicked="#afficherCarte" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/Infection/Verso.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="defausseInfectionImageView" fitHeight="110.0" fitWidth="109.0" layoutX="347.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="defausseInfectionImageView" fitHeight="122.0" fitWidth="170.0" layoutX="348.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/Infection/Ville/Jaune/Sao_Paulo.jpg" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane prefHeight="96.0" prefWidth="381.0">
                <children>
                   <Button fx:id="btnQuit" layoutX="43.0" layoutY="36.0" mnemonicParsing="false" onAction="#quitHandle" text="Quitter" />
                   <Button layoutX="130.0" layoutY="36.0" mnemonicParsing="false" text="Son" />
                </children>
             </AnchorPane>
+            <GridPane GridPane.columnIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Circle fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" />
+                  <Circle fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" />
+                  <Circle fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" />
+                  <Circle fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" />
+                  <Circle fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" />
+                  <Circle fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" />
+               </children>
+            </GridPane>
          </children>
       </GridPane>
    </top>
    <left>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane prefHeight="777.0" prefWidth="199.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -114,7 +140,7 @@
       </GridPane>
    </left>
    <right>
-      <GridPane prefHeight="800.0" prefWidth="216.0" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="645.0" prefWidth="207.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -125,17 +151,16 @@
          <children>
             <AnchorPane prefHeight="380.0" prefWidth="105.0">
                <children>
-                  <ListView fx:id="chatView" layoutY="-4.0" prefHeight="376.0" prefWidth="217.0" />
-                  <TextField fx:id="chatField" layoutX="28.0" layoutY="380.0" prefHeight="37.0" prefWidth="142.0" />
-                  <Label layoutY="391.0" prefHeight="17.0" prefWidth="69.0" text="Label" />
-                  <Button layoutX="170.0" layoutY="381.0" mnemonicParsing="false" onAction="#sendMessageHandle" prefHeight="38.0" prefWidth="41.0" text="&gt;" />
+                  <ListView fx:id="chatView" layoutY="16.0" prefHeight="356.0" prefWidth="204.0" />
+                  <TextField fx:id="chatField" layoutY="382.0" prefHeight="37.0" prefWidth="157.0" />
+                  <Button layoutX="157.0" layoutY="382.0" mnemonicParsing="false" onAction="#sendMessageHandle" prefHeight="38.0" prefWidth="41.0" text="&gt;" />
                </children>
             </AnchorPane>
          </children>
       </GridPane>
    </right>
    <bottom>
-      <GridPane prefHeight="179.0" prefWidth="1527.0" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="242.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints maxWidth="445.0" minWidth="10.0" prefWidth="445.0" />
             <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="903.0" minWidth="10.0" prefWidth="889.0" />
@@ -169,13 +194,13 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                <children>
-                  <Label layoutX="37.0" layoutY="14.0" text="Carte joueur" />
-                  <ImageView fitHeight="104.0" fitWidth="151.0" layoutX="120.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                  <Label layoutX="27.0" layoutY="6.0" text="Carte joueur" />
+                  <ImageView fitHeight="159.0" fitWidth="193.0" layoutX="32.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                      <image>
                         <Image url="@../image/Joueur/Verso.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="161.0" fitWidth="144.0" layoutX="241.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                  <ImageView fitHeight="142.0" fitWidth="205.0" layoutX="189.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                      <image>
                         <Image url="@../image/Joueur/Event/Event_Prevision.jpg" />
                      </image>
@@ -199,37 +224,37 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fitHeight="150.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                        <ImageView fitHeight="121.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                            <image>
                               <Image url="@../image/Joueur/Event/Event_Nuit.jpg" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="150.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="1">
+                        <ImageView fitHeight="114.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="1">
                            <image>
                               <Image url="@../image/Joueur/Event/Event_Pop_resi.jpg" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="150.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="2">
+                        <ImageView fitHeight="130.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="2">
                            <image>
                               <Image url="@../image/Joueur/Epidemie/Epidemie_1.jpg" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="150.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="3">
+                        <ImageView fitHeight="132.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="3">
                            <image>
                               <Image url="@../image/Joueur/Epidemie/Epidemie_3.jpg" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="150.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="4">
+                        <ImageView fitHeight="159.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="4">
                            <image>
                               <Image url="@../image/Joueur/Localisation/Bleu/Atlanta.jpg" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="150.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="5">
+                        <ImageView fitHeight="127.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="5">
                            <image>
                               <Image url="@../image/Joueur/Localisation/Bleu/Washington.jpg" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="150.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="6">
+                        <ImageView fitHeight="125.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="6">
                            <image>
                               <Image url="@../image/Joueur/Localisation/Noir/Bagdad.jpg" />
                            </image>
@@ -242,14 +267,649 @@
       </GridPane>
    </bottom>
    <center>
-      <StackPane prefHeight="809.0" prefWidth="1124.0" BorderPane.alignment="CENTER">
+      <GridPane BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <ImageView fitHeight="809.0" fitWidth="1606.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../asset/plan.jpg" />
-               </image>
-            </ImageView>
+            <AnchorPane prefHeight="0.0" prefWidth="632.0">
+               <children>
+                  <ImageView fitHeight="648.0" fitWidth="1510.0" layoutX="3.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../asset/plan.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="207.0" layoutY="142.0" onMouseClicked="#clickVille" prefHeight="27.0" prefWidth="60.0" text="New york" textFill="#0d00ff">
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="640.0" layoutY="113.0" text="Paris" textFill="#001cff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="621.0" layoutY="72.0" text="Londre" textFill="#2b00ff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="677.0" layoutY="89.0" text="Essen" textFill="#0400ff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="601.0" layoutY="147.0" text="Madrid" textFill="#2200ff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="721.0" layoutY="72.0" text="Saint-péterbourg" textFill="#0400ff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="692.0" layoutY="139.0" text="Milan" textFill="#0004ff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="147.0" text="Los angeles" textFill="#fff900">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="179.0" layoutY="197.0" text="Atlanta" textFill="#2200ff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="133.0" layoutY="148.0" text="Chicago" textFill="#3700ff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="200.0" layoutY="72.0" text="Montréal" textFill="#03009e">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="24.0" layoutY="205.0" text="San francisco" textFill="#0004ff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="237.0" layoutY="113.0" text="Washington" textFill="#1500ff">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="229.0" layoutY="453.0" text="Bogota" textFill="#f2ff00">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="354.0" layoutY="506.0" text="Buenos aires" textFill="#fff200">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="758.0" layoutY="497.0" text="Johannesburg" textFill="#fff200">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="784.0" layoutY="409.0" text="Kharthoum" textFill="#fff600">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="700.0" layoutY="383.0" text="Kinshasa" textFill="#fff200">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="652.0" layoutY="321.0" text="Lagos" textFill="#fffa00">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="249.0" layoutY="523.0" text="Lima" textFill="#ffea00">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="78.0" layoutY="273.0" text="Mexico" textFill="#ffea00">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="226.0" layoutY="231.0" text="Miami" textFill="#fffb00">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="228.0" layoutY="365.0" text="Santiago" textFill="#fff200">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="380.0" layoutY="418.0" text="Sao paulo" textFill="#ffea00">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="639.0" layoutY="197.0" text="Alger">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="856.0" layoutY="222.0" text="Bagdad">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="1054.0" layoutY="273.0" text="Calcutta">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="1101.0" layoutY="222.0" text="Chennai">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="1054.0" layoutY="240.0" text="Delhi">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="793.0" layoutY="161.0" text="Istanbul">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="939.0" layoutY="206.0" text="Karachi">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="763.0" layoutY="222.0" text="Le caire">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="827.0" layoutY="89.0" text="Moscou">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="995.0" layoutY="214.0" text="Mumbai">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="834.0" layoutY="305.0" text="Riyad">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="928.0" layoutY="105.0" text="Teheran">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="1158.0" layoutY="314.0" text="Bangkok" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="1223.0" layoutY="297.0" text="Ho-chi-minh-ville" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="1200.0" layoutY="249.0" text="Hong kong" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="1212.0" layoutY="374.0" text="Jakarta" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="1302.0" layoutY="357.0" text="Manille" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="1253.0" layoutY="206.0" text="Osaka" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="1238.0" layoutY="161.0" text="Pekin" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="1222.0" layoutY="222.0" text="Seoul" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="1205.0" layoutY="273.0" text="Shanghai" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="1438.0" layoutY="523.0" text="Sydney" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="1255.0" layoutY="189.0" text="Taipei" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="1341.0" layoutY="157.0" text="Tokyo" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
-      </StackPane>
+      </GridPane>
    </center>
 </BorderPane>

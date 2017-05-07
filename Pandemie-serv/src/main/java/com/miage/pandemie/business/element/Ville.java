@@ -18,7 +18,7 @@ public class Ville extends Element{
     private HashSet<Ville> villesVoisines;
     private HashMap<ECouleur,List<CubeMaladie>> Infection;
     private boolean haveStation;
-private boolean propagation;
+    private boolean propagation;
 
 
 
@@ -71,12 +71,12 @@ private boolean propagation;
         return villeVoisine;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Ville{" +
                 "nom='" + this.getName() + '\'' +
                 '}';
-    }
+    }*/
 
     /**
      *
@@ -138,5 +138,8 @@ private boolean propagation;
         }
     }
     
-
+    @Override
+    public String toString(){
+        return " Ville ["+this.getName()+",  haveStation : "+this.haveStation+",propagation"+this.propagation+" ]";
+    }
 }

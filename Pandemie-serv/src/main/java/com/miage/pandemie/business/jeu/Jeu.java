@@ -1,5 +1,7 @@
 package com.miage.pandemie.business.jeu;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.miage.pandemie.business.carte.Carte;
 import com.miage.pandemie.business.carte.Infection;
 import com.miage.pandemie.business.carte.Joueur;
@@ -19,15 +21,13 @@ import com.miage.pandemie.business.enumparam.ETypeCarte;
 import com.miage.pandemie.business.enumparam.ETypeElement;
 import com.miage.pandemie.business.facade.FacadeCarte;
 import com.miage.pandemie.business.facade.FacadeElement;
-import java.util.ArrayList;
+import com.pandemie.business.sauvegarde.SauvegardeJeu;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -35,7 +35,6 @@ public class Jeu {
     
     private static Jeu inst = null;
 
-    private ArrayList<ClientJeu> Clients;
     private ArrayList<String> users;
     private FacadeElement FacadeDesElements;
     private FacadeCarte FacadeDesCartes;
@@ -52,16 +51,12 @@ public class Jeu {
 
   
     public static Jeu getInstance(){
-
         if(inst == null){
-
             inst = new Jeu();
-
         }
-
         return inst;
-
     }
+    
     public void addJoueur(String usr) throws Exception{
 
         if(this.users.size()<=4){
@@ -77,28 +72,27 @@ public class Jeu {
         }
 
     }
+    
     public void removeJoueur(String usr) throws Exception{
 
         users.remove(usr);
 
     }
+    
     private void init(){
-
         this.FacadeDesCartes = new FacadeCarte();
-
         this.FacadeDesElements = new FacadeElement();
-
         this.LesElements = new HashMap<>();
-
         this.LesCartes = new HashMap<>();
-
         this.LesDefausses = new HashMap<>();
-
         this.LesMains = new HashMap<>();
-
         this.LesRoles = new HashMap<>();
-
+        this.maladiesEradiquees= new ArrayList<>();
+        this.TirageInfection = new ArrayList<>();
+        this.LesPions = new HashMap<>();
     }
+    
+    
     private Jeu(ArrayList<String> joueurs) {
 
         this.init();
@@ -107,17 +101,13 @@ public class Jeu {
 
     }
     private Jeu() {
-
-         this.init();
-
+        this.init();
         this.users = new ArrayList<>();
 
     }
-
     public void defaite() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
     public void finDeTour(String user) {
 
         //A la fin de son tour le joueur pioche 2 cartes
@@ -157,7 +147,6 @@ public class Jeu {
         }
 
     }
-
     public void InitialiseNouvellePartie() throws Exception {
         //On initialise une nouvelle partie
         this.FacadeDesCartes.newGame();
@@ -231,10 +220,12 @@ public class Jeu {
              //On incoropore ensuite les cartes epidemies
              melangerEpidemie(Epidemie);
         }
+        // On lance le thread de sauvegarde
+        SauvegardeJeu tmp = new SauvegardeJeu();
+        Thread save = new Thread(tmp);
+        save.start();
     }
-
     public void infecterVille(Ville v, ECouleur couleur) {
-
         if (v.getInfection().get(couleur).size() < 3) {
             boolean cubeEnPlace = false;
             int index = 0;
@@ -296,8 +287,7 @@ public class Jeu {
         
         
 
-    }
-        
+    }      
     public void piocherCarte(String user) {
         //Si il n'y a plus de carte à piocher la partie est perdue
         if (LesCartes.get(ETypeCarte.Joueur).size() < 1) {
@@ -375,7 +365,6 @@ public class Jeu {
         }
 
     }
-
     public void conduire(String user, Ville destination) {
 
         //On vérifie si la destination est une ville adjacente à la courante
@@ -384,7 +373,6 @@ public class Jeu {
             LesPions.get(user).setVille(destination);
         }
     }
-    
     public void enleverMarqueurPropagation(Ville v){
     // A la fin d une propagation on remet les villes en etat non propagees
     v.setPropagation(false);
@@ -396,7 +384,6 @@ public class Jeu {
     }
     
     }
-    
     public void traiterMaladie(String user, ECouleur couleur){
            
             //On recupere la valeur decouvert du remede de la bonne couleur
@@ -446,7 +433,6 @@ public class Jeu {
             
             }
     }
-    
     public void melangerEpidemie(ArrayList<Carte> carteEpidemie){
         Random r = new Random();
         int indexRandom;
@@ -654,6 +640,185 @@ public class Jeu {
                 }
 
         }
+    }
+    
+    
+    /***************************************************************************
+    ******************** Partie serialisation/deserialisation ******************
+    ***************************************************************************/
+    
+    
+    
+    @JsonValue
+    public String serialise(){
+        StringBuilder json = new StringBuilder();
+        json.append(" saveGame [");
+        json.append(lesCartesToJson());
+        json.append(lesDefaussesToJson());
+        
+        json.append(elementToJson());
+        json.append(mainToJson());
+        json.append(pionToJson());
+        json.append(roleToJson());
+        json.append(tirageInfectionToJson());
+        json.append(foyerInfection());
+        json.append(maladieEradique());
+        json.append(TauxInfection());
+        
+        json.append("]");
+        
+        
+        return json.toString();
+    }
+    
+    private String lesCartesToJson(){
+        ObjectMapper obj = new ObjectMapper();
+        StringBuilder tmpJson = new StringBuilder();
+        tmpJson.append("lesCartes [ "); 
+    
+        if(LesCartes == null || LesCartes.isEmpty()){
+            throw new EmptyStackException();
+        }
+        
+        for (Map.Entry<ETypeCarte, List<Carte>> entry : LesCartes.entrySet()) {
+            ETypeCarte key = entry.getKey();
+            List<Carte> value = entry.getValue();
+            tmpJson.append(key.toString()).append(" [ ");
+            
+            for (Carte carte : value) {
+                tmpJson.append(carte.toString());
+            }
+            tmpJson.append(" ],");
+        }
+        tmpJson.append(" ]");
+                
+        return tmpJson.toString();
+    }
+    
+    private String lesDefaussesToJson(){
+        StringBuilder tmpJson = new StringBuilder();
+        tmpJson.append("laDefausse [");
+        
+        
+        for (Map.Entry<ETypeCarte, List<Carte>> entry : LesDefausses.entrySet()) {
+            ETypeCarte key = entry.getKey();
+            List<Carte> value = entry.getValue();
+            
+            tmpJson.append(key.toString()).append("[");
+            
+            for (Carte carte : value) {
+                tmpJson.append(carte.toString());
+            }
+            tmpJson.append("]");
+        }
+        tmpJson.append("]");
+        
+        return tmpJson.toString();
+    }
+    
+  
+    
+    private String elementToJson(){
+        StringBuilder tmpJson = new StringBuilder();
+        
+        tmpJson.append("LesElements [");
+        
+        for (Map.Entry<ETypeElement, List<Element>> entry : LesElements.entrySet()) {
+            ETypeElement key = entry.getKey();
+            List<Element> value = entry.getValue();
+            
+            tmpJson.append(key.toString()).append("[");
+ 
 
+            for (Element element : value) {
+               tmpJson.append(element.toString()); 
+            } 
+           
+          
+            tmpJson.append("]");
+        }
+        tmpJson.append("]");
+        
+        return tmpJson.toString();
+    }
+    
+    private String mainToJson(){
+        StringBuilder tmpjson = new StringBuilder();
+        
+        tmpjson.append("main [");
+        
+        for (Map.Entry<String, List<Carte>> entry : LesMains.entrySet()) {
+            String key = entry.getKey();
+            List<Carte> value = entry.getValue();
+            
+            tmpjson.append(key).append("[");
+            for (Carte carte : value) {
+                tmpjson.append(carte.toString());
+            }
+            tmpjson.append("]");
+        }
+        tmpjson.append("]");
+        
+        return tmpjson.toString();
+    }
+    
+    private String pionToJson(){
+        StringBuilder tmpJson = new StringBuilder();
+        tmpJson.append(" pion ").append("[");     
+        for (Map.Entry<String, Pion> entry : LesPions.entrySet()) {
+            String key = entry.getKey();
+            Pion value = entry.getValue();
+
+            tmpJson.append("[");
+            tmpJson.append(key).append(":").append(value.toString());   
+            tmpJson.append("]");
+        }
+        tmpJson.append("]");
+        return tmpJson.toString();
+    }
+    
+    private String roleToJson(){
+        StringBuilder tmpJson = new StringBuilder();
+        tmpJson.append("role").append("[");
+        for (Map.Entry<String, Role> entry : LesRoles.entrySet()) {
+            String key = entry.getKey();
+            Role value = entry.getValue();
+            tmpJson.append(key).append(":").append(value); 
+        }
+        tmpJson.append("]");
+        return tmpJson.toString();
+    }
+    
+    private String tirageInfectionToJson(){
+        StringBuilder tmpJson = new StringBuilder();
+        tmpJson.append(" Infecion ").append("["); 
+        for (Infection infection : TirageInfection) {
+            tmpJson.append("[").append(infection.toString()).append("]");
+        }
+        tmpJson.append("]");
+        return tmpJson.toString();        
+    }
+    
+    private String foyerInfection(){
+        StringBuilder tmpJson = new StringBuilder();
+        tmpJson.append(" foyerInfection ") .append(":").append(this.foyerInfection.toString());
+        return tmpJson.toString();
+    }
+    
+    private String maladieEradique(){
+        StringBuilder tmpJson = new StringBuilder();
+        tmpJson.append(" MaladieEradiquer ").append("[");
+        for (ECouleur maladiesEradiquee : maladiesEradiquees) {
+           tmpJson.append(maladiesEradiquee.name());  
+        }
+        tmpJson.append("]");
+     
+        return tmpJson.toString();
+    }
+   
+    private String TauxInfection(){
+        StringBuilder tmpJson = new StringBuilder();
+        tmpJson.append("tauxInfection").append(":").append(tauxInfection.toString());
+        return tmpJson.toString();
     }
 }

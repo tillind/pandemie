@@ -23,19 +23,24 @@ import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 
@@ -70,8 +75,7 @@ public class BoardController implements Initializable {
 
     private ParamCli param;
 
-    
-
+ 
     
 
     @FXML
@@ -330,10 +334,6 @@ public class BoardController implements Initializable {
 
         gridLbl.add(cardLbl, 0, 0);
 
-        
-
-        
-
         this.defausseInfectionImageView.setImage(img);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -351,5 +351,29 @@ public class BoardController implements Initializable {
         alert.showAndWait();    
 
     }  
+    private String tmpVilleClick;
+    @FXML
+    public void clickVille(MouseEvent event){
+       Object obj = event.getSource();
+       if(obj instanceof Label){
+           System.out.println("com.miage.pandemie.controller.BoardController.clickVille()");
+           tmpVilleClick = ((Label)obj).getText();
+       }
+    }
+    
+    @FXML
+    public void volCharterClick(Event enEvent){
+      Object obj = enEvent.getSource();
+        if ( obj instanceof MenuItem){
+           System.out.println("menuitem");
+           Object obj1 = ((MenuItem)obj).parentPopupProperty().get();
+           if(obj1 instanceof ContextMenu){
+               Object obj2 =  ((ContextMenu) obj1).ownerNodeProperty();
+           
+               System.out.println(tmpVilleClick);
+               
+           }
+       }
+    }
 
 }
