@@ -469,13 +469,18 @@ public class Jeu {
                 if (ville.equals(LesPions.get(user).getPosition())) {
 
                     Ville tmpVille = (Ville) ville;
-                    //si le joueur est un medecin on retire tout les cubes
+                    //si le joueur est un medecin ou que le remede est decouvert on retire tout les cubes
                     if (LesRoles.get(user).equals(ERole.Medecin) || estDecouvert) {
                         for (CubeMaladie cube : tmpVille.getInfection().get(couleur)) {
                             //On remet les cubes dans les stocks
                             LesElements.get(ETypeElement.CubeMaladie).add(cube);
 
                             tmpVille.enleverInfection(couleur);
+                            
+                            //Si le remede est decouvert et si c'etait les derniers cube la maladie est eradiquee
+                            if(estDecouvert && !maladieExiste(couleur) ){
+                                maladiesEradiquees.add(couleur);
+                            }
 
                         }
                         depenserAction(user);
@@ -706,7 +711,7 @@ public class Jeu {
                     }
                 }
                 //Si les cartes sont de la même couleur, on peut donc développer le remède et les défausser
-                if (memeCouleur && localisations.size() == 4 && LesRoles.get(user).equals(ERole.Scientifique)) {
+                if (memeCouleur && localisations.size() == 4 || LesRoles.get(user).equals(ERole.Scientifique)) {
 
                     List<Element> remedes = LesElements.get(ETypeElement.Remede);
                     for (Element element : remedes) {
@@ -732,6 +737,12 @@ public class Jeu {
                         if (remede.getCouleur().equals(coulCarte)) {
                             remede.setDecouvert(true);
                             depenserAction(user);
+                            
+                            //Si il n'y a  plus de cube Maladie de la couleur du remede la maladie est eradiquee
+                            if(!maladieExiste(coulCarte))
+                            {
+                                maladiesEradiquees.add(coulCarte);
+                            }
 
                         }
                     }
@@ -752,7 +763,7 @@ public class Jeu {
      * @param user
      */
     private void depenserAction(String user) {
-        LeNombreAction.put(user, LeNombreAction.get(user) - 1);
+        LeNombreAction.put(user, LeNombreAction.get(user)-1);
     }
 
     public Localisation getCarteLoc(String nomCarte) {
@@ -792,4 +803,19 @@ public class Jeu {
         return surStation;
     }
     
+    private boolean maladieExiste(ECouleur couleur){
+        boolean resteCube = false;
+        int cptVille = 0; 
+        while(!resteCube & cptVille < LesElements.get(ETypeElement.Ville).size()){
+            Ville tmpVille = (Ville)LesElements.get(ETypeElement.Ville).get(cptVille);
+            if(tmpVille.getInfection().get(couleur).size()> 0){
+                resteCube = true;
+                
+            }
+            else {
+                cptVille++;
+            }           
+        }
+        return resteCube;
+    }
 }

@@ -40,6 +40,10 @@ public class TestJeu {
 
     }
     
+   @Test
+    public void TestNbAction(){
+        assertEquals(4,jeu.getLeNombreAction().get("Joueur1").intValue());
+    }
     
     
     @Test
@@ -69,11 +73,14 @@ public class TestJeu {
         
     }
 
+
     
     @Test
     public void TestGetCarte(){
        assertEquals("Moscou", jeu.getCarteJoueur("Moscou").getName()); 
     }
+    
+
     
     @Test
     public void TestFinTour(){
