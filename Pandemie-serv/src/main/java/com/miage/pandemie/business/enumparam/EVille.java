@@ -54,7 +54,7 @@ public enum EVille {
     Pekin,
     Seoul,
     Shanghai,
-    Syndey,
+    Sydney,
     Taipei,
     Tokyo;
 }
