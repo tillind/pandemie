@@ -5,9 +5,11 @@
  */
 package com.miage.pandemie.business.jeu;
 
+import com.miage.pandemie.business.carte.Carte;
+import com.miage.pandemie.business.carte.Joueur;
+import com.miage.pandemie.business.carte.Localisation;
 import com.miage.pandemie.business.element.Ville;
 import com.miage.pandemie.business.enumparam.ECouleur;
-import com.miage.pandemie.business.enumparam.ETypeCarte;
 import com.miage.pandemie.business.enumparam.ETypeElement;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -22,31 +24,23 @@ public class TestJeu {
     
 
     
-    Jeu jeu = Jeu.getInstance();
+    Jeu jeu = Jeu.getInstance();    
     
-    
-    public  ArrayList<String> initJoueur(){
-        ArrayList<String> joueurs = new ArrayList<>();
-            joueurs.add("User1");
-            joueurs.add("User2");
-            joueurs.add("User3");
-        return joueurs;    
-    }
-    
-    public  TestJeu() throws Exception{
 
-        jeu.InitialiseNouvellePartie();
-
-    }
     
     @Test
-    public void TestInfection(){
+    public void TestInitPartie()throws Exception{
+       jeu.addJoueur("Joueur1"); 
+       jeu.addJoueur("Joueur2"); 
+       jeu.addJoueur("Joueur3"); 
+       jeu.addJoueur("Joueur4"); 
         
-        Ville villeTest = new Ville("TestVille","rouge");
-        jeu.infecterVille(villeTest, ECouleur.Bleu);
-        assertEquals(villeTest.getInfection().get(ECouleur.Bleu).size(),1);
-        
+        jeu.InitialiseNouvellePartie();
+        assertEquals(6,jeu.getLesMains().get("Joueur4").size());
+
     }
+    
+    
     
     @Test
     public void TestInfectionPropagation(){
@@ -67,7 +61,24 @@ public class TestJeu {
 
     }
     
- 
     
+    @Test
+    public void TestConduire(){
+        jeu.conduire("Joueur1",jeu.getVille("Washington"));
+        assertEquals("Washington",jeu.getLesPions().get("Joueur1").getPosition().getName());
+        
+    }
+
     
+    @Test
+    public void TestGetCarte(){
+       assertEquals("Moscou", jeu.getCarteJoueur("Moscou").getName()); 
+    }
+    
+    @Test
+    public void TestFinTour(){
+        jeu.finDeTour("Joueur1");
+        assertEquals(8,jeu.getLesMains().get("joueur1").size());
+    }
+   
 }

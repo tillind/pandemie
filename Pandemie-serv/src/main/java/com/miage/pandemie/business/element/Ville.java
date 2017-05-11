@@ -1,4 +1,3 @@
-
 package com.miage.pandemie.business.element;
 
 import com.miage.pandemie.business.enumparam.ECouleur;
@@ -142,4 +141,17 @@ public class Ville extends Element{
     public String toString(){
         return " Ville ["+this.getName()+",  haveStation : "+this.haveStation+",propagation"+this.propagation+" ]";
     }
+
+
+  
+   
+
+   
+  
+    
+    public void addVilleVoisine(Ville ville){
+        this.villesVoisines.add(ville);
+    }
+    
+
 }
