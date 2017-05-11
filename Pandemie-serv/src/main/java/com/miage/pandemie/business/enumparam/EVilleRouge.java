@@ -20,7 +20,7 @@ public enum EVilleRouge {
     Pekin,
     Seoul,
     Shanghai,
-    Syndey,
+    Sydney,
     Taipei,
     Tokyo;
 }

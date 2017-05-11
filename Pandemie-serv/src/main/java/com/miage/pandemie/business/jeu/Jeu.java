@@ -41,7 +41,9 @@ public class Jeu {
     public ArrayList<String> getUsers() {
         return users;
     }
-
+  public HashMap<ETypeElement, List<Element>>  getLesElements(){
+        return this.LesElements;
+}
     public HashMap<ETypeCarte, List<Carte>> getLesCartes() {
         return LesCartes;
     }
@@ -77,6 +79,7 @@ public class Jeu {
     private ArrayList<String> users;
     private FacadeElement FacadeDesElements;
     private FacadeCarte FacadeDesCartes;
+    private FacadeCarte FacadeDeRechercheCarte;
     private HashMap<ETypeElement, List<Element>> LesElements;
     private HashMap<ETypeCarte, List<Carte>> LesCartes;
     private HashMap<ETypeCarte, List<Carte>> LesDefausses;
@@ -123,6 +126,7 @@ public class Jeu {
 
     private void init(){
         this.FacadeDesCartes = new FacadeCarte();
+        this.FacadeDeRechercheCarte = new FacadeCarte();
         this.FacadeDesElements = new FacadeElement();
         this.LesElements = new HashMap<>();
         this.LesCartes = new HashMap<>();
@@ -132,6 +136,7 @@ public class Jeu {
         this.maladiesEradiquees= new ArrayList<>();
         this.TirageInfection = new ArrayList<>();
         this.LesPions = new HashMap<>();
+        this.LeNombreAction = new HashMap<>();
     }
 
     private Jeu(ArrayList<String> joueurs) {
@@ -227,7 +232,7 @@ public class Jeu {
         //On initialise une nouvelle partie
         this.FacadeDesCartes.newGame();
         this.FacadeDesElements.newGame();
-
+ this.FacadeDeRechercheCarte.newGame();
         //On cree les pioches de cartes et les differents elements de jeu
         this.LesElements = FacadeDesElements.getLesElements();
         this.LesCartes = FacadeDesCartes.getLesCartes();
@@ -299,6 +304,15 @@ public class Jeu {
         }
         //On incoropore ensuite les cartes epidemies
         melangerEpidemie(Epidemie);
+               //On Place les cubes maladies de départs
+        for(int cptCarte=0; cptCarte<3; cptCarte ++ ){
+            Infection tmpInfection = (Infection)LesCartes.get(ETypeCarte.Infection).get(0);
+            for( int cptCube = 0; cptCube<cptCarte+1; cptCube ++){
+               infecterVille(getVille(tmpInfection.getVille()),tmpInfection.getCouleur());
+            }
+            LesDefausses.get(ETypeCarte.Infection).add(tmpInfection);
+            LesCartes.get(ETypeCarte.Infection).remove(0);
+        }
     }
 
     public void infecterVille(Ville v, ECouleur couleur) {
@@ -464,6 +478,9 @@ public class Jeu {
                             LesElements.get(ETypeElement.CubeMaladie).add(cube);
 
                             tmpVille.enleverInfection(couleur);
+                            if(estDecouvert && !maladieExiste(couleur) ){
+                                maladiesEradiquees.add(couleur);
+                            }
 
                         }
                         depenserAction(user);
@@ -671,7 +688,7 @@ public class Jeu {
                     }
                 }
                 //Si les cartes sont de la même couleur, on peut donc développer le remède et les défausser
-                if (memeCouleur && localisations.size() == 4 && LesRoles.get(user).equals(ERole.Scientifique)) {
+                if (memeCouleur && ((localisations.size() == 4 && LesRoles.get(user).equals(ERole.Scientifique))|| localisations.size() == 5 )) {
 
                     List<Element> remedes = LesElements.get(ETypeElement.Remede);
                     for (Element element : remedes) {
@@ -687,23 +704,7 @@ public class Jeu {
                     //Suppression des cartes
                     for (Localisation localisation : localisations) {
                         LesMains.get(user).remove(localisation);
-                    }
-                } else if (memeCouleur && localisations.size() == 5) {
-                    List<Element> remedes = LesElements.get(ETypeElement.Remede);
-                    for (Element element : remedes) {
-                        Remede remede = (Remede) (element);
-
-                        //Découverte du remède
-                        if (remede.getCouleur().equals(coulCarte)) {
-                            remede.setDecouvert(true);
-                            depenserAction(user);
-
-                        }
-                    }
-
-                    //Suppression des cartes
-                    for (Localisation localisation : localisations) {
-                        LesMains.get(user).remove(localisation);
+                        LesDefausses.get(ETypeCarte.Joueur).add(localisation);
                     }
                 }
 
@@ -745,16 +746,34 @@ public class Jeu {
         LesMains.get(user).remove(carte);
     }
 
-    private boolean aUneStation(Ville ville) {
+     private boolean aUneStation(Ville ville) {
         boolean surStation = false;
         Station tmpStation;
         for (Element el : LesElements.get(ETypeElement.Station)) {
             tmpStation = (Station) el;
-            if (tmpStation.getPosition().equals(ville)) {
+            if(tmpStation.getPosition() != null){
+                if (tmpStation.getPosition().equals(ville)) {
                 surStation = true;
+                }
             }
         }
         return surStation;
+    }
+    
+    private boolean maladieExiste(ECouleur couleur){
+        boolean resteCube = false;
+        int cptVille = 0; 
+        while(!resteCube & cptVille < LesElements.get(ETypeElement.Ville).size()){
+            Ville tmpVille = (Ville)LesElements.get(ETypeElement.Ville).get(cptVille);
+            if(tmpVille.getInfection().get(couleur).size()> 0){
+                resteCube = true;
+                
+            }
+            else {
+                cptVille++;
+            }           
+        }
+        return resteCube;
     }
       /***************************************************************************
     ******************** Partie serialisation/deserialisation ******************
