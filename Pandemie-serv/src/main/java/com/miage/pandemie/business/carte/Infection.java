@@ -55,6 +55,7 @@ public class Infection extends Carte{
     public Infection(String path,ECouleur couleur,EVilleJaune ville) {
         super("/Infection"+path+"/"+couleur.name(),ville.name());  
         this.couleur = couleur;
+        this.ville = ville.name();
     }
     public Infection(String path,ECouleur couleur,EVilleNoir ville) {
         super("/Infection"+path+"/"+couleur.name(),ville.name());  
@@ -73,7 +74,7 @@ public class Infection extends Carte{
         
         if(super.equals(obj)){
             Infection tmp =(Infection) obj;
-            if(this.getCouleur().equals(tmp.getCouleur())){
+            if(this.getCouleur().equals(tmp.getCouleur()) && this.getName().equals(tmp.getName())){
                 return true;
             }
         }

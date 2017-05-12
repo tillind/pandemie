@@ -23,6 +23,9 @@ public class CubeMaladie extends Element {
         return couleur;
     }
     
-    
+    @Override
+    public String toString(){
+        return " CubeMaladie [ name : "+this.getName()+" , couleur : "+this.couleur+" ]";
+    }
     
 }

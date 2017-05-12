@@ -36,4 +36,8 @@ public class TauxInfection extends MarqueurInfection{
     }
     
       private int positionPiste;
+      
+      public String toString(){
+          return "TauxInfection [ name : "+this.getName()+", valeur : "+this.getValeur()+",  positionPiste : "+this.positionPiste+']';
+      }
 }
