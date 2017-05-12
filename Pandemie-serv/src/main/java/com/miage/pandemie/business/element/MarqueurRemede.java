@@ -19,4 +19,9 @@ public class MarqueurRemede extends Element{
         super("Marqueur remède"+couleur.name());
         this.decouvert = decouvert;
     }
+    
+    @Override
+    public String toString(){
+        return this.getName()+" [ devouvert:"+this.decouvert+",couleur:"+this.couleur.name()+"]" ;
+    }
 }

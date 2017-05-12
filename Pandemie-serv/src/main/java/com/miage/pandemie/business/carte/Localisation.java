@@ -48,8 +48,8 @@ public class Localisation extends Joueur{
     public boolean equals(Object obj){
         
         if(super.equals(obj)){
-            Infection tmp =(Infection) obj;
-            if(this.getCouleur().equals(tmp.getCouleur())){
+            Localisation tmp =(Localisation) obj;
+            if(this.getCouleur().equals(tmp.getCouleur()) && this.getName().equals(tmp.getName())){
                 return true;
             }
         }

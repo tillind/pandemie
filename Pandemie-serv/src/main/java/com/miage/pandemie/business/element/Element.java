@@ -6,7 +6,7 @@ import java.io.Serializable;
  *
  * @author alex
  */
-public abstract class Element implements Serializable {
+public abstract class Element {
 
     public Element(String name) {
         this.name = name;
@@ -17,5 +17,8 @@ public abstract class Element implements Serializable {
         return name;
     }
     
-   
+    @Override
+    public String toString(){
+        return " Name [";
+    }
 }

@@ -42,5 +42,10 @@ public class Remede extends Element{
    public ECouleur getCouleur(){
         return this.couleur;
     }
+   
+   @Override
+   public String toString(){
+       return "Remede [ name : "+this.getName()+", decouvert :"+this.decouvert+",couleur:"+this.couleur+"]";
+   }
     
 }

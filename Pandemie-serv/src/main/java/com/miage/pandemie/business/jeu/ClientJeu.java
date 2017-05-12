@@ -12,6 +12,8 @@ import java.rmi.RemoteException;
  *
  * @author Remi
  */
-public interface ClientJeu extends Remote{
-    void AffichageMain(String s) throws RemoteException;
+public interface ClientJeu extends Remote {   
+    public void canLaunchGame() throws RemoteException;
+    public void addCarte(String link)throws RemoteException;
+    
 }

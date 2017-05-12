@@ -24,60 +24,60 @@ public class FactoryVille implements IFactoryElement {
     public List<Element> newGame() {
     ArrayList<Element> villes = new ArrayList<>();
         //Création des villes bleues
-        Ville saintpetersbourg = new Ville("Saint-Petersburg", "bleu");
+        Ville saintpetersbourg = new Ville("Saint_Petersbourg", "bleu");
         Ville milan = new Ville("Milan", "bleu");
         Ville essen = new Ville("Essen", "bleu");
         Ville paris = new Ville("Paris", "bleu");
         Ville londres = new Ville("Londres", "bleu");
         Ville madrid = new Ville("Madrid", "bleu");
-        Ville newyork = new Ville("New York", "bleu");
-        Ville washington = new Ville("Washington D.C", "bleu");
-        Ville toronto = new Ville("Toronto", "bleu");
+        Ville newyork = new Ville("New_York", "bleu");
+        Ville washington = new Ville("Washington", "bleu");
+        Ville toronto = new Ville("Montreal", "bleu");
         Ville chicago = new Ville("Chicago", "bleu");
         Ville atlanta = new Ville("Atlanta", "bleu");
         Ville sanfrancisco = new Ville("San_Francisco", "bleu");
 
         //Création des villes noires
-        Ville algers = new Ville("Algers", "noir");
+        Ville algers = new Ville("Alger", "noir");
         Ville istanbul = new Ville("Istanbul", "noir");
-        Ville caire = new Ville("Caire", "noir");
-        Ville riyadh = new Ville("Riyadh", "noir");
-        Ville baghdad = new Ville("Baghdad", "noir");
+        Ville caire = new Ville("Le_Caire", "noir");
+        Ville riyadh = new Ville("Riyad", "noir");
+        Ville baghdad = new Ville("Bagdad", "noir");
         Ville karachi = new Ville("Karachi", "noir");
         Ville moscou = new Ville("Moscou", "noir");
-        Ville tehran = new Ville("Tehran", "noir");
+        Ville tehran = new Ville("Teheran", "noir");
         Ville delhi = new Ville("Delhi", "noir");
-        Ville kolkata = new Ville("Kolkata", "noir");
+        Ville kolkata = new Ville("Calcutta", "noir");
         Ville mumbai = new Ville("Mumbai", "noir");
         Ville chennai = new Ville("Chennai", "noir");
 
         //Création des villes rouges
-        Ville beijing = new Ville("Beijing", "rouge");
+        Ville beijing = new Ville("Pekin", "rouge");
         Ville seoul = new Ville("Seoul", "rouge");
         Ville tokyo = new Ville("Tokyo", "rouge");
         Ville shanghai = new Ville("Shanghai", "rouge");
         Ville osaka = new Ville("Osaka", "rouge");
         Ville taipei = new Ville("Taipei", "rouge");
         Ville hongkong = new Ville("Hong_Kong", "rouge");
-        Ville manila = new Ville("Manila", "rouge");
+        Ville manila = new Ville("Manille", "rouge");
         Ville bangkok = new Ville("Bangkok", "rouge");
         Ville jakarta = new Ville("Jakarta", "rouge");
-        Ville hochiminh = new Ville("Ho_Chi_Minh_City", "rouge");
+        Ville hochiminh = new Ville("Ho_Chi_Minh_Ville", "rouge");
         Ville sydney = new Ville("Sydney", "rouge");
 
         //Création des villes jaunes
         Ville losangeles = new Ville("Los_Angeles", "jaune");
-        Ville mexico = new Ville("Mexico_City", "jaune");
+        Ville mexico = new Ville("Mexico", "jaune");
         Ville miami = new Ville("Miami", "jaune");
         Ville bogota = new Ville("Bogota", "jaune");
         Ville lima = new Ville("Lima", "jaune");
         Ville santiago = new Ville("Santiago", "jaune");
-        Ville buenosaires = new Ville("Buenos_Aires", "jaune");
+        Ville buenosaires = new Ville("Bueno_Aires", "jaune");
         Ville saopaulo = new Ville("Sao_Paulo", "jaune");
         Ville lagos = new Ville("Lagos", "jaune");
         Ville khartoum = new Ville("Khartoum", "jaune");
         Ville kinshasa = new Ville("Kinshasa", "jaune");
-        Ville johannesburg = new Ville("Johannsburg", "jaune");
+        Ville johannesburg = new Ville("Johannesburgs", "jaune");
 
         //Création des liens de voisinages
         saintpetersbourg.ajouterVoisinage(moscou);
