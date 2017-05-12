@@ -30,11 +30,16 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 public class Jeu {
+
+    public FoyerInfection getFoyerInfection() {
+        return foyerInfection;
+    }
 
    
     public ArrayList<String> getUsers() {
@@ -76,6 +81,18 @@ public class Jeu {
     public HashMap<ETypeElement, List<Element>>  getLesElements(){
         return this.LesElements;
     }
+    
+    public List<Ville> getVillesModifiees(){
+        return this.villesModifiees;
+    }
+    
+    public boolean getDefaite(){
+        return this.defaite;
+    }
+    
+    public boolean getVictoire(){
+        return this.victoire;
+    }
 
     private static Jeu inst = null;
     private ArrayList<ClientJeu> Clients;
@@ -94,6 +111,9 @@ public class Jeu {
     private TauxInfection tauxInfection;
     private FoyerInfection foyerInfection;
     private List<ECouleur> maladiesEradiquees;
+    private List<Ville> villesModifiees;
+    private boolean defaite;
+    private boolean victoire;
 
     public static Jeu getInstance() {
 
@@ -149,10 +169,15 @@ public class Jeu {
 
         this.LesPions = new HashMap<>();
 
+        this.defaite = false;
 
         this.maladiesEradiquees = new ArrayList<>();
 
         this.TirageInfection = new ArrayList<>();
+        
+        this.villesModifiees = new LinkedList<>();
+        
+        this.victoire = false;
 
     }
 
@@ -174,7 +199,7 @@ public class Jeu {
     }
 
     private void defaite() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.defaite = true;
     }
 
     /**
@@ -343,6 +368,7 @@ public class Jeu {
     public void infecterVille(Ville v, ECouleur couleur) {
 
         if (v.getInfection().get(couleur).size() < 3) {
+            this.villesModifiees.add(v);
             boolean cubeEnPlace = false;
             int index = 0;
             //On cherche un cube maladie de la bonne couleur
@@ -503,7 +529,7 @@ public class Jeu {
                             LesElements.get(ETypeElement.CubeMaladie).add(cube);
 
                             tmpVille.enleverInfection(couleur);
-                            
+                            this.villesModifiees.add(tmpVille);
                             //Si le remede est decouvert et si c'etait les derniers cube la maladie est eradiquee
                             if(estDecouvert && !maladieExiste(couleur) ){
                                 maladiesEradiquees.add(couleur);
@@ -517,6 +543,7 @@ public class Jeu {
                         LesElements.get(ETypeElement.CubeMaladie).add(cube);
                         // On retire un cube Maladie
                         tmpVille.enleverInfection(couleur);
+                        this.villesModifiees.add(tmpVille);
                         depenserAction(user);
 
                     }
@@ -699,35 +726,50 @@ public class Jeu {
         }
     }
 
-    public void decouvrirRemede(String user, ArrayList<Localisation> localisations) {
+    public void decouvrirRemede(String user, ArrayList<Localisation> localisations, ECouleur couleur) {
         if (LeNombreAction.get(user) > 0) {
             //On vérifie que la ville actuelle du joueur possède une station de recherche
             if (aUneStation(LesPions.get(user).getPosition())) {
                 //On regarde si le joueur est du rôle "Scientifique"
 
-                //On vérifie que les cartes sont de la même couleur
-                ECouleur coulCarte = localisations.get(0).getCouleur();
                 boolean memeCouleur = true;
 
                 for (Localisation localisation : localisations) {
-                    if (localisation.getCouleur() != coulCarte) {
+                    if (localisation.getCouleur() != couleur) {
                         memeCouleur = false;
                     }
                 }
                 //Si les cartes sont de la même couleur, on peut donc développer le remède et les défausser
                 if (memeCouleur && ((localisations.size() == 4 && LesRoles.get(user).equals(ERole.Scientifique))|| localisations.size() == 5 )) {
 
+                    boolean toutLesRemedesDecouvert = true;
                     List<Element> remedes = LesElements.get(ETypeElement.Remede);
                     for (Element element : remedes) {
                         Remede remede = (Remede) (element);
 
+                        
                         //Découverte du remède
-                        if (remede.getCouleur().equals(coulCarte)) {
+                        if (remede.getCouleur().equals(couleur)) {
                             remede.setDecouvert(true);
                             depenserAction(user);
-                        }
-                    }
+                            
 
+                        }
+                        if(!maladieExiste(couleur)){
+                            maladiesEradiquees.add(couleur);
+                        }
+                        
+                         //On test si tout le remede sont découverts
+                         if(!remede.isDecouvert()){
+                             toutLesRemedesDecouvert = false;
+                         }
+
+                    }
+                    
+                    if(toutLesRemedesDecouvert){
+                        this.victoire = true;
+                    }
+                                       
                     //Suppression des cartes
                     for (Localisation localisation : localisations) {
                         LesMains.get(user).remove(localisation);
@@ -748,20 +790,20 @@ public class Jeu {
         LeNombreAction.put(user, LeNombreAction.get(user)-1);
     }
 
-    public Localisation getCarteLoc(String nomCarte) {
+    public Localisation getCarteLoc(String link) {
         Localisation carteLoc = null;
         for (Carte carte : FacadeDeRechercheCarte.getLesCartes().get(ETypeCarte.Joueur)) {
-            if (carte.getName().equals(nomCarte)) {
+            if (carte.linkImg().equals(link)) {
                 carteLoc = (Localisation) carte;
             }
         }
         return carteLoc;
     }
 
-    public Joueur getCarteJoueur(String nomCarte) {
+    public Joueur getCarteJoueur(String link) {
         Joueur carteJoueur = null;
         for (Carte carte : FacadeDeRechercheCarte.getLesCartes().get(ETypeCarte.Joueur)) {
-            if (carte.getName().equals(nomCarte)) {
+            if (carte.linkImg().equals(link)) {
                 carteJoueur = (Joueur) carte;
             }
         }
@@ -802,6 +844,10 @@ public class Jeu {
         }
         return resteCube;
 }
+    
+    public void clearVilleModifiees(){
+        this.villesModifiees.clear();
+    }
       /***************************************************************************
     ******************** Partie serialisation/deserialisation ******************
     ***************************************************************************/

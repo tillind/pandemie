@@ -383,7 +383,79 @@ public class BoardController implements Initializable {
     }
     
     @FXML
-    public void augmenterFoyerInfection(){
-        
+    public void setFoyerInfection(int valeur){
+        //Changer la valeur du Foyer d'infection
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    @FXML
+    public void setTauxInfection(int valeur,int position){
+        //changer la valeur du taux d'infection et sa position sur la piste
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    @FXML
+    public void setPion(String couleur, String position){
+        //Mettre le pion de la couleur donnée à la position donnée ( c'est un nom de ville )
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    @FXML
+    public void setVille(String nom, String couleur, int nbCubeMaladie){
+        // Afficher nbCubeMaladie de la couleur donnée pour la ville donnée ( nom )
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @FXML
+    public void removeCarteMain(String link) {
+        //Supprimer la carte correspondant au lien donné dans la main
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @FXML
+    public void addCarteDefausseJoueur(String link) {
+        //Afficher dans la defausse Joueur la carte correspondant au lien donné
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @FXML
+    public void addCarteDefausseInfection(String link) {
+        //Afficher dans la defausse Infection la carte correspondant au lien donné
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @FXML    
+    public void addRole(String link) {
+        //Afficher le rôle d'un joueur
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }    
+
+    @FXML
+    public void addStation(String ville) {
+        // Ajouter une station de recherche dans la ville donnée
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @FXML
+    public void decouvrirRemede(String couleur) {
+        //Afficher le remede de la couleur donnée comme découvert
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @FXML
+    public void victoire() {
+        //Afficher un joli gif
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @FXML
+    public void defaite() {
+        //Fermer brutalement le jeu
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void addMaladieEradique(String couleur) {
+        //Indiqué que la maladie de la couleur indiquée a été éradiquée
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

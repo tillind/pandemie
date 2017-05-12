@@ -19,10 +19,10 @@ public class ClientJeuImpl extends UnicastRemoteObject implements ClientJeu {
 
     transient BoardController ctrl;
 
-    
-    public ClientJeuImpl(Object ctr)throws RemoteException{
+    public ClientJeuImpl(Object ctr) throws RemoteException {
         ctrl = (BoardController) ctr;
     }
+
     @Override
     public void canLaunchGame() throws RemoteException {
         this.ctrl.displayStartGame();
@@ -31,5 +31,70 @@ public class ClientJeuImpl extends UnicastRemoteObject implements ClientJeu {
     @Override
     public void addCarte(String link) throws RemoteException {
         this.ctrl.addCarteMain(link);
+    }
+
+    @Override
+    public void setTauxInfection(int valeur, int position) throws RemoteException {
+        this.ctrl.setTauxInfection(valeur, position);
+    }
+
+    @Override
+    public void setFoyerInfection(int valeur) throws RemoteException {
+        this.ctrl.setFoyerInfection(valeur);
+    }
+
+    @Override
+    public void setPion(String couleur, String position) throws RemoteException {
+        this.ctrl.setPion(couleur, position);
+    }
+
+    @Override
+    public void setVille(String nom, String couleur, int nbCubeMaladie) throws RemoteException {
+        this.ctrl.setVille(nom, couleur, nbCubeMaladie);
+    }
+
+    @Override
+    public void removeCarte(String link) throws RemoteException {
+        this.ctrl.removeCarteMain(link);
+    }
+
+    @Override
+    public void addDefausseJoueur(String link) throws RemoteException {
+        this.ctrl.addCarteDefausseJoueur(link);
+    }
+
+    @Override
+    public void addDefausseInfection(String link) throws RemoteException {
+        this.ctrl.addCarteDefausseInfection(link);
+    }
+
+    @Override
+    public void addRole(String link) throws RemoteException {
+        this.ctrl.addRole(link);
+    }
+
+    @Override
+    public void addStation(String ville) throws RemoteException {
+        this.ctrl.addStation(ville);
+    }
+
+    @Override
+    public void decouvrirRemede(String couleur) throws RemoteException {
+        this.ctrl.decouvrirRemede(couleur);
+    }
+
+    @Override
+    public void defaite() throws RemoteException {
+        this.ctrl.defaite();
+    }
+
+    @Override
+    public void victoire() throws RemoteException {
+        this.ctrl.victoire();
+    }
+
+    @Override
+    public void addMaladieEradique(String couleur) throws RemoteException {
+        this.ctrl.addMaladieEradique(couleur);
     }
 }
