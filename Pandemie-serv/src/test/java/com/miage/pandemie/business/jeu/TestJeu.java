@@ -79,7 +79,11 @@ public class TestJeu {
 
     }
     
-    
+
+@Test
+public void TestTmp(){
+    assertTrue(jeu.getVille("Atlanta").getAllVoisins().contains(jeu.getVille("Washington")));
+}
     @Test
     public void TestConduire(){
         jeu.conduire("Joueur1",jeu.getVille("Washington"));

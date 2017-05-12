@@ -5,15 +5,15 @@
  */
 package com.miage.pandemie.business.jeu;
 
-import com.miage.pandemie.business.element.Ville;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.List;
 
 /**
  *
  * @author Remi
  */
 public interface ClientJeu extends Remote {   
-    public void changerTauInfection();
+    public void canLaunchGame() throws RemoteException;
+    public void addCarte(String link)throws RemoteException;
+    
 }

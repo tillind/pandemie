@@ -14,9 +14,8 @@ public class Ville extends Element{
 
   
     private String couleur;
-    private HashSet<Ville> villesVoisines;
+    private ArrayList<Ville> villesVoisines;
     private HashMap<ECouleur,List<CubeMaladie>> Infection;
-    private boolean haveStation;
     private boolean propagation;
 
 
@@ -24,9 +23,8 @@ public class Ville extends Element{
     public Ville(String nom,String couleur) {
         super(nom);
         this.couleur = couleur;
-        this.villesVoisines = new HashSet();
+        this.villesVoisines = new ArrayList();
         this.Infection = new HashMap<>();
-        haveStation = false;
         
         for(ECouleur EnumCouleur : ECouleur.values()){
             Infection.put(EnumCouleur,new ArrayList<>());
@@ -42,7 +40,7 @@ public class Ville extends Element{
         this.couleur = couleur;
     }
 
-    public void setVillesVoisines(HashSet<Ville> villesVoisines) {
+    public void setVillesVoisines(ArrayList<Ville> villesVoisines) {
         this.villesVoisines = villesVoisines;
     }
 
@@ -50,13 +48,6 @@ public class Ville extends Element{
         Infection = infection;
     }
 
-    public boolean isHaveStation() {
-        return haveStation;
-    }
-
-    public void setHaveStation(boolean haveStation) {
-        this.haveStation = haveStation;
-    }
 
     public HashMap<ECouleur, List<CubeMaladie>> getInfection() {
         return Infection;
@@ -70,13 +61,6 @@ public class Ville extends Element{
         return villeVoisine;
     }
 
-    /*@Override
-    public String toString() {
-        return "Ville{" +
-                "nom='" + this.getName() + '\'' +
-                '}';
-    }*/
-
     /**
      *
      * @param nomVille
@@ -87,7 +71,7 @@ public class Ville extends Element{
         Ville result = null;
 
         for(Ville ville : villesVoisines) {
-            if(ville.getName() == nomVille) {
+            if(ville.getName().equals(nomVille)) {
                 result = ville;
             }
         }
@@ -106,7 +90,7 @@ public class Ville extends Element{
      */
     public void ajouterVoisinage(Ville ville) {
         villesVoisines.add(ville);
-        ville.getVillesVoisines().add(this);
+        ville.addVilleVoisine(this);
     }
 
     public ArrayList<Ville> getAllVoisins() {
@@ -137,21 +121,23 @@ public class Ville extends Element{
         }
     }
     
-    @Override
-    public String toString(){
-        return " Ville ["+this.getName()+",  haveStation : "+this.haveStation+",propagation"+this.propagation+" ]";
-    }
-
-
-  
-   
-
-   
-  
-    
     public void addVilleVoisine(Ville ville){
         this.villesVoisines.add(ville);
     }
+
     
+    
+    @Override
+    public String toString(){
+        return " Ville ["+this.getName()+",propagation"+this.propagation+" ]";
+    }
+
+
+  
+   
+
+   
+  
+
 
 }

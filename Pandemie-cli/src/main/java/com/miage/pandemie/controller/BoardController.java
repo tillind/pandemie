@@ -74,8 +74,11 @@ public class BoardController implements Initializable {
     private ServeurJeu cdGame;
 
     private ParamCli param;
+    private String pseudo;
 
  
+    @FXML
+    private ImageView c0,c1,c2,c3,c4,c5,c6;
     
 
     @FXML
@@ -94,7 +97,8 @@ public class BoardController implements Initializable {
 
     private ImageView defausseInfectionImageView;
 
-    
+    @FXML
+    private Button launchPartieBtn;
 
     /**
 
@@ -103,13 +107,12 @@ public class BoardController implements Initializable {
      */
 
     @Override
-
     public void initialize(URL url, ResourceBundle rb) {
-
+        initMain();
         param = JsonParam.getParamJson().getParameters();
 
         
-
+        launchPartieBtn.setVisible(false);
         try {
 
             cdChat =(ServeurChat) Naming.lookup("chat");
@@ -139,6 +142,7 @@ public class BoardController implements Initializable {
             cdiChat = new ClientChatImpl(this);
 
             cdChat.Connect(cdiChat, param.getName());
+
 
         } catch (RemoteException ex) {
 
@@ -241,33 +245,23 @@ public class BoardController implements Initializable {
     
 
     public void addMessageChat(String message){
-
         this.chatView.getItems().add(message);
-
     }
 
     
 
     public void setLogic(Application apps){
-
         this.myApps = (Launch) apps;
-
     }
 
     
 
     public void stopControl(){
-
         try {
-
             cdChat.Desconnect(cdiChat, this.param.getName());
-
         } catch (RemoteException ex) {
-
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
-
         }
-
     }
 
     
@@ -275,79 +269,39 @@ public class BoardController implements Initializable {
     
 
    @FXML
-
     public void afficherCarte(){
-
         Label cardLbl = new Label("Carte jouer par tutu");
-
-        
-
         Image img = new Image("/com/miage/pandemie/image/Roles/Expert.jpg");
-
         ImageView imgView = new ImageView(img);
 
         imgView.setRotate(90);
-
         imgView.setFitHeight(500);
-
         imgView.setFitWidth(620);
 
-        
-
-        
-
-        
-
         FXMLLoader loader = new FXMLLoader(
-
                 getClass().getResource(
-
                         "/com/miage/pandemie/view/paneCard.fxml"
-
                 )
-
         );
 
         DialogPane pane = null;
-
         try {
-
             pane = loader.load();
-
         } catch (IOException ex) {
-
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
-
         }
 
-        
-
-        
-
-              
-
         GridPane gridImageView = (GridPane) pane.getContent();
-
         GridPane gridLbl = (GridPane) pane.getHeader();
-
         gridImageView.add(imgView, 0, 0);
-
         gridLbl.add(cardLbl, 0, 0);
-
         this.defausseInfectionImageView.setImage(img);
-
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
         alert.setWidth(590);
-
         alert.setHeight(765);
-
         alert.setTitle("Carte jouer");
-
         alert.setContentText("");
-
         alert.setGraphic(pane);   
-
         alert.showAndWait();    
 
     }  
@@ -369,11 +323,67 @@ public class BoardController implements Initializable {
            Object obj1 = ((MenuItem)obj).parentPopupProperty().get();
            if(obj1 instanceof ContextMenu){
                Object obj2 =  ((ContextMenu) obj1).ownerNodeProperty();
-           
                System.out.println(tmpVilleClick);
-               
            }
        }
     }
-
+    
+    @FXML
+    public void clickLaunchGame() {
+        try {
+            this.cdGame.launchGame(param.getName());
+        } catch (RemoteException ex) {
+            Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void displayStartGame(){
+        this.launchPartieBtn.setVisible(true);
+    }
+    public void addCarteMain(String link){
+        System.err.println(link);
+        Image tmp = new Image(link);
+        if(c0.isDisable()){
+            c0.setImage(tmp);
+            c0.setDisable(false);
+        }else if(c1.isDisable()){
+            c1.setImage(tmp);
+            c1.setDisable(false);
+        }else if(c2.isDisable()){
+            c2.setImage(tmp);
+            c2.setDisable(false);
+        }else if(c3.isDisable()){
+            c3.setImage(tmp);
+            c3.setDisable(false);
+        }else if(c4.isDisable()){
+            c4.setImage(tmp);
+            c4.setDisable(false);
+        }else if(c5.isDisable()){
+            c5.setImage(tmp);
+            c5.setDisable(false);
+        }else if(c6.isDisable()){
+            c6.setImage(tmp);
+            c6.setDisable(false);
+        }
+    }
+    private void initMain() {
+        this.c0.setImage(new Image("/com/miage/pandemie/image/Joueur/Verso.jpg"));
+        this.c0.setDisable(true);
+        this.c1.setImage(new Image("/com/miage/pandemie/image/Joueur/Verso.jpg"));
+        this.c1.setDisable(true);
+        this.c2.setImage(new Image("/com/miage/pandemie/image/Joueur/Verso.jpg"));
+        this.c2.setDisable(true);
+        this.c3.setImage(new Image("/com/miage/pandemie/image/Joueur/Verso.jpg"));
+        this.c3.setDisable(true);
+        this.c4.setImage(new Image("/com/miage/pandemie/image/Joueur/Verso.jpg"));
+        this.c4.setDisable(true);
+        this.c5.setImage(new Image("/com/miage/pandemie/image/Joueur/Verso.jpg"));
+        this.c5.setDisable(true);
+        this.c6.setImage(new Image("/com/miage/pandemie/image/Joueur/Verso.jpg"));        
+        this.c6.setDisable(true);
+    }
+    
+    @FXML
+    public void augmenterFoyerInfection(){
+        
+    }
 }

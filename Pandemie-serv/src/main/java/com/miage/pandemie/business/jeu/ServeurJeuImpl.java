@@ -4,6 +4,7 @@ package com.miage.pandemie.business.jeu;
 
 
 
+import com.miage.pandemie.business.carte.Carte;
 import com.miage.pandemie.business.carte.Localisation;
 import com.miage.pandemie.controller.IndexController;
 
@@ -22,6 +23,8 @@ import java.util.logging.Logger;
 import com.miage.pandemie.business.chat.ClientChat;
 import com.miage.pandemie.business.element.Ville;
 import com.miage.pandemie.business.enumparam.ECouleur;
+import java.util.HashMap;
+import java.util.Map;
 
 
 
@@ -34,83 +37,48 @@ import com.miage.pandemie.business.enumparam.ECouleur;
  */
 
 public class ServeurJeuImpl extends UnicastRemoteObject implements ServeurJeu{
-
-
-
     private static final long serialVersionUID = 1L;
-
-    
-
-    public List<ClientJeu> lesClients;
-
-
-
+    public HashMap<String,ClientJeu> lesClients;
     private Jeu leJeu;
-
-    
-
     /**
-
      * @return the ctrl
-
      */
-
     public IndexController getController() {
-
         return ctrl;
-
     }
-
-
 
     /**
-
      * @param ctrl the ctrl to set
-
      */
-
     public void setController(IndexController ctrl) {
-
         this.ctrl = ctrl;
-
     }
-
-    
-
-
 
     private IndexController ctrl;
 
-
-
     public ServeurJeuImpl()throws RemoteException{
-
-        lesClients= new ArrayList<ClientJeu>();
-
+        lesClients= new HashMap<>();
         leJeu = Jeu.getInstance();
-
     }
 
-    
-
     @Override
-
     public void Connect(ClientJeu s, String User) throws RemoteException {
-
         try {
-
             this.leJeu.addJoueur(User);
-
-            this.lesClients.add(s);
-
+            this.lesClients.put(User,s);
             ctrl.addElementToGame("[ "+User+" ] :  est connectée");
-
+            if(lesClients.size()>1){
+                
+                for (Map.Entry<String, ClientJeu> entry : lesClients.entrySet()) {
+                    String key = entry.getKey();
+                    ClientJeu value = entry.getValue();
+                    value.canLaunchGame();
+                    
+                }
+            }
         } catch (Exception ex) {
-
             Logger.getLogger(ServeurJeuImpl.class.getName()).log(Level.SEVERE, null, ex);
-
         }
-
     }
 
 
@@ -205,6 +173,25 @@ public class ServeurJeuImpl extends UnicastRemoteObject implements ServeurJeu{
     @Override
     public void jouerCarteEvent(String usr, String carte) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void launchGame(String usr) throws RemoteException {
+       leJeu.InitialiseNouvellePartie();
+        for (Map.Entry<String, ClientJeu> entry : lesClients.entrySet()) {
+            String key = entry.getKey();
+            ClientJeu value = entry.getValue();
+            HashMap<String,List<Carte>> tmp = leJeu.getLesMains();
+            for (Map.Entry<String, List<Carte>> entry1 : tmp.entrySet()) {
+                String key1 = entry1.getKey();
+                List<Carte> value1 = entry1.getValue();
+                if(key1.equals(key)){
+                    for (Carte carte : value1) {
+                        value.addCarte(carte.linkImg());
+                    }
+                }
+            }
+        }
     }
 
 

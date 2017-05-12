@@ -7,10 +7,9 @@ import java.util.List;
  * @author Remi
  */
 public interface ServeurJeu extends Remote {
-
     void Connect(ClientJeu s,String User) throws RemoteException;
-
     void Desconnect(ClientJeu s,String User) throws RemoteException;
+    void launchGame(String usr) throws RemoteException;
     public void conduire(String usr,String dest)throws RemoteException;
     public void volDirect(String usr,String loc) throws RemoteException;
     public void volNavette(String usr, String villeDepart, String villeArrive)throws RemoteException;
@@ -24,7 +23,4 @@ public interface ServeurJeu extends Remote {
     public void donnerCarte(String usr, String receiver, String carte) throws RemoteException;
     public void defausseCarte(String usr, String carte ) throws RemoteException;
     public void jouerCarteEvent(String usr, String carte) throws RemoteException;
-
-
-
 }

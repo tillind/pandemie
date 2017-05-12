@@ -36,14 +36,11 @@ import java.util.Random;
 
 public class Jeu {
 
-    private static Jeu inst = null;
-
+   
     public ArrayList<String> getUsers() {
         return users;
     }
-  public HashMap<ETypeElement, List<Element>>  getLesElements(){
-        return this.LesElements;
-}
+
     public HashMap<ETypeCarte, List<Carte>> getLesCartes() {
         return LesCartes;
     }
@@ -75,7 +72,13 @@ public class Jeu {
     public List<ECouleur> getMaladiesEradiquees() {
         return maladiesEradiquees;
     }
+    
+    public HashMap<ETypeElement, List<Element>>  getLesElements(){
+        return this.LesElements;
+    }
 
+    private static Jeu inst = null;
+    private ArrayList<ClientJeu> Clients;
     private ArrayList<String> users;
     private FacadeElement FacadeDesElements;
     private FacadeCarte FacadeDesCartes;
@@ -124,19 +127,33 @@ public class Jeu {
 
     }
 
-    private void init(){
+    private void init() {
+
         this.FacadeDesCartes = new FacadeCarte();
+        
         this.FacadeDeRechercheCarte = new FacadeCarte();
+
         this.FacadeDesElements = new FacadeElement();
+
         this.LesElements = new HashMap<>();
+
         this.LesCartes = new HashMap<>();
+
         this.LesDefausses = new HashMap<>();
+
         this.LesMains = new HashMap<>();
+
         this.LesRoles = new HashMap<>();
-        this.maladiesEradiquees= new ArrayList<>();
-        this.TirageInfection = new ArrayList<>();
-        this.LesPions = new HashMap<>();
+
         this.LeNombreAction = new HashMap<>();
+
+        this.LesPions = new HashMap<>();
+
+
+        this.maladiesEradiquees = new ArrayList<>();
+
+        this.TirageInfection = new ArrayList<>();
+
     }
 
     private Jeu(ArrayList<String> joueurs) {
@@ -150,6 +167,9 @@ public class Jeu {
     private Jeu() {
 
         this.init();
+        
+        this.users = new ArrayList<>();
+
 
     }
 
@@ -232,7 +252,8 @@ public class Jeu {
         //On initialise une nouvelle partie
         this.FacadeDesCartes.newGame();
         this.FacadeDesElements.newGame();
- this.FacadeDeRechercheCarte.newGame();
+        this.FacadeDeRechercheCarte.newGame();
+
         //On cree les pioches de cartes et les differents elements de jeu
         this.LesElements = FacadeDesElements.getLesElements();
         this.LesCartes = FacadeDesCartes.getLesCartes();
@@ -293,18 +314,20 @@ public class Jeu {
 
             LesCartes.get(ETypeCarte.Role).remove(indexAleatoire);
 
+
             //On creer la main du joueur
             LesMains.put(this.users.get(cptUser), new ArrayList<>());
 
             //On fait ensuite piocher au joueur 6 cartes 
-            for (int cptPioche = 0; cptPioche < 6; cptPioche++) {
+            for (int cptPioche = 0; cptPioche <  (6-users.size()); cptPioche++) {
                 piocherCarte(users.get(cptUser));
             }
 
         }
         //On incoropore ensuite les cartes epidemies
         melangerEpidemie(Epidemie);
-               //On Place les cubes maladies de départs
+        
+        //On Place les cubes maladies de départs
         for(int cptCarte=0; cptCarte<3; cptCarte ++ ){
             Infection tmpInfection = (Infection)LesCartes.get(ETypeCarte.Infection).get(0);
             for( int cptCube = 0; cptCube<cptCarte+1; cptCube ++){
@@ -313,6 +336,8 @@ public class Jeu {
             LesDefausses.get(ETypeCarte.Infection).add(tmpInfection);
             LesCartes.get(ETypeCarte.Infection).remove(0);
         }
+        
+       
     }
 
     public void infecterVille(Ville v, ECouleur couleur) {
@@ -471,13 +496,15 @@ public class Jeu {
                 if (ville.equals(LesPions.get(user).getPosition())) {
 
                     Ville tmpVille = (Ville) ville;
-                    //si le joueur est un medecin on retire tout les cubes
+                    //si le joueur est un medecin ou que le remede est decouvert on retire tout les cubes
                     if (LesRoles.get(user).equals(ERole.Medecin) || estDecouvert) {
                         for (CubeMaladie cube : tmpVille.getInfection().get(couleur)) {
                             //On remet les cubes dans les stocks
                             LesElements.get(ETypeElement.CubeMaladie).add(cube);
 
                             tmpVille.enleverInfection(couleur);
+                            
+                            //Si le remede est decouvert et si c'etait les derniers cube la maladie est eradiquee
                             if(estDecouvert && !maladieExiste(couleur) ){
                                 maladiesEradiquees.add(couleur);
                             }
@@ -638,7 +665,7 @@ public class Jeu {
     public Ville getVille(String nomVille) {
         Ville result = null;
         for (Element element : LesElements.get(ETypeElement.Ville)) {
-            Ville ville = (Ville) (element);
+            Ville ville = (Ville)element;
             if (ville.getName().equals(nomVille)) {
                 result = ville;
             }
@@ -718,12 +745,12 @@ public class Jeu {
      * @param user
      */
     private void depenserAction(String user) {
-        LeNombreAction.put(user, LeNombreAction.get(user) - 1);
+        LeNombreAction.put(user, LeNombreAction.get(user)-1);
     }
 
     public Localisation getCarteLoc(String nomCarte) {
         Localisation carteLoc = null;
-        for (Carte carte : FacadeDesCartes.getLesCartes().get(ETypeCarte.Joueur)) {
+        for (Carte carte : FacadeDeRechercheCarte.getLesCartes().get(ETypeCarte.Joueur)) {
             if (carte.getName().equals(nomCarte)) {
                 carteLoc = (Localisation) carte;
             }
@@ -733,7 +760,7 @@ public class Jeu {
 
     public Joueur getCarteJoueur(String nomCarte) {
         Joueur carteJoueur = null;
-        for (Carte carte : FacadeDesCartes.getLesCartes().get(ETypeCarte.Joueur)) {
+        for (Carte carte : FacadeDeRechercheCarte.getLesCartes().get(ETypeCarte.Joueur)) {
             if (carte.getName().equals(nomCarte)) {
                 carteJoueur = (Joueur) carte;
             }
@@ -746,7 +773,7 @@ public class Jeu {
         LesMains.get(user).remove(carte);
     }
 
-     private boolean aUneStation(Ville ville) {
+    private boolean aUneStation(Ville ville) {
         boolean surStation = false;
         Station tmpStation;
         for (Element el : LesElements.get(ETypeElement.Station)) {
@@ -774,7 +801,7 @@ public class Jeu {
             }           
         }
         return resteCube;
-    }
+}
       /***************************************************************************
     ******************** Partie serialisation/deserialisation ******************
     ***************************************************************************/

@@ -15,18 +15,21 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class ClientJeuImpl extends UnicastRemoteObject implements ClientJeu {
 
+    private static final long serialVersionUID = 1L;
+
     transient BoardController ctrl;
-    
-    public ClientJeuImpl(BoardController ctr)throws RemoteException{
-        ctrl = ctr;
-    }
 
     
+    public ClientJeuImpl(Object ctr)throws RemoteException{
+        ctrl = (BoardController) ctr;
+    }
     @Override
-    public void AffichageMain(String s) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void canLaunchGame() throws RemoteException {
+        this.ctrl.displayStartGame();
     }
 
-    
-    
+    @Override
+    public void addCarte(String link) throws RemoteException {
+        this.ctrl.addCarteMain(link);
+    }
 }
