@@ -5,9 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -19,7 +17,6 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <TextArea fx:id="logServerArea" layoutX="49.0" layoutY="133.0" prefHeight="200.0" prefWidth="417.0" />
       <ButtonBar layoutX="333.0" layoutY="347.0" prefHeight="40.0" prefWidth="294.0">
         <buttons>
           <Button fx:id="startBtn" mnemonicParsing="false" onAction="#handleButtonStartAction" text="Démarrer" />
@@ -29,12 +26,11 @@
       </ButtonBar>
       <Label layoutX="49.0" layoutY="110.0" text="Log du server" />
       <Label layoutX="532.0" layoutY="110.0" text="Chat" />
-      <TextField fx:id="ipServerField" layoutX="121.0" layoutY="70.0" />
+      <TextField fx:id="ipServerField" layoutX="132.0" layoutY="70.0" />
       <TextField fx:id="portField" layoutX="403.0" layoutY="70.0" prefHeight="25.0" prefWidth="63.0" />
-      <Label layoutX="46.0" layoutY="70.0" text="IP du server" />
+      <Label layoutX="45.0" layoutY="75.0" text="IP du server" />
       <Label layoutX="368.0" layoutY="74.0" text="Port" />
       <CheckBox fx:id="typeChk" layoutX="330.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleCheckAction" text="Local" />
-      <ProgressIndicator fx:id="launchServerProgess" layoutX="33.0" layoutY="347.0" progress="0.0" />
       <SplitPane dividerPositions="0.422680412371134" layoutX="785.0" layoutY="20.0" orientation="VERTICAL" prefHeight="99.0" prefWidth="160.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -53,5 +49,7 @@
         </items>
       </SplitPane>
       <ListView fx:id="chatList" layoutX="527.0" layoutY="133.0" prefHeight="200.0" prefWidth="417.0" />
+      <ListView fx:id="gameList" layoutX="45.0" layoutY="133.0" prefHeight="200.0" prefWidth="417.0" />
+      <Button fx:id="chooserBtn" layoutX="531.0" layoutY="70.0" mnemonicParsing="false" onAction="#chooserButtonHandle" text="Charger une sauvegarde" />
    </children>
 </AnchorPane>

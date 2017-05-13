@@ -12,6 +12,20 @@ import com.miage.pandemie.business.enumparam.ECouleur;
  * @author Remi
  */
 public class Remede extends Element{
+
+    /**
+     * @return the decouvert
+     */
+    public boolean isDecouvert() {
+        return decouvert;
+    }
+
+    /**
+     * @param decouvert the decouvert to set
+     */
+    public void setDecouvert(boolean decouvert) {
+        this.decouvert = decouvert;
+    }
     private boolean decouvert;
     private ECouleur couleur; 
 
@@ -22,11 +36,16 @@ public class Remede extends Element{
     }
     
     public boolean getDecouvert(){
-        return this.decouvert;
+        return this.isDecouvert();
     }
     
    public ECouleur getCouleur(){
         return this.couleur;
     }
+   
+   @Override
+   public String toString(){
+       return "Remede [ name : "+this.getName()+", decouvert :"+this.decouvert+",couleur:"+this.couleur+"]";
+   }
     
 }

@@ -43,4 +43,9 @@ public abstract class Carte {
     public int hashCode() {
       return Objects.hash(name);
     }
+    
+    @Override
+    public String toString(){
+        return name+"[ name :"+this.name+", link :"+this.link+"]";
+    }
 }

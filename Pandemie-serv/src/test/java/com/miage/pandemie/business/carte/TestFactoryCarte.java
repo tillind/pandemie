@@ -52,13 +52,13 @@ public class TestFactoryCarte {
     @Test
     public void testNbCarteJoueur() {
         int nbTmp =  listeJoueur.size();
-        assertEquals(nbTmp, 59);
+        assertEquals(nbTmp, 58);
     }
     
     @Test
     public void testNbCarteRole() {
         int nbTmp =  listeRole.size();
-        assertEquals(nbTmp,7);
+        assertEquals(nbTmp,5);
     }
     
     @Test
@@ -103,3 +103,5 @@ public class TestFactoryCarte {
         }
     }
 }
+
+

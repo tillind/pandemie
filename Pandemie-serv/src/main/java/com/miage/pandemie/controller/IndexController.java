@@ -1,12 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.miage.pandemie.controller;
 
 import com.miage.pandemie.business.chat.ServerChat;
-import com.miage.pandemie.business.chat.ServeurChatImpl;
+import com.miage.pandemie.business.jeu.Server;
+import com.pandemie.business.sauvegarde.SauvegardeJeu;
+import java.io.File;
+import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -22,10 +20,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -33,16 +31,16 @@ import javafx.scene.paint.Color;
  * @author alex
  */
 public class IndexController implements Initializable {
+
     private String IP_BASE;
     private final static String PORT_BASE="1099";
-    
+
     @FXML
     private Label statusGameLbl;
     @FXML
     private Label statusChatLbl;
     @FXML
-    private TextArea logServerArea;
-
+    private ListView gameList;
     @FXML
     private Button startBtn;
     @FXML
@@ -56,14 +54,15 @@ public class IndexController implements Initializable {
     @FXML
     private CheckBox typeChk;
     @FXML
-    private ProgressIndicator launchServerProgess;
+    private  ListView chatList;
     @FXML
-    public  ListView chatList;
+    private Button chooserBtn;
     
-    
-    private ServerChat monServeur;
-    
-    
+    private FileChooser chargeSave;
+    private ServerChat servChat;
+    private Server servJeu;
+    private SauvegardeJeu save;
+
     @FXML
     private void handleCheckAction(ActionEvent event) {
         if(this.typeChk.isSelected()){
@@ -78,16 +77,19 @@ public class IndexController implements Initializable {
             this.portField.setEditable(true);
         }    
     }
+
     
+
     @FXML
+
     private void handleButtonStartAction(ActionEvent event) {
         boolean chatUp=true;
-        this.launchServerProgess.setVisible(true);
-        this.launchServerProgess.setVisible(false);
-        monServeur = new ServerChat(ipServerField.getText(),Integer.parseInt(portField.getText()));
-        
+        boolean gameUp=true;
+
+        servChat = new ServerChat(ipServerField.getText(),Integer.parseInt(portField.getText()));
+        servJeu = new Server(ipServerField.getText(), Integer.parseInt(portField.getText()));
         try {
-            monServeur.startServer(this);
+            servChat.startServer(this);
             System.out.println("chat up");
         } catch (RemoteException ex) {
             Logger.getLogger(IndexController.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,34 +98,59 @@ public class IndexController implements Initializable {
             chatList.getItems().add(ex.getMessage());
             chatUp=false;
         }
+
         
+
+        try {
+            servJeu.startServer(this);
+            System.out.println("game up");
+        } catch (RemoteException ex) {
+            Logger.getLogger(IndexController.class.getName()).log(Level.SEVERE, null, ex);
+            statusGameLbl.setText("error");
+            statusGameLbl.setTextFill(Color.RED);
+            gameList.getItems().add(ex.getMessage());
+            gameUp=false;
+
+        }
+
+        if(gameUp){
+            statusGameLbl.setText("up");
+            statusGameLbl.setTextFill(Color.GREEN);
+        }
+
         if(chatUp){
             statusChatLbl.setText("up");
             statusChatLbl.setTextFill(Color.GREEN);
         }
-        
         startBtn.setDisable(true);
         restartBtn.setDisable(false);
         stopBtn.setDisable(false);
-        
     }
+
     
+
     @FXML
+
     private void handleButtonStopAction(ActionEvent event) {
-        this.monServeur.stopServer();
+        this.servChat.stopServer();
+        this.servJeu.stopServer();
         statusChatLbl.setText("down");
         statusChatLbl.setTextFill(Color.BROWN);
+        statusGameLbl.setText("down");
+        statusGameLbl.setTextFill(Color.BROWN);
         startBtn.setDisable(false);
         restartBtn.setDisable(true);
         stopBtn.setDisable(true);
-    
     }
+
     @FXML
     private void handleButtonRestartAction(ActionEvent event) {
-        
-       
+        this.handleButtonStopAction(event);
+        this.handleButtonStartAction(event);      
     }
+
     
+
     /**
      * Initializes the controller class.
      */
@@ -134,24 +161,42 @@ public class IndexController implements Initializable {
         } catch (UnknownHostException ex) {
             Logger.getLogger(IndexController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        
         System.out.println("com.miage.pandemie.controller.IndexController.initialize()");
         this.ipServerField.setText(IP_BASE);
         this.ipServerField.setEditable(false);
         this.portField.setText(PORT_BASE);
         this.portField.setEditable(false);
         this.typeChk.setSelected(true);
-        logServerArea.setEditable(false);
         restartBtn.setDisable(true);
         stopBtn.setDisable(true);
-        this.launchServerProgess.setVisible(false);
+  
         statusChatLbl.setText("down");
         statusChatLbl.setTextFill(Color.BROWN);
         statusGameLbl.setText("down");
         statusGameLbl.setTextFill(Color.BROWN);
-        
+        this.chargeSave = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json");
+        this.chargeSave.getExtensionFilters().add(extFilter);
+        this.save = new SauvegardeJeu();
     }    
+
     
-    
+
+    @FXML
+    private void chooserButtonHandle(ActionEvent event){
+        File file = chargeSave.showOpenDialog((Stage)this.chooserBtn.getScene().getWindow());
+        try{
+            save.getSaveJson(file);
+        }catch(IOException e){
+            Logger.getLogger(IndexController.class.getName()).log(Level.SEVERE, null, e);
+            this.addElementToGame("Impossible de charger cette sauvegarde.");
+        }
+        
+        
+    }
+
     private void printAlert(Alert.AlertType type){
         Alert alert = new Alert(type);
         alert.setTitle("Warning Dialog");
@@ -159,9 +204,15 @@ public class IndexController implements Initializable {
         alert.setContentText("Careful with the next step!");
         alert.showAndWait();
     }
+
     
+
     public void addElementToChat(String str){
         this.chatList.getItems().add(str);
     }
-    
+
+    public void addElementToGame(String str){
+        this.gameList.getItems().add(str);
+    } 
+
 }
