@@ -15,6 +15,7 @@ import java.rmi.RemoteException;
 public interface ClientJeu extends Remote{    
    public void canLaunchGame() throws RemoteException;
    public void addCarte(String link)throws RemoteException;
+   public void addPseudo(String pseudo)throws RemoteException;
    public void setTauxInfection(int valeur, int position) throws RemoteException;
    public void setFoyerInfection(int valeur) throws RemoteException;
    public void setPion(String couleur, String position)throws RemoteException;

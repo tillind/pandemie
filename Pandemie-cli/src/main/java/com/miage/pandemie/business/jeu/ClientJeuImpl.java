@@ -97,4 +97,9 @@ public class ClientJeuImpl extends UnicastRemoteObject implements ClientJeu {
     public void addMaladieEradique(String couleur) throws RemoteException {
         this.ctrl.addMaladieEradique(couleur);
     }
+
+    @Override
+    public void addPseudo(String pseudo) throws RemoteException {
+       this.ctrl.addJoueur(pseudo);
+    }
 }

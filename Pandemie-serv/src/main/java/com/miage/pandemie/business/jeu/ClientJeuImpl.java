@@ -96,4 +96,9 @@ public class ClientJeuImpl extends UnicastRemoteObject implements ClientJeu {
     public void addMaladieEradique(String couleur) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void addPseudo(String pseudo) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

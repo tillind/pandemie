@@ -15,10 +15,16 @@ sonarqube {
 
 allprojects {
   ext.baseVersion = "0.1"
-  ext.snapshotVersion = true
+  ext.snapshotVersion = false
 
   group = "org.sonarqube"
   version = "$baseVersion" + (snapshotVersion ? "-SNAPSHOT" : "")
+  jar {
+    manifest {
+        attributes("Implementation-Title": "Gradle",
+                   "Implementation-Version": version)
+    }
+  }
 }
 
 

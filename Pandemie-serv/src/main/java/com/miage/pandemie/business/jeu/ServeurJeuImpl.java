@@ -291,6 +291,14 @@ public class ServeurJeuImpl extends UnicastRemoteObject implements ServeurJeu {
         for (Map.Entry<String, ClientJeu> entry : lesClients.entrySet()) {
             String key = entry.getKey();
             ClientJeu value = entry.getValue();
+            
+            ArrayList<String> lesJoueurs = leJeu.getUsers();
+            for (String leJoueur : lesJoueurs) {
+                if(!leJoueur.equals(key)){
+                   value.addPseudo(leJoueur);
+                }
+            }
+            
             for (Map.Entry<String, List<Carte>> entry1 : tmp.entrySet()) {
                 String key1 = entry1.getKey();
                 List<Carte> value1 = entry1.getValue();
@@ -298,11 +306,11 @@ public class ServeurJeuImpl extends UnicastRemoteObject implements ServeurJeu {
                     for (Carte carte : value1) {
                         value.addCarte(carte.linkImg());
                     }
-                    value.addRole(leJeu.getLesRoles().get(key).linkImg());
+                   // value.addRole(leJeu.getLesRoles().get(key).linkImg());
                 }
             }
 
-            for (Map.Entry<String, Pion> entry2 : tmpPions.entrySet()) {
+           /* for (Map.Entry<String, Pion> entry2 : tmpPions.entrySet()) {
                 Pion pion = entry2.getValue();
                 value.setPion(pion.getCouleur(), pion.getPosition().getName());
             }
@@ -313,11 +321,11 @@ public class ServeurJeuImpl extends UnicastRemoteObject implements ServeurJeu {
                         value.setVille(ville.getName(), couleur.name(), ville.getInfection().get(couleur).size());
                     }
                 }
-            }
+            }*/
 
-            value.setTauxInfection(leJeu.getTauxInfection().getValeur(), leJeu.getTauxInfection().getValeur());
-            value.setFoyerInfection(leJeu.getFoyerInfection().getValeur());
-            value.addDefausseInfection(leJeu.getLesDefausses().get(ETypeCarte.Infection).get(leJeu.getLesDefausses().get(ETypeCarte.Infection).size() - 1).linkImg());
+            //value.setTauxInfection(leJeu.getTauxInfection().getValeur(), leJeu.getTauxInfection().getValeur());
+            //value.setFoyerInfection(leJeu.getFoyerInfection().getValeur());
+            //value.addDefausseInfection(leJeu.getLesDefausses().get(ETypeCarte.Infection).get(leJeu.getLesDefausses().get(ETypeCarte.Infection).size() - 1).linkImg());
         }
 
         leJeu.clearVilleModifiees();
