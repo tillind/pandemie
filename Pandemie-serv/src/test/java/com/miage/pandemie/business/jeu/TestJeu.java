@@ -156,7 +156,7 @@ public void TestTmp(){
         jeu.getLesMains().get("Joueur1").add(tmpLoc);     
         Station local = (Station)jeu.getLesElements().get(ETypeElement.Station).get(0);
         local.setPosition(jeu.getVille("Atlanta"));
-        jeu.decouvrirRemede("Joueur1", locList);
+        jeu.decouvrirRemede("Joueur1", locList, ECouleur.Bleu);
         Remede  remede = (Remede)jeu.getLesElements().get(ETypeElement.Remede).get(0);
         assertTrue(remede.isDecouvert());
     }
