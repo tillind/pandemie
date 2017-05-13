@@ -4,8 +4,11 @@
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -31,7 +34,7 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
                   <Label layoutX="14.0" layoutY="14.0" text="Carte infection" />
-                  <ImageView fx:id="clickInfection" fitHeight="123.0" fitWidth="177.0" layoutX="141.0" layoutY="19.0" onMouseClicked="#afficherCarte" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="clickInfection" fitHeight="123.0" fitWidth="177.0" layoutX="141.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/Infection/Verso.jpg" />
                      </image>
@@ -45,9 +48,12 @@
             </AnchorPane>
             <AnchorPane prefHeight="96.0" prefWidth="381.0">
                <children>
-                  <Button fx:id="btnQuit" layoutX="43.0" layoutY="36.0" mnemonicParsing="false" onAction="#quitHandle" text="Quitter" />
-                  <Button layoutX="130.0" layoutY="36.0" mnemonicParsing="false" text="Son" />
-                  <Button fx:id="launchPartieBtn" layoutX="57.0" layoutY="98.0" mnemonicParsing="false" onAction="#clickLaunchGame" text="Lancer partie" />
+                  <Button fx:id="btnQuit" layoutX="24.0" layoutY="21.0" mnemonicParsing="false" onAction="#quitHandle" text="Quitter" />
+                  <Button fx:id="launchPartieBtn" layoutX="24.0" layoutY="98.0" mnemonicParsing="false" onAction="#clickLaunchGame" text="Lancer partie" />
+                  <Label layoutX="116.0" layoutY="26.0" text="Pseudo" />
+                  <Label layoutX="115.0" layoutY="58.0" text="Role" />
+                  <Label fx:id="pseudoLbl" layoutX="192.0" layoutY="26.0" text="Label" />
+                  <Label fx:id="roleLbl" layoutX="192.0" layoutY="58.0" onMouseClicked="#afficherRole" text="Label" />
                </children>
             </AnchorPane>
             <GridPane GridPane.columnIndex="2">
@@ -64,13 +70,48 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Circle fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Circle fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" />
-                  <Circle fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" />
-                  <Circle fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" />
-                  <Circle fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="4" />
-                  <Circle fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" />
-                  <Circle fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Circle fx:id="f0" fill="DODGERBLUE" layoutX="79.0" layoutY="79.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="74.0" layoutY="122.0" text="2" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <Circle fx:id="f1" fill="DODGERBLUE" layoutX="79.0" layoutY="79.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="74.0" layoutY="122.0" text="2" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+                     <children>
+                        <Circle fx:id="f2" fill="DODGERBLUE" layoutX="79.0" layoutY="79.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="75.0" layoutY="122.0" text="2" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">
+                     <children>
+                        <Circle fx:id="f3" fill="DODGERBLUE" layoutX="79.0" layoutY="79.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="75.0" layoutY="122.0" text="3" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4">
+                     <children>
+                        <Circle fx:id="f4" fill="DODGERBLUE" layoutX="78.0" layoutY="79.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="74.0" layoutY="122.0" text="3" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5">
+                     <children>
+                        <Circle fx:id="f5" fill="DODGERBLUE" layoutX="78.0" layoutY="79.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="74.0" layoutY="122.0" text="4" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6">
+                     <children>
+                        <Circle fx:id="f6" fill="DODGERBLUE" layoutX="78.0" layoutY="79.0" radius="35.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Label layoutX="74.0" layoutY="122.0" text="4" />
+                     </children>
+                  </AnchorPane>
                </children>
             </GridPane>
          </children>
@@ -82,6 +123,7 @@
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -97,42 +139,47 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label text="1" textFill="#00a1b0" GridPane.rowIndex="1">
+            <Label fx:id="t1" text="0" textFill="#78f4ff" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <Label text="2" textFill="#08e800" GridPane.rowIndex="2">
+            <Label fx:id="t2" text="2" textFill="#08e800" GridPane.rowIndex="3">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Label text="3" textFill="#008d17" GridPane.rowIndex="3">
+            <Label fx:id="t3" text="3" textFill="#008d17" GridPane.rowIndex="4">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Label text="4" textFill="#f2cd00" GridPane.rowIndex="4">
+            <Label fx:id="t4" text="4" textFill="#f2cd00" GridPane.rowIndex="5">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Label text="5" textFill="#c3a200" GridPane.rowIndex="5">
+            <Label fx:id="t5" text="5" textFill="#c3a200" GridPane.rowIndex="6">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Label text="6" textFill="#ae4600" GridPane.rowIndex="6">
+            <Label fx:id="t6" text="6" textFill="#ae4600" GridPane.rowIndex="7">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Label text="7" textFill="RED" GridPane.rowIndex="7">
+            <Label fx:id="t7" text="7" textFill="RED" GridPane.rowIndex="8">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Label text="8" GridPane.rowIndex="8">
+            <Label fx:id="t8" text="8" GridPane.rowIndex="9">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="t11" text="1" textFill="#00a1b0" GridPane.rowIndex="2">
                <font>
                   <Font size="36.0" />
                </font>
@@ -155,6 +202,25 @@
                   <ListView fx:id="chatView" layoutY="16.0" prefHeight="356.0" prefWidth="204.0" />
                   <TextField fx:id="chatField" layoutY="382.0" prefHeight="37.0" prefWidth="157.0" />
                   <Button layoutX="157.0" layoutY="382.0" mnemonicParsing="false" onAction="#sendMessageHandle" prefHeight="38.0" prefWidth="41.0" text="&gt;" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="j1" layoutX="14.0" layoutY="31.0" onMouseClicked="#clickPseudoHandle" prefHeight="35.0" prefWidth="98.0" text="terpo">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="j2" layoutX="14.0" layoutY="66.0" onMouseClicked="#clickPseudoHandle" visible="false">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="j3" layoutX="14.0" layoutY="101.0" onMouseClicked="#clickPseudoHandle" visible="false">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
@@ -206,7 +272,7 @@
                         <Image url="@../image/Joueur/Event/Event_Prevision.jpg" />
                      </image>
                   </ImageView>
-                  <Button layoutX="381.0" layoutY="81.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="170.0" text="Fin du tour" />
+                  <Button layoutX="381.0" layoutY="81.0" mnemonicParsing="false" onAction="#finDeTour" prefHeight="38.0" prefWidth="170.0" text="Fin du tour" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="179.0" prefWidth="975.0" GridPane.columnIndex="1">
@@ -287,8 +353,29 @@
                      <contextMenu>
                         <ContextMenu>
                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
                             <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -300,11 +387,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -313,11 +421,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -326,11 +455,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -339,11 +489,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -352,11 +523,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                       <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -365,24 +557,66 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                       <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="47.0" layoutY="170.0" text="Los angeles" textFill="#fff900">
+                  <Label layoutX="47.0" layoutY="170.0" onMouseClicked="#clickVille" text="Los angeles" textFill="#fff900">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                       <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -391,11 +625,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -404,11 +659,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -417,24 +693,66 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="9.0" layoutY="122.0" text="San francisco" textFill="#0004ff">
+                  <Label layoutX="9.0" layoutY="122.0" onMouseClicked="#clickVille" text="San francisco" textFill="#0004ff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -443,11 +761,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                       <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -456,11 +795,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                       <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -469,11 +829,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                       <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -482,11 +863,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                       <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -495,11 +897,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -508,12 +931,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                            <MenuItem mnemonicParsing="false" text="Unspecified Action" />
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -522,11 +965,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                       <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -535,11 +999,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -548,11 +1033,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -561,11 +1067,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -574,11 +1101,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -587,11 +1135,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -600,11 +1169,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -613,11 +1203,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -626,11 +1237,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -639,11 +1271,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -652,11 +1305,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                       <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -665,11 +1339,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                       <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -678,11 +1373,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                       <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -691,11 +1407,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                       <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -704,24 +1441,73 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
+                     <tooltip>
+                        <Tooltip text="Empty Tooltip">
+                           <graphic>
+                              <Label text="TEST" />
+                           </graphic>
+                        </Tooltip>
+                     </tooltip>
                   </Label>
                   <Label layoutX="1004.0" layoutY="190.0" text="Mumbai">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -730,11 +1516,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                       <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -743,11 +1550,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -756,11 +1584,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -769,11 +1618,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                       <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -782,11 +1652,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -795,11 +1686,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                       <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -808,11 +1720,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -821,11 +1754,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -834,11 +1788,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -847,11 +1822,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -860,11 +1856,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -873,11 +1890,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -886,11 +1924,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>
@@ -899,11 +1958,32 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
-                     <contextMenu>
+                        <contextMenu>
                         <ContextMenu>
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
                           </items>
                         </ContextMenu>
                      </contextMenu>

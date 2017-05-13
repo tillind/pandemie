@@ -1,6 +1,14 @@
 if (!hasProperty('mainClass')) {
     ext.mainClass = 'com.miage.pandemie.launch.Launch'
 }
+jar {
+    manifest {
+        attributes("Implementation-Title": "Pandemie client vers",
+                   "Implementation-Version": "0.1",
+                    "Main-Class": 'com.miage.pandemie.launch.Launch'
+        )
+    }
+  }
 
 dependencies {
     // Adding dependencies here will add the dependencies to each subproject.
@@ -11,5 +19,3 @@ dependencies {
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.0.pr2'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0.pr2'
 }
-
-

@@ -75,7 +75,7 @@ public class ServeurJeuImpl extends UnicastRemoteObject implements ServeurJeu{
     }
 
     @Override
-    public void decouvrirRemede(String usr, List<String> lesLoc) throws RemoteException {
+    public void decouvrirRemede(String usr, List<String> lesLoc, String couleur) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

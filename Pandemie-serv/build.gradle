@@ -2,3 +2,9 @@ if (!hasProperty('mainClass')) {
     ext.mainClass = 'com.miage.pandemie.launch.Launch'
 }
 
+jar {
+    manifest {
+        attributes("Implementation-Title": "Gradle",
+                   "Implementation-Version": "0.1")
+    }
+  }
