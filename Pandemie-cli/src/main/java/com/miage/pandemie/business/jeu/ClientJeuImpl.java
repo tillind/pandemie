@@ -48,10 +48,7 @@ public class ClientJeuImpl extends UnicastRemoteObject implements ClientJeu {
         this.ctrl.setPion(couleur, position);
     }
 
-    @Override
-    public void setVille(String nom, String couleur, int nbCubeMaladie) throws RemoteException {
-        this.ctrl.setVille(nom, couleur, nbCubeMaladie);
-    }
+
 
     @Override
     public void removeCarte(String link) throws RemoteException {
@@ -73,10 +70,7 @@ public class ClientJeuImpl extends UnicastRemoteObject implements ClientJeu {
         this.ctrl.addRole(link);
     }
 
-    @Override
-    public void addStation(String ville) throws RemoteException {
-        this.ctrl.addStation(ville);
-    }
+
 
     @Override
     public void decouvrirRemede(String couleur) throws RemoteException {
@@ -96,5 +90,15 @@ public class ClientJeuImpl extends UnicastRemoteObject implements ClientJeu {
     @Override
     public void addMaladieEradique(String couleur) throws RemoteException {
         this.ctrl.addMaladieEradique(couleur);
+    }
+
+    @Override
+    public void addPseudo(String pseudo) throws RemoteException {
+       this.ctrl.addJoueur(pseudo);
+    }
+
+    @Override
+    public void afficherInfoVille(boolean aStation, int nbCubeJaune, int nbCubeRouge, int nbCubeBleu, int nbCubeNoir) throws RemoteException {
+        this.ctrl.afficherInfoVille(aStation,nbCubeJaune,nbCubeRouge,nbCubeBleu,nbCubeNoir);
     }
 }

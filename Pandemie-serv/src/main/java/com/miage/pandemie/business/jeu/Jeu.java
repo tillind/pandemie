@@ -815,7 +815,7 @@ public class Jeu {
         LesMains.get(user).remove(carte);
     }
 
-    private boolean aUneStation(Ville ville) {
+    public boolean aUneStation(Ville ville) {
         boolean surStation = false;
         Station tmpStation;
         for (Element el : LesElements.get(ETypeElement.Station)) {

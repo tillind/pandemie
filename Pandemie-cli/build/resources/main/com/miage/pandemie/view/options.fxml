@@ -13,7 +13,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="903.0" prefWidth="1780.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miage.pandemie.controller.OptionsController">
    <top>
-      <GridPane prefHeight="198.0" prefWidth="1780.0" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="198.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -83,7 +83,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ButtonBar prefHeight="111.0" prefWidth="1780.0">
+            <ButtonBar prefHeight="111.0" prefWidth="1080.0">
               <buttons>
                 <Button fx:id="saveToMenu" mnemonicParsing="false" onAction="#saveToMenuHandle" prefHeight="59.0" prefWidth="134.0" text="Sauvegarder" />
                   <Button fx:id="exitToMenu" mnemonicParsing="false" onAction="#exitToMenuHandle" prefHeight="59.0" text="Quitter" />
