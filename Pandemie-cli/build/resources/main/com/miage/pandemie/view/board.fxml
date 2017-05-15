@@ -291,37 +291,37 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fx:id="c0" fitHeight="121.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                        <ImageView fx:id="c0" fitHeight="121.0" fitWidth="157.0" onMouseClicked="#clickSelectCardHandle" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                            <image>
                               <Image url="@../image/Joueur/Event/Event_Nuit.jpg" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="c1" fitHeight="114.0" fitWidth="167.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="1">
+                        <ImageView fx:id="c1" fitHeight="114.0" fitWidth="167.0" onMouseClicked="#clickSelectCardHandle" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="1">
                            <image>
                               <Image url="@../image/Joueur/Event/Event_Pop_resi.jpg" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="c2" fitHeight="130.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="2">
+                        <ImageView fx:id="c2" fitHeight="130.0" fitWidth="156.0" onMouseClicked="#clickSelectCardHandle" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="2">
                            <image>
                               <Image url="@../image/Joueur/Epidemie/Epidemie_1.jpg" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="c3" fitHeight="132.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="3">
+                        <ImageView fx:id="c3" fitHeight="132.0" fitWidth="157.0" onMouseClicked="#clickSelectCardHandle" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="3">
                            <image>
                               <Image url="@../image/Joueur/Epidemie/Epidemie_3.jpg" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="c4" fitHeight="159.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="4">
+                        <ImageView fx:id="c4" fitHeight="159.0" fitWidth="156.0" onMouseClicked="#clickSelectCardHandle" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="4">
                            <image>
                               <Image url="@../image/Joueur/Localisation/Bleu/Atlanta.jpg" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="c5" fitHeight="127.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="5">
+                        <ImageView fx:id="c5" fitHeight="127.0" fitWidth="156.0" onMouseClicked="#clickSelectCardHandle" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="5">
                            <image>
                               <Image url="@../image/Joueur/Localisation/Bleu/Washington.jpg" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="c6" fitHeight="125.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="6">
+                        <ImageView fx:id="c6" fitHeight="125.0" fitWidth="155.0" onMouseClicked="#clickSelectCardHandle" pickOnBounds="true" preserveRatio="true" rotate="90.0" GridPane.columnIndex="6">
                            <image>
                               <Image url="@../image/Joueur/Localisation/Noir/Bagdad.jpg" />
                            </image>

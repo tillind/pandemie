@@ -41,6 +41,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -131,10 +132,10 @@ public class BoardController implements Initializable {
         roleLbl.setVisible(false);
         launchPartieBtn.setVisible(false);
         
-        //j1.setVisible(false);
+        j1.setVisible(false);
      
-        //j2.setVisible(false);
-        //j3.setVisible(false);
+        j2.setVisible(false);
+        j3.setVisible(false);
         try {
 
             cdChat =(ServeurChat) Naming.lookup("chat");
@@ -330,23 +331,17 @@ public class BoardController implements Initializable {
         this.launchPartieBtn.setVisible(true);
     }
     
-    public void addJoueur(String pseudo){
-       
-       
-            j1.setText("ezpfok");
-            
-            System.out.println(j1.getText());
-            
-        /*else if(!j2.isVisible()){
-           
+    public void addJoueur(String pseudo){   
+        if(!j1.isVisible()){
+            j1.setVisible(true);
+            j1.setText(pseudo);
+        }else if(!j2.isVisible()){
             j2.setVisible(true);
-             j2.setText(pseudo);
-        }
-        else if(!j3.isVisible()){
-            
+            j2.setText(pseudo);
+        }else if(!j3.isVisible()){
             j3.setVisible(true);
             j3.setText(pseudo);
-        }*/
+        }
     }
     
     @FXML
@@ -357,7 +352,6 @@ public class BoardController implements Initializable {
         if(this.carteSelected.contains(img.getURL())){
             tmp.setEffect(null);
             this.carteSelected.remove( img.getURL());
-            
         }else{
             DropShadow ds = new DropShadow(20,Color.AQUA);
             tmp.setEffect(ds);
@@ -368,11 +362,13 @@ public class BoardController implements Initializable {
     @FXML
     public void clickPseudoHandle(Event event){
         Label lbl = (Label) event.getSource();
-        if(this.joueurSelected.equals(lbl.getText())){
+        if(this.joueurSelected == null){
+           this.joueurSelected = lbl.getText(); 
+           lbl.setFont(Font.font(null, FontWeight.BOLD, 24));
+        }else{
             this.joueurSelected= null;
             lbl.setFont(Font.font(null, FontWeight.NORMAL, 24));
-            this.joueurSelected = lbl.getText();
-            lbl.setFont(Font.font(null, FontWeight.BOLD, 24));
+           
         }
     }
     
@@ -432,7 +428,6 @@ public class BoardController implements Initializable {
     
     @FXML
     public void clickVille(MouseEvent event){
-       System.out.println("com.miage.pandemie.controller.BoardController.clickVille()");
        
        Object obj = event.getSource();
        if(obj instanceof Label){
@@ -447,8 +442,7 @@ public class BoardController implements Initializable {
         } catch (RemoteException ex) {
             Logger.getLogger(BoardController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    }
+    }    
     @FXML
     public void volNavetteClick(Event enEvent){
         try {
