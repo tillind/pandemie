@@ -606,8 +606,7 @@ public class BoardController implements Initializable {
     }
     
     public void setPion(String couleur, String position){
-        //Mettre le pion de la couleur donnée à la position donnée ( c'est un nom de ville )
-        throw new UnsupportedOperationException("Not supported yet.");
+       
     }
     
     
@@ -616,31 +615,31 @@ public class BoardController implements Initializable {
        LocatedImage testImage =  new LocatedImage(link);
        if(c0.getImage().equals(testImage))
        {
-           c0.setImage(null);
+           c0.setImage(testImage);
        }
        else if(c1.getImage().equals(testImage))
        {
-           c1.setImage(null);
+           c1.setImage(testImage);
        }
        else if (c2.getImage().equals(testImage))
        {
-           c2.setImage(null);
+           c2.setImage(testImage);
        }
        else if (c3.getImage().equals(testImage))
        {
-           c3.setImage(null);
+           c3.setImage(testImage);
        }
         else if (c4.getImage().equals(testImage))
        {
-           c4.setImage(null);
+           c4.setImage(testImage);
        }
        else if (c5.getImage().equals(testImage))
        {
-           c5.setImage(null);
+           c5.setImage(testImage);
        }
-               else if (c6.getImage().equals(testImage))
+       else if (c6.getImage().equals(testImage))
        {
-           c6.setImage(null);
+           c6.setImage(testImage);
        }
     }
     
