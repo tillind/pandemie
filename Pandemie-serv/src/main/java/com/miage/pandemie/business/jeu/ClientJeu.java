@@ -18,11 +18,11 @@ public interface ClientJeu extends Remote {
     public void addPseudo(String pseudo)throws RemoteException;
     public void setTauxInfection(int valeur, int position) throws RemoteException;
     public void setFoyerInfection(int valeur) throws RemoteException;
-    public void setPion(String couleur, String position)throws RemoteException;
+    public void setPion(String usr, String position)throws RemoteException;
     public void removeCarte(String link)throws RemoteException;
     public void addDefausseJoueur(String link) throws RemoteException;
     public void addDefausseInfection(String linkImg)throws RemoteException;
-    public void addRole(String linkImg)throws RemoteException;
+    public void addRole(String nomRole)throws RemoteException;
     public void decouvrirRemede(String couleur) throws RemoteException;
     public void defaite()throws RemoteException;
     public void victoire()throws RemoteException;

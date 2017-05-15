@@ -44,8 +44,8 @@ public class ClientJeuImpl extends UnicastRemoteObject implements ClientJeu {
     }
 
     @Override
-    public void setPion(String couleur, String position) throws RemoteException {
-        this.ctrl.setPion(couleur, position);
+    public void setPion(String user, String position) throws RemoteException {
+        this.ctrl.setPion(user, position);
     }
 
 
@@ -66,8 +66,8 @@ public class ClientJeuImpl extends UnicastRemoteObject implements ClientJeu {
     }
 
     @Override
-    public void addRole(String link) throws RemoteException {
-        this.ctrl.addRole(link);
+    public void addRole(String nomRole) throws RemoteException {
+        this.ctrl.addRole(nomRole);
     }
 
 
