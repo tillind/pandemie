@@ -8,7 +8,6 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,7 +20,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1010.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miage.pandemie.controller.BoardController">
    <top>
-      <GridPane prefHeight="157.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="157.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints maxWidth="275.0" minWidth="10.0" prefWidth="269.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="907.0" minWidth="10.0" prefWidth="559.0" />
@@ -39,7 +38,7 @@
                         <Image url="@../image/Infection/Verso.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="defausseInfectionImageView" fitHeight="122.0" fitWidth="170.0" layoutX="348.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="defausseInfectionImageView" fitHeight="122.0" fitWidth="170.0" layoutX="348.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../image/Infection/Ville/Jaune/Sao_Paulo.jpg" />
                      </image>
@@ -251,10 +250,27 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Remede Jaune" />
-                        <Label text="Remede rouge" GridPane.columnIndex="1" />
-                        <Label text="Remede bleu" GridPane.columnIndex="2" />
-                        <Label text="Remede noire" GridPane.columnIndex="3" />
+                        <Label fx:id="jauneRemede" text="Remede jaune" visible="false" />
+                        <Label fx:id="rougeRemede" text="Remede rouge" visible="false" GridPane.columnIndex="1" />
+                        <Label fx:id="bleuRemede" text="Remede bleu" visible="false" GridPane.columnIndex="2" />
+                        <Label fx:id="noirRemede" text="Remede noir" visible="false" GridPane.columnIndex="3" />
+                     </children>
+                  </GridPane>
+                  <GridPane layoutX="11.0" layoutY="121.0" prefHeight="94.0" prefWidth="431.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label fx:id="rougeEradiquee" text="Éradiquée" textFill="RED" visible="false" GridPane.columnIndex="1" />
+                        <Label fx:id="bleuEradiquee" text="Éradiquée" textFill="#2200ff" visible="false" GridPane.columnIndex="2" />
+                        <Label fx:id="noirEradiquee" text="Éradiquée" visible="false" GridPane.columnIndex="3" />
+                        <Label fx:id="jauneEradiquee" prefHeight="37.0" prefWidth="63.0" text="Eradiquée" textFill="#f2ff00" visible="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                </children>
@@ -267,7 +283,7 @@
                         <Image url="@../image/Joueur/Verso.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="142.0" fitWidth="205.0" layoutX="189.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                  <ImageView fx:id="defausseJoueurImageView" fitHeight="142.0" fitWidth="205.0" layoutX="189.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" visible="false">
                      <image>
                         <Image url="@../image/Joueur/Event/Event_Prevision.jpg" />
                      </image>
@@ -349,7 +365,7 @@
                         <Image url="@../asset/board.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="264.0" layoutY="68.0" onMouseClicked="#clickVille" prefHeight="27.0" prefWidth="60.0" text="New york" textFill="#0d00ff">
+                  <Label layoutX="264.0" layoutY="68.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" prefHeight="27.0" prefWidth="60.0" text="New york" textFill="#0d00ff">
                      <contextMenu>
                         <ContextMenu>
                           <items>
@@ -587,7 +603,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="47.0" layoutY="170.0" onMouseClicked="#clickVille" text="Los angeles" textFill="#fff900">
+                  <Label layoutX="47.0" layoutY="170.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Los angeles" textFill="#fff900">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -723,7 +739,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="9.0" layoutY="122.0" onMouseClicked="#clickVille" text="San francisco" textFill="#0004ff">
+                  <Label layoutX="9.0" layoutY="122.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="San francisco" textFill="#0004ff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1470,13 +1486,6 @@
                           </items>
                         </ContextMenu>
                      </contextMenu>
-                     <tooltip>
-                        <Tooltip text="Empty Tooltip">
-                           <graphic>
-                              <Label text="TEST" />
-                           </graphic>
-                        </Tooltip>
-                     </tooltip>
                   </Label>
                   <Label layoutX="1004.0" layoutY="190.0" onMouseClicked="#clickVille" text="Mumbai">
                      <font>

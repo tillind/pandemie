@@ -47,10 +47,6 @@ public class ClientJeuImpl extends UnicastRemoteObject implements ClientJeu {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    @Override
-    public void setVille(String nom,String couleur ,int nbCubeMaladie)throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     @Override
     public void removeCarte(String link)throws RemoteException{
@@ -72,10 +68,6 @@ public class ClientJeuImpl extends UnicastRemoteObject implements ClientJeu {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void addStation(String ville) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public void decouvrirRemede(String couleur) throws RemoteException {
@@ -99,6 +91,11 @@ public class ClientJeuImpl extends UnicastRemoteObject implements ClientJeu {
 
     @Override
     public void addPseudo(String pseudo) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void afficherInfoVille(boolean aStation, int nbCubeJaune, int nbCubeRouge, int nbCubeBleu, int nbCubeNoir) throws RemoteException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

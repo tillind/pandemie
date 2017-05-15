@@ -23,4 +23,6 @@ public interface ServeurJeu extends Remote {
     public void donnerCarte(String usr, String receiver, String carte) throws RemoteException;
     public void defausseCarte(String usr, String carte ) throws RemoteException;
     public void jouerCarteEvent(String usr, String carte) throws RemoteException;
+    public void getInfoVille(String usr,String Ville) throws RemoteException;
+
 }

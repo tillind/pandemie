@@ -166,13 +166,6 @@ public class ServeurJeuImpl extends UnicastRemoteObject implements ServeurJeu {
                     }
                 }
             }
-            for (Ville ville : villesModifiees) {
-                for (ECouleur couleur : ECouleur.values()) {
-                    if (ville.getInfection().get(couleur).size() > 0) {
-                        value.setVille(ville.getName(), couleur.name(), ville.getInfection().get(couleur).size());
-                    }
-                }
-            }
 
             value.setTauxInfection(leJeu.getTauxInfection().getValeur(), leJeu.getTauxInfection().getValeur());
             value.setFoyerInfection(leJeu.getFoyerInfection().getValeur());
@@ -197,25 +190,11 @@ public class ServeurJeuImpl extends UnicastRemoteObject implements ServeurJeu {
     @Override
     public void construireStationRecherche(String usr, String loc, String ville) throws RemoteException {
         leJeu.construireStation(usr, leJeu.getCarteLoc(loc), leJeu.getVille(ville));
-        for (Map.Entry<String, ClientJeu> entry : lesClients.entrySet()) {
-            String key = entry.getKey();
-            ClientJeu value = entry.getValue();
-            value.addStation(ville);
-            if (key.equals(usr)) {
-                value.removeCarte(loc);
-            }
-            value.addDefausseJoueur(loc);
-        }
-
     }
 
     @Override
     public void construireStationRechercheExpert(String usr, String ville) throws RemoteException {
         leJeu.construireStation(usr, null, leJeu.getVille(ville));
-        for (Map.Entry<String, ClientJeu> entry : lesClients.entrySet()) {
-            ClientJeu value = entry.getValue();
-            value.addStation(ville);
-        }
     }
 
     @Override
@@ -246,20 +225,6 @@ public class ServeurJeuImpl extends UnicastRemoteObject implements ServeurJeu {
     @Override
     public void retirerCubeMaladie(String usr, String couleur) throws RemoteException {
         leJeu.traiterMaladie(usr, ECouleur.valueOf(couleur));
-        List<Ville> villesModifiees = leJeu.getVillesModifiees();
-        for (Map.Entry<String, ClientJeu> entry : lesClients.entrySet()) {
-            ClientJeu value = entry.getValue();
-            for (Ville ville : villesModifiees) {
-                value.setVille(ville.getName(), couleur, ville.getInfection().get(couleur).size());
-            }
-            
-            if(leJeu.getMaladiesEradiquees().contains(ECouleur.valueOf(couleur))){
-                value.addMaladieEradique(couleur);
-            }
-            
-            
-        }
-
     }
 
     @Override
@@ -329,6 +294,17 @@ public class ServeurJeuImpl extends UnicastRemoteObject implements ServeurJeu {
         }
 
         leJeu.clearVilleModifiees();
+    }
+
+    @Override
+    public void getInfoVille(String usr,String Ville) throws RemoteException {
+       Ville tmpVille = leJeu.getVille(Ville);
+       int nbCubeRouge = tmpVille.getInfection().get(ECouleur.Rouge).size();
+       int nbCubeJaune = tmpVille.getInfection().get(ECouleur.Jaune).size();
+       int nbCubeBleu = tmpVille.getInfection().get(ECouleur.Bleu).size();
+       int nbCubeNoir = tmpVille.getInfection().get(ECouleur.Noir).size();
+       boolean aStation = leJeu.aUneStation(tmpVille);
+       lesClients.get(usr).afficherInfoVille(aStation, nbCubeJaune,nbCubeRouge,nbCubeBleu,nbCubeNoir);       
     }
 
 }

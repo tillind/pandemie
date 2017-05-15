@@ -21,7 +21,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1010.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miage.pandemie.controller.BoardController">
    <top>
-      <GridPane prefHeight="157.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="157.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints maxWidth="275.0" minWidth="10.0" prefWidth="269.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="907.0" minWidth="10.0" prefWidth="559.0" />

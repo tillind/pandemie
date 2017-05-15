@@ -109,7 +109,8 @@ public class ServeurJeuImpl extends UnicastRemoteObject implements ServeurJeu{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-      
-       
-      
+    @Override
+    public void getInfoVille(String usr,String Ville) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }                  
 }
