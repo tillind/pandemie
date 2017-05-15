@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="903.0" prefWidth="1780.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miage.pandemie.controller.OptionsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="903.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miage.pandemie.controller.OptionsController">
    <top>
       <GridPane prefHeight="198.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -30,7 +30,7 @@
       </GridPane>
    </top>
    <center>
-      <GridPane prefHeight="545.0" prefWidth="535.0" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="500.0" prefWidth="20.0" BorderPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="258.0" />
           <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="1130.0" minWidth="10.0" prefWidth="282.0" />

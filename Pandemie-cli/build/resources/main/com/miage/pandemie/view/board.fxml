@@ -8,7 +8,6 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -39,7 +38,7 @@
                         <Image url="@../image/Infection/Verso.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="defausseInfectionImageView" fitHeight="122.0" fitWidth="170.0" layoutX="348.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="defausseInfectionImageView" fitHeight="122.0" fitWidth="170.0" layoutX="348.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../image/Infection/Ville/Jaune/Sao_Paulo.jpg" />
                      </image>
@@ -206,7 +205,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                  <Label fx:id="j1" layoutX="14.0" layoutY="31.0" onMouseClicked="#clickPseudoHandle" prefHeight="35.0" prefWidth="98.0" text="terpo">
+                  <Label fx:id="j1" layoutX="14.0" layoutY="31.0" onMouseClicked="#clickPseudoHandle" prefHeight="35.0" prefWidth="98.0" text="terpo" visible="false">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -221,6 +220,9 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
+                  <Label fx:id="posJ1" layoutX="137.0" layoutY="38.0" text="Label" visible="false" />
+                  <Label fx:id="posJ2" layoutX="137.0" layoutY="77.0" text="Label" visible="false" />
+                  <Label fx:id="posJ3" layoutX="137.0" layoutY="119.0" text="Label" visible="false" />
                </children>
             </AnchorPane>
          </children>
@@ -251,10 +253,27 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Remede Jaune" />
-                        <Label text="Remede rouge" GridPane.columnIndex="1" />
-                        <Label text="Remede bleu" GridPane.columnIndex="2" />
-                        <Label text="Remede noire" GridPane.columnIndex="3" />
+                        <Label fx:id="jauneRemede" text="Remede jaune" visible="false" />
+                        <Label fx:id="rougeRemede" text="Remede rouge" visible="false" GridPane.columnIndex="1" />
+                        <Label fx:id="bleuRemede" text="Remede bleu" visible="false" GridPane.columnIndex="2" />
+                        <Label fx:id="noirRemede" text="Remede noir" visible="false" GridPane.columnIndex="3" />
+                     </children>
+                  </GridPane>
+                  <GridPane layoutX="11.0" layoutY="121.0" prefHeight="94.0" prefWidth="431.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label fx:id="rougeEradiquee" text="Éradiquée" textFill="RED" visible="false" GridPane.columnIndex="1" />
+                        <Label fx:id="bleuEradiquee" text="Éradiquée" textFill="#2200ff" visible="false" GridPane.columnIndex="2" />
+                        <Label fx:id="noirEradiquee" text="Éradiquée" visible="false" GridPane.columnIndex="3" />
+                        <Label fx:id="jauneEradiquee" prefHeight="37.0" prefWidth="63.0" text="Eradiquée" textFill="#f2ff00" visible="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                </children>
@@ -267,7 +286,7 @@
                         <Image url="@../image/Joueur/Verso.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="142.0" fitWidth="205.0" layoutX="189.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                  <ImageView fx:id="defausseJoueurImageView" fitHeight="142.0" fitWidth="205.0" layoutX="189.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" visible="false">
                      <image>
                         <Image url="@../image/Joueur/Event/Event_Prevision.jpg" />
                      </image>
@@ -349,7 +368,7 @@
                         <Image url="@../asset/board.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="264.0" layoutY="68.0" onMouseClicked="#clickVille" prefHeight="27.0" prefWidth="60.0" text="New york" textFill="#0d00ff">
+                  <Label layoutX="264.0" layoutY="68.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" prefHeight="27.0" prefWidth="60.0" text="New york" textFill="#0d00ff">
                      <contextMenu>
                         <ContextMenu>
                           <items>
@@ -383,7 +402,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="655.0" layoutY="81.0" text="Paris" textFill="#001cff">
+                  <Label layoutX="655.0" layoutY="81.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Paris" textFill="#001cff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -417,7 +436,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="620.0" layoutY="42.0" text="Londre" textFill="#2b00ff">
+                  <Label layoutX="620.0" layoutY="42.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Londre" textFill="#2b00ff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -451,7 +470,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="694.0" layoutY="51.0" text="Essen" textFill="#0400ff">
+                  <Label layoutX="694.0" layoutY="51.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Essen" textFill="#0400ff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -485,7 +504,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="611.0" layoutY="122.0" text="Madrid" textFill="#2200ff">
+                  <Label layoutX="611.0" layoutY="122.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Madrid" textFill="#2200ff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -519,7 +538,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="736.0" layoutY="42.0" text="Saint-péterbourg" textFill="#0400ff">
+                  <Label layoutX="736.0" layoutY="42.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Saint-péterbourg" textFill="#0400ff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -553,7 +572,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="705.0" layoutY="114.0" text="Milan" textFill="#0004ff">
+                  <Label layoutX="705.0" layoutY="114.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Milan" textFill="#0004ff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -587,7 +606,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="47.0" layoutY="170.0" onMouseClicked="#clickVille" text="Los angeles" textFill="#fff900">
+                  <Label layoutX="47.0" layoutY="170.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Los angeles" textFill="#fff900">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -621,7 +640,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="179.0" layoutY="162.0" text="Atlanta" textFill="#2200ff">
+                  <Label layoutX="179.0" layoutY="162.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Atlanta" textFill="#2200ff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -655,7 +674,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="141.0" layoutY="113.0" text="Chicago" textFill="#3700ff">
+                  <Label layoutX="141.0" layoutY="113.0" onMouseClicked="#clickVille" onMouseExited="#overVille" text="Chicago" textFill="#3700ff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -689,7 +708,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="221.0" layoutY="33.0" text="Montréal" textFill="#03009e">
+                  <Label layoutX="221.0" layoutY="33.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Montréal" textFill="#03009e">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -723,7 +742,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="9.0" layoutY="122.0" onMouseClicked="#clickVille" text="San francisco" textFill="#0004ff">
+                  <Label layoutX="9.0" layoutY="122.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="San francisco" textFill="#0004ff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -757,7 +776,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="219.0" layoutY="122.0" text="Washington" textFill="#1500ff">
+                  <Label layoutX="219.0" layoutY="122.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Washington" textFill="#1500ff">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -791,7 +810,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="253.0" layoutY="323.0" text="Bogota" textFill="#f2ff00">
+                  <Label layoutX="253.0" layoutY="323.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Bogota" textFill="#f2ff00">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -825,7 +844,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="371.0" layoutY="471.0" text="Buenos aires" textFill="#fff200">
+                  <Label layoutX="371.0" layoutY="471.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Buenos aires" textFill="#fff200">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -859,7 +878,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="787.0" layoutY="454.0" text="Johannesburg" textFill="#fff200">
+                  <Label layoutX="787.0" layoutY="454.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Johannesburg" textFill="#fff200">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -893,7 +912,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="802.0" layoutY="366.0" text="Kharthoum" textFill="#fff600">
+                  <Label layoutX="802.0" layoutY="366.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Kharthoum" textFill="#fff600">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -927,7 +946,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="709.0" layoutY="349.0" text="Kinshasa" textFill="#fff200">
+                  <Label layoutX="709.0" layoutY="349.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Kinshasa" textFill="#fff200">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -961,7 +980,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="652.0" layoutY="297.0" text="Lagos" textFill="#fffa00">
+                  <Label layoutX="652.0" layoutY="297.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Lagos" textFill="#fffa00">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -995,7 +1014,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="254.0" layoutY="418.0" text="Lima" textFill="#ffea00">
+                  <Label layoutX="254.0" layoutY="418.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Lima" textFill="#ffea00">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1029,7 +1048,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="99.0" layoutY="240.0" text="Mexico" textFill="#ffea00">
+                  <Label layoutX="99.0" layoutY="240.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Mexico" textFill="#ffea00">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1063,7 +1082,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="231.0" layoutY="197.0" text="Miami" textFill="#fffb00">
+                  <Label layoutX="231.0" layoutY="197.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Miami" textFill="#fffb00">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1097,7 +1116,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="256.0" layoutY="515.0" text="Santiago" textFill="#fff200">
+                  <Label layoutX="256.0" layoutY="515.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Santiago" textFill="#fff200">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1131,7 +1150,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="398.0" layoutY="383.0" text="Sao paulo" textFill="#ffea00">
+                  <Label layoutX="398.0" layoutY="383.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Sao paulo" textFill="#ffea00">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1165,7 +1184,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="653.0" layoutY="156.0" text="Alger">
+                  <Label layoutX="653.0" layoutY="156.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Alger">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1199,7 +1218,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="867.0" layoutY="198.0" text="Bagdad">
+                  <Label layoutX="867.0" layoutY="198.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Bagdad">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1233,7 +1252,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="1109.0" layoutY="189.0" text="Calcutta">
+                  <Label layoutX="1109.0" layoutY="189.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Calcutta">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1267,7 +1286,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="1070.0" layoutY="241.0" text="Chennai">
+                  <Label layoutX="1070.0" layoutY="241.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Chennai">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1301,7 +1320,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="1063.0" layoutY="215.0" text="Delhi">
+                  <Label layoutX="1063.0" layoutY="215.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Delhi">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1335,7 +1354,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="796.0" layoutY="131.0" text="Istanbul">
+                  <Label layoutX="796.0" layoutY="131.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Istanbul">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1369,7 +1388,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="953.0" layoutY="179.0" text="Karachi">
+                  <Label layoutX="953.0" layoutY="179.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Karachi">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1403,7 +1422,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="775.0" layoutY="189.0" text="Le caire">
+                  <Label layoutX="775.0" layoutY="189.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Le caire">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1437,48 +1456,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="834.0" layoutY="64.0" text="Moscou">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                        <contextMenu>
-                        <ContextMenu>
-                          <items>
-                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
-                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
-                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
-                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
-                              <SeparatorMenuItem mnemonicParsing="false" />
-                              <Menu mnemonicParsing="false" text="Traiter maladie">
-                                <items>
-                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
-                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
-                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
-                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
-                                </items>
-                              </Menu>
-                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
-                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
-                              <Menu mnemonicParsing="false" text="Découvrir remede">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
-                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
-                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
-                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
-                                </items>
-                              </Menu>
-                          </items>
-                        </ContextMenu>
-                     </contextMenu>
-                     <tooltip>
-                        <Tooltip text="Empty Tooltip">
-                           <graphic>
-                              <Label text="TEST" />
-                           </graphic>
-                        </Tooltip>
-                     </tooltip>
-                  </Label>
-                  <Label layoutX="1004.0" layoutY="190.0" text="Mumbai">
+                  <Label layoutX="834.0" layoutY="64.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Moscou">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1512,7 +1490,41 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="841.0" layoutY="265.0" text="Riyad">
+                  <Label layoutX="1004.0" layoutY="190.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Mumbai">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                        <contextMenu>
+                        <ContextMenu>
+                          <items>
+                              <MenuItem mnemonicParsing="false" onAction="#conduireClick" text="Conduire" />
+                              <MenuItem mnemonicParsing="false" onAction="#volDirectClick" text="Vol direct" />
+                            <MenuItem mnemonicParsing="false" onAction="#volCharterClick" text="Vol charter" />
+                              <MenuItem mnemonicParsing="false" onAction="#volNavetteClick" text="Vol navette" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Traiter maladie">
+                                <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Jaune" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Rouge" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Bleu" />
+                                  <MenuItem mnemonicParsing="false" onAction="#traiterMaladieClick" text="Noire" />
+                                </items>
+                              </Menu>
+                              <MenuItem mnemonicParsing="false" onAction="#construireStationDeRechercheClick" text="Construire station de recherche" />
+                              <MenuItem mnemonicParsing="false" onAction="#partageConnaissanceClick" text="Partage de connaissance" />
+                              <Menu mnemonicParsing="false" text="Découvrir remede">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Jaune" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Bleu" />
+                                    <MenuItem mnemonicParsing="false" onAction="#decouvrirRemedeClick" text="Rouge" />
+                                </items>
+                              </Menu>
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </Label>
+                  <Label layoutX="841.0" layoutY="265.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Riyad">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1546,7 +1558,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="958.0" layoutY="51.0" text="Teheran">
+                  <Label layoutX="958.0" layoutY="51.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Teheran">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1580,7 +1592,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="1168.0" layoutY="281.0" text="Bangkok" textFill="RED">
+                  <Label layoutX="1168.0" layoutY="281.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Bangkok" textFill="RED">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1614,7 +1626,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="1223.0" layoutY="265.0" text="Ho-chi-minh-ville" textFill="RED">
+                  <Label layoutX="1223.0" layoutY="265.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Ho-chi-minh-ville" textFill="RED">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1648,7 +1660,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="1207.0" layoutY="242.0" prefHeight="15.0" prefWidth="64.0" text="Hong kong" textFill="RED">
+                  <Label layoutX="1207.0" layoutY="242.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" prefHeight="15.0" prefWidth="64.0" text="Hong kong" textFill="RED">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1682,7 +1694,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="1218.0" layoutY="341.0" text="Jakarta" textFill="RED">
+                  <Label layoutX="1218.0" layoutY="341.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Jakarta" textFill="RED">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1716,7 +1728,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="1355.0" layoutY="289.0" text="Manille" textFill="RED">
+                  <Label layoutX="1355.0" layoutY="289.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Manille" textFill="RED">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1750,7 +1762,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="1352.0" layoutY="140.0" text="Osaka" textFill="RED">
+                  <Label layoutX="1352.0" layoutY="140.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Osaka" textFill="RED">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1784,7 +1796,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="1207.0" layoutY="98.0" text="Pekin" textFill="RED">
+                  <Label layoutX="1207.0" layoutY="98.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Pekin" textFill="RED">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1818,7 +1830,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="1290.0" layoutY="106.0" text="Seoul" textFill="RED">
+                  <Label layoutX="1290.0" layoutY="106.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Seoul" textFill="RED">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1852,7 +1864,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="1233.0" layoutY="148.0" text="Shanghai" textFill="RED">
+                  <Label layoutX="1233.0" layoutY="148.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Shanghai" textFill="RED">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1886,7 +1898,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="1305.0" layoutY="199.0" text="Taipei" textFill="RED">
+                  <Label layoutX="1305.0" layoutY="199.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Taipei" textFill="RED">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1920,7 +1932,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="1369.0" layoutY="81.0" text="Tokyo" textFill="RED">
+                  <Label layoutX="1369.0" layoutY="81.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Tokyo" textFill="RED">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -1954,7 +1966,7 @@
                         </ContextMenu>
                      </contextMenu>
                   </Label>
-                  <Label layoutX="1442.0" layoutY="479.0" text="Sydney" textFill="RED">
+                  <Label layoutX="1442.0" layoutY="479.0" onMouseClicked="#clickVille" onMouseMoved="#overVille" text="Sydney" textFill="RED">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
