@@ -64,7 +64,7 @@ public class ClientJeuImpl extends UnicastRemoteObject implements ClientJeu {
     }
        
     @Override
-    public void addRole(String link)throws RemoteException{
+    public void addRole(String nomRole)throws RemoteException{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

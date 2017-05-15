@@ -220,6 +220,9 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
+                  <Label fx:id="posJ1" layoutX="137.0" layoutY="38.0" text="Label" />
+                  <Label fx:id="posJ2" layoutX="137.0" layoutY="77.0" text="Label" />
+                  <Label fx:id="posJ3" layoutX="137.0" layoutY="119.0" text="Label" />
                </children>
             </AnchorPane>
          </children>

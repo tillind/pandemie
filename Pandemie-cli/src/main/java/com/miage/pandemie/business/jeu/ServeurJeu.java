@@ -25,4 +25,5 @@ public interface ServeurJeu extends Remote {
     /**auto***/
     public void defausseCarte(String usr, String carte ) throws RemoteException;
     public void jouerCarteEvent(String usr, String carte) throws RemoteException;
+
 }

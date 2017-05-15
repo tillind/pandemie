@@ -5,7 +5,10 @@ jar {
     manifest {
         attributes("Implementation-Title": "Pandemie client vers",
                    "Implementation-Version": "0.1",
-                    "Main-Class": 'com.miage.pandemie.launch.Launch'
+                   "Main-Class": 'com.miage.pandemie.launch.Launch',
+                   'Built-By': System.getProperty('user.name'),
+                   'Built-Date': new Date(),
+                   'Built-JDK': System.getProperty('java.version'),
         )
     }
   }
